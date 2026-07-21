@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cognexa.co.za/sitemap.xml

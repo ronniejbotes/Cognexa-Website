@@ -503,6 +503,32 @@
     var burstTl = null;   /* open()'s timeline — killed by close() */
     var hideTimer = null; /* close()'s deferred overlay.hidden */
     var focusTimer = null;
+    var formationTween = null;      /* step-driven machine morphs */
+    var stepFormation = { f: 0 };
+
+    /* While the questionnaire is open the machine morphs per STEP, not per
+       scroll: Next advances a formation, Back rewinds one, and questions
+       beyond the 5th hold the final formation (the wireframe globe). */
+    function morphToStep(i) {
+      if (!sceneActive || !window.gsap || !window.CognexaScene) return;
+      var target = Math.min(i, 4);
+      if (formationTween) formationTween.kill();
+      formationTween = window.gsap.to(stepFormation, {
+        f: target,
+        duration: 0.9,
+        ease: 'power2.inOut',
+        onUpdate: function () {
+          var scene = window.CognexaScene;
+          if (scene && typeof scene.setFormation === 'function') {
+            try {
+              scene.setFormation(stepFormation.f);
+            } catch (err) {
+              /* decorative only */
+            }
+          }
+        }
+      });
+    }
 
     var SERVICE_BY_STATION = {
       'station-chat': 'Chatbots & WhatsApp automation',
@@ -540,6 +566,7 @@
       });
       if (successStep) successStep.classList.remove('active');
       setProgress((i + 1) / (total + 1));
+      morphToStep(i);
       if (focusTimer) window.clearTimeout(focusTimer);
       focusTimer = window.setTimeout(function () {
         focusTimer = null;
@@ -555,6 +582,7 @@
       if (successStep) {
         successStep.classList.add('active');
         setProgress(1);
+        morphToStep(4); /* success holds the final formation */
         if (focusTimer) window.clearTimeout(focusTimer);
         focusTimer = window.setTimeout(function () {
           focusTimer = null;
@@ -731,6 +759,7 @@
       }
       overlay.hidden = false;
       body.classList.add('intake-open');
+      docEl.classList.add('intake-open'); /* scroll lock lives on <html> */
       void overlay.offsetWidth; /* flush so the backdrop transition runs */
       overlay.classList.add('is-open');
       /* Anchor focus inside the dialog immediately; focusStep() refines it. */
@@ -746,6 +775,17 @@
       isOpen = true;
       lastFocus = document.activeElement;
       clearFormErrors(form);
+
+      /* Seed the step morph from wherever the scroll choreography left the
+         machine, so the first morph animates rather than snapping. */
+      var sceneRef = window.CognexaScene;
+      if (sceneRef && typeof sceneRef.getFormation === 'function') {
+        try {
+          stepFormation.f = sceneRef.getFormation();
+        } catch (err) {
+          /* decorative only */
+        }
+      }
 
       if (preselectService) {
         var radio = form.querySelector(
@@ -837,6 +877,11 @@
       }
       overlay.classList.remove('is-open');
       body.classList.remove('intake-open');
+      docEl.classList.remove('intake-open');
+      if (formationTween) {
+        formationTween.kill();
+        formationTween = null;
+      }
       if (hideTimer) window.clearTimeout(hideTimer);
       hideTimer = window.setTimeout(function () {
         hideTimer = null;
@@ -872,6 +917,15 @@
           overwrite: 'auto',
           clearProps: 'transform,opacity,visibility'
         });
+      }
+      /* Re-sync the machine with the scroll position the page returns to
+         (refresh re-fires the formation + progress onRefresh handlers). */
+      if (sceneActive && window.ScrollTrigger) {
+        try {
+          window.ScrollTrigger.refresh();
+        } catch (err) {
+          /* decorative only */
+        }
       }
       if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
     }

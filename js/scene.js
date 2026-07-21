@@ -659,6 +659,13 @@
     state.uniforms.uMix.value = frac; // shader applies smoothstep
   }
 
+  /* Current continuous formation value (pair index + mix) — lets callers
+     animate from wherever the scroll choreography left the machine. */
+  function getFormation() {
+    if (!state) return 0;
+    return state.pairIndex + state.uniforms.uMix.value;
+  }
+
   function setProgress(p) {
     if (!state) return;
     p = clamp(isFinite(p) ? +p : 0, 0, 1);
@@ -718,6 +725,7 @@
   window.CognexaScene = {
     init: init,
     setFormation: setFormation,
+    getFormation: getFormation,
     setProgress: setProgress,
     setPointer: setPointer,
     setDim: setDim,
