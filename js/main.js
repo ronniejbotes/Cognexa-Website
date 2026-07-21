@@ -549,19 +549,21 @@
     function validateStep(step) {
       clearFormErrors(form);
       var invalid = null;
-      var radios = step.querySelectorAll('input[type="radio"]');
-      if (radios.length) {
-        if (!step.querySelector('input[type="radio"]:checked') &&
-            step.querySelector('input[required]')) {
+      var choices = step.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+      if (choices.length) {
+        var needsOne =
+          step.hasAttribute('data-require-one') || step.querySelector('input[required]');
+        if (needsOne && !step.querySelector('input:checked')) {
           var options = step.querySelector('.intake-options');
           var error = document.createElement('p');
           error.className = 'field-error';
           error.setAttribute('role', 'alert');
-          error.textContent = 'Pick one to carry on.';
+          error.textContent =
+            step.getAttribute('data-require-one') || 'Pick one to carry on.';
           if (options && options.parentNode) {
             options.parentNode.insertBefore(error, options.nextSibling);
           }
-          invalid = radios[0];
+          invalid = choices[0];
         }
       } else {
         Array.prototype.slice
@@ -603,6 +605,14 @@
       return '';
     }
 
+    /* Multi-select groups: every checked value, comma-joined. */
+    function checkedVals(name) {
+      return Array.prototype.slice
+        .call(form.querySelectorAll('input[name="' + name + '"]:checked'))
+        .map(function (el) { return el.value; })
+        .join(', ');
+    }
+
     function submitIntake() {
       if (!validateStep(steps[current])) return;
       var lines = [
@@ -610,8 +620,8 @@
         'Email: ' + fieldVal('email'),
         'Business: ' + fieldVal('company'),
         'What they do: ' + fieldVal('industry'),
-        'Interested in: ' + fieldVal('service'),
-        'Biggest time drain: ' + fieldVal('pain')
+        'Interested in: ' + checkedVals('service'),
+        'Biggest time drains: ' + checkedVals('pain')
       ];
       var message = fieldVal('message');
       if (message) lines.push('', 'Notes:', message);
@@ -728,6 +738,20 @@
       }
       if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
     }
+
+    /* "Not sure — recommend for me" is exclusive with concrete picks. */
+    form.addEventListener('change', function (event) {
+      var t = event.target;
+      if (!t || t.name !== 'service' || !t.checked) return;
+      var boxes = form.querySelectorAll('input[name="service"]');
+      Array.prototype.forEach.call(boxes, function (box) {
+        if (t.value === 'Not sure yet') {
+          if (box !== t) box.checked = false;
+        } else if (box.value === 'Not sure yet') {
+          box.checked = false;
+        }
+      });
+    });
 
     form.addEventListener('click', function (event) {
       var t = event.target;
