@@ -1,69 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cognexa — AI Sales Platform</title>
-  <meta name="description" content="Cognexa helps sales teams close more deals with AI-driven pipeline intelligence.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cognexa — AI Business Solutions</title>
+  <meta name="description" content="Cognexa builds AI chatbots, voice agents and automated workflows that answer, sell and follow up around the clock — plus immersive 3D websites like this one.">
+  <meta name="theme-color" content="#0f1117">
+
+  <meta property="og:title" content="Cognexa — AI Business Solutions">
+  <meta property="og:description" content="AI chatbots, voice agents and automated workflows that answer, sell and follow up — around the clock, in your brand's voice.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
+  <a class="skip-link" href="#hero">Skip to content</a>
+
+  <canvas id="scene-canvas" aria-hidden="true"></canvas>
+
   <header class="site-nav">
-    <div class="container">
-      <a href="index.html" class="nav-brand">Cognexa</a>
-      <nav aria-label="Main">
-        <ul class="nav-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <a href="#contact" class="btn btn-primary">Get Started</a>
-    </div>
+    <a class="nav-brand" href="/">Cognexa</a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+      <span class="sr-only">Menu</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <line x1="4" y1="6" x2="20" y2="6"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="18" x2="20" y2="18"></line>
+      </svg>
+    </button>
+
+    <nav id="nav-menu" class="nav-menu" aria-label="Primary">
+      <a class="nav-link" href="#services">Services</a>
+      <a class="nav-link" href="#process">Process</a>
+      <a class="nav-link" href="#work">Work</a>
+      <a class="nav-link" href="#contact">Contact</a>
+      <a class="btn btn-primary" href="#contact">Start your build</a>
+    </nav>
+
+    <div class="nav-progress" aria-hidden="true"></div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container">
-        <h1>Close more deals with AI-driven sales intelligence</h1>
-        <p>Cognexa gives your team a live view of every lead, deal, and forecast — powered by AI.</p>
+
+    <!-- ============================== HERO ============================== -->
+    <section id="hero" class="hero" tabindex="-1">
+      <div class="hero-inner">
+        <p class="eyebrow">AI business solutions</p>
+        <h1>Your business,<br><span class="hero-accent">on autopilot.</span></h1>
+        <p class="hero-sub">Cognexa builds AI chatbots, voice agents and automated workflows that answer, sell and follow up — around the clock, in your brand's voice.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Get Started</a>
-          <a href="#features" class="btn btn-ghost">See Features</a>
+          <a class="btn btn-primary" href="#contact">Start your build</a>
+          <a class="btn btn-ghost" href="#services">See the line in motion</a>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#services">
+        <span class="scroll-cue-label">Scroll</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </a>
+    </section>
+
+    <!-- ============================ STATIONS ============================ -->
+    <section id="services" class="stations" data-stations="4">
+      <h2 class="sr-only">Services</h2>
+
+      <article id="station-chat" class="station" data-formation="1" data-accent="blue">
+        <div class="station-stage">
+        <div class="station-inner glass">
+          <div class="station-ghost" aria-hidden="true">01</div>
+          <p class="eyebrow">Conversational AI</p>
+          <h2>Chatbots that close, not just chat.</h2>
+          <p>Website chat and WhatsApp automation that answers instantly, qualifies leads and books the meeting — then hands off to your team with full context.</p>
+          <ul class="station-list">
+            <li>Website + WhatsApp, one brain</li>
+            <li>Replies in seconds, 24/7</li>
+            <li>Qualifies and routes hot leads</li>
+            <li>Speaks your brand's language</li>
+          </ul>
+          <a class="station-link" href="#contact">Explore conversational AI <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
+      </article>
+
+      <article id="station-voice" class="station" data-formation="2" data-accent="green">
+        <div class="station-stage">
+        <div class="station-inner glass">
+          <div class="station-ghost" aria-hidden="true">02</div>
+          <p class="eyebrow">AI voice agents</p>
+          <h2>A voice that never misses a call.</h2>
+          <p>Inbound reception and outbound follow-up handled by natural-sounding AI voice agents that book, remind, confirm and escalate when a human should step in.</p>
+          <ul class="station-list">
+            <li>Answers every inbound call</li>
+            <li>Outbound follow-up on time, every time</li>
+            <li>Books straight into your calendar</li>
+            <li>Warm handover to humans</li>
+          </ul>
+          <a class="station-link" href="#contact">Explore voice agents <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
+      </article>
+
+      <article id="station-workflow" class="station" data-formation="3" data-accent="purple">
+        <div class="station-stage">
+        <div class="station-inner glass">
+          <div class="station-ghost" aria-hidden="true">03</div>
+          <p class="eyebrow">Workflow automation</p>
+          <h2>Your operations, on rails.</h2>
+          <p>We wire your tools together — CRM, calendar, invoicing, inbox — into AI workflows that move work forward without anyone pushing it.</p>
+          <ul class="station-list">
+            <li>Leads flow to CRM automatically</li>
+            <li>Quotes, invoices and reminders send themselves</li>
+            <li>Every step logged and auditable</li>
+            <li>Humans approve, AI executes</li>
+          </ul>
+          <a class="station-link" href="#contact">Explore workflow automation <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
+      </article>
+
+      <article id="station-web" class="station" data-formation="4" data-accent="blue">
+        <div class="station-stage">
+        <div class="station-inner glass">
+          <div class="station-ghost" aria-hidden="true">04</div>
+          <p class="eyebrow">3D web experiences</p>
+          <h2>Websites that feel like this one.</h2>
+          <p>Immersive, scroll-driven 3D sites that make your product unforgettable — designed, built and tuned for performance by the team behind this page.</p>
+          <ul class="station-list">
+            <li>Real-time 3D, tuned for every device</li>
+            <li>Scroll-native storytelling</li>
+            <li>Built to convert, not just impress</li>
+            <li>From concept to launch</li>
+          </ul>
+          <a class="station-link" href="#contact">Explore 3D web experiences <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================ PROCESS ============================= -->
+    <section id="process" class="process">
+      <h2>How the line runs</h2>
+      <div class="process-viewport" tabindex="0" role="region" aria-label="Process steps">
+        <div class="process-track">
+          <div class="process-step">
+            <p class="process-num">01</p>
+            <h3>Discover</h3>
+            <p>We map where your business leaks time and leads.</p>
+          </div>
+          <div class="process-step">
+            <p class="process-num">02</p>
+            <h3>Design</h3>
+            <p>We blueprint the agents and workflows that plug the gaps.</p>
+          </div>
+          <div class="process-step">
+            <p class="process-num">03</p>
+            <h3>Build</h3>
+            <p>Your AI team is assembled, trained on your business.</p>
+          </div>
+          <div class="process-step">
+            <p class="process-num">04</p>
+            <h3>Deploy</h3>
+            <p>Live in your channels — web, WhatsApp, phone, back office.</p>
+          </div>
+          <div class="process-step">
+            <p class="process-num">05</p>
+            <h3>Optimize</h3>
+            <p>We watch the data and tighten the line every week.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="features" class="section">
-      <div class="container">
-        <h2>Why Cognexa</h2>
-        <div class="card-grid">
-          <div class="card">
-            <h3>Pipeline visibility</h3>
-            <p>Track every deal from lead to close in one live dashboard.</p>
-          </div>
-          <div class="card">
-            <h3>AI forecasting</h3>
-            <p>Know which deals will land before the quarter ends.</p>
-          </div>
-          <div class="card">
-            <h3>Team performance</h3>
-            <p>See who's winning, who's stuck, and where to coach.</p>
-          </div>
-        </div>
+    <!-- ============================== WORK ============================== -->
+    <section id="work" class="work">
+      <h2>Built on the line</h2>
+      <p class="section-sub">Recent immersive builds from the 3D studio.</p>
+      <div class="work-grid">
+        <figure class="work-card">
+          <img src="assets/images/work-1.jpg" alt="Nexus Core product launch site — dark hero screen with a glowing blue particle core hovering above bold headline type" width="800" height="1000" loading="lazy">
+          <figcaption><span class="work-name">Nexus Core</span> <span class="work-tag">Product launch site</span></figcaption>
+        </figure>
+        <figure class="work-card">
+          <img src="assets/images/work-2.jpg" alt="Wavelane voice AI demo — animated green audio waveform rippling across a dark interface" width="800" height="1000" loading="lazy">
+          <figcaption><span class="work-name">Wavelane</span> <span class="work-tag">Voice AI demo</span></figcaption>
+        </figure>
+        <figure class="work-card">
+          <img src="assets/images/work-3.jpg" alt="Gridworks ops platform — dashboard panels connected by a purple network lattice of nodes and lines" width="800" height="1000" loading="lazy">
+          <figcaption><span class="work-name">Gridworks</span> <span class="work-tag">Ops platform</span></figcaption>
+        </figure>
+        <figure class="work-card">
+          <img src="assets/images/work-4.jpg" alt="Orbital interactive brand globe — wireframe sphere of blue and purple points slowly rotating in space" width="800" height="1000" loading="lazy">
+          <figcaption><span class="work-name">Orbital</span> <span class="work-tag">Interactive brand globe</span></figcaption>
+        </figure>
       </div>
     </section>
+
+    <!-- ============================= METRICS ============================ -->
+    <section id="metrics" class="metrics">
+      <h2 class="sr-only">What the line delivers</h2>
+      <div class="metric" data-count="24">
+        <p class="metric-value"><span class="metric-number">24</span><span class="metric-suffix">/7</span></p>
+        <p class="metric-label">always on, never on leave</p>
+      </div>
+      <div class="metric" data-count="60">
+        <p class="metric-value"><span class="metric-prefix">&lt;</span><span class="metric-number">60</span><span class="metric-suffix">s</span></p>
+        <p class="metric-label">median first reply</p>
+      </div>
+      <div class="metric" data-count="35">
+        <p class="metric-value"><span class="metric-number">35</span><span class="metric-suffix">%</span></p>
+        <p class="metric-label">of routine work automatable today</p>
+      </div>
+      <div class="metric" data-count="1">
+        <p class="metric-value"><span class="metric-number">1</span></p>
+        <p class="metric-label">team to build it all</p>
+      </div>
+    </section>
+
+    <!-- ============================= CONTACT ============================ -->
+    <section id="contact" class="contact">
+      <h2>Put your business on the line.</h2>
+      <p class="section-sub">Tell us what eats your team's hours. We'll design the automation that gives them back.</p>
+
+      <form id="contact-form" class="contact-form" action="mailto:hello@cognexa.co.za" method="post" enctype="text/plain">
+        <div class="form-field">
+          <label for="name">Name <abbr class="required" title="required">*</abbr></label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="email">Email <abbr class="required" title="required">*</abbr></label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <label for="company">Company <span class="optional">(optional)</span></label>
+          <input id="company" name="company" type="text" autocomplete="organization">
+        </div>
+        <div class="form-field">
+          <label for="message">Message <abbr class="required" title="required">*</abbr></label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Send it down the line</button>
+        <p class="form-hint">Sending opens your mail app — or write to us directly at <a href="mailto:hello@cognexa.co.za">hello@cognexa.co.za</a>.</p>
+      </form>
+
+      <p class="contact-alt">Prefer WhatsApp? <a href="https://wa.me/27000000000">Message us directly</a></p>
+    </section>
+
   </main>
 
-  <footer id="contact" class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Cognexa. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-about">
+        <p class="footer-brand">Cognexa</p>
+        <p class="footer-tagline">AI business solutions, built in South Africa.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+    <p class="footer-copy">&copy; <span id="footer-year" class="footer-year">2026</span> Cognexa</p>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/scroll.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
