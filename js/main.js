@@ -339,6 +339,10 @@
   var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var CONTACT_EMAIL = 'hello@cognexa.co.za';
 
+  /* Google Apps Script web-app URL (lead sheet + email notification).
+     While empty, submissions fall back to composing a mailto. */
+  var INTAKE_ENDPOINT = '';
+
   function requiredMessage(field) {
     var name = (field.getAttribute('name') || field.id || '').toLowerCase();
     if (name.indexOf('email') !== -1) return 'Please add your email address.';
@@ -613,8 +617,12 @@
         .join(', ');
     }
 
-    function submitIntake() {
-      if (!validateStep(steps[current])) return;
+    function setSuccessCopy(text) {
+      var sub = successStep ? successStep.querySelector('.intake-sub') : null;
+      if (sub && text) sub.textContent = text;
+    }
+
+    function submitViaMailto() {
       var lines = [
         'Name: ' + fieldVal('name'),
         'Email: ' + fieldVal('email'),
@@ -629,8 +637,62 @@
         'mailto:' + CONTACT_EMAIL +
         '?subject=' + encodeURIComponent('Build enquiry — ' + (fieldVal('company') || fieldVal('name'))) +
         '&body=' + encodeURIComponent(lines.join('\r\n'));
+      setSuccessCopy('Your answers are in your mail app, ready to send — we reply within one business day.');
       showSuccess();
       window.location.href = mailto;
+    }
+
+    function submitIntake() {
+      if (!validateStep(steps[current])) return;
+
+      if (!INTAKE_ENDPOINT || typeof window.fetch !== 'function') {
+        submitViaMailto();
+        return;
+      }
+
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var submitLabel = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+
+      var payload = {
+        name: fieldVal('name'),
+        email: fieldVal('email'),
+        company: fieldVal('company'),
+        industry: fieldVal('industry'),
+        service: checkedVals('service'),
+        pain: checkedVals('pain'),
+        message: fieldVal('message'),
+        page: window.location.href
+      };
+
+      /* Body as a plain string keeps this a "simple" request (no CORS
+         preflight), which Apps Script web apps require. */
+      window
+        .fetch(INTAKE_ENDPOINT, {
+          method: 'POST',
+          body: JSON.stringify(payload),
+          redirect: 'follow',
+          keepalive: true
+        })
+        .then(function (response) {
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          setSuccessCopy("We've got your answers — we reply within one business day.");
+          showSuccess();
+        })
+        .catch(function () {
+          /* Network hiccup: fall back to the mail app so the lead is
+             never lost. */
+          submitViaMailto();
+        })
+        .then(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitLabel;
+          }
+        });
     }
 
     function getPageEls() {
@@ -816,8 +878,41 @@
           : null;
       if (!link) return;
       event.preventDefault();
+      var explicit = link.getAttribute('data-intake-service');
       var station = link.closest('.station');
-      open(station ? SERVICE_BY_STATION[station.id] : null);
+      open(explicit || (station ? SERVICE_BY_STATION[station.id] : null));
+    });
+  }
+
+  /* ====================================================================
+   * Work loops — play the project videos only while visible; posters
+   * everywhere else (reduced motion, no JS, data saver).
+   * ================================================================== */
+  function initWorkVideos() {
+    var videos = Array.prototype.slice.call(document.querySelectorAll('.work-media'));
+    if (!videos.length || prefersReducedMotion()) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    var observer = new window.IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          var video = entry.target;
+          if (entry.isIntersecting) {
+            video.muted = true; /* belt & braces for autoplay policies */
+            var played = video.play();
+            if (played && typeof played.catch === 'function') {
+              played.catch(function () { /* poster stays — fine */ });
+            }
+          } else if (!video.paused) {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    videos.forEach(function (video) {
+      observer.observe(video);
     });
   }
 
@@ -856,6 +951,7 @@
     initCounters();
     initForm();
     initIntake();
+    initWorkVideos();
     initYear();
     boot3D();
   }

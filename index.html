@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 
-  <link rel="stylesheet" href="css/styles.css?v=3">
+  <link rel="stylesheet" href="css/styles.css?v=4">
 </head>
 <body>
 
@@ -201,25 +201,54 @@
     <!-- ============================== WORK ============================== -->
     <section id="work" class="work">
       <h2>Built on the line</h2>
-      <p class="section-sub">Recent immersive builds from the 3D studio.</p>
+      <p class="section-sub">Recent projects in our 3D studio.</p>
       <div class="work-grid">
         <figure class="work-card">
-          <img src="assets/images/work-1.jpg" alt="Nexus Core product launch site — dark hero screen with a glowing blue particle core hovering above bold headline type" width="800" height="1000" loading="lazy">
-          <figcaption><span class="work-name">Nexus Core</span> <span class="work-tag">Product launch site</span></figcaption>
+          <video class="work-media" muted loop playsinline preload="none"
+                 poster="assets/images/work-1.jpg" width="800" height="1000" aria-hidden="true">
+            <source src="assets/videos/work-1.mp4" type="video/mp4">
+          </video>
+          <figcaption><span class="work-name">Nexus Core</span> <span class="work-tag">Product launch experience</span></figcaption>
+          <a class="work-view" href="#contact" data-intake-service="3D web experiences">
+            <span class="sr-only">View the Nexus Core project — Nexus Core — dark hero scene with a glowing crystalline orb radiating blue light. Answer a few quick questions to unlock it.</span>
+            <span class="work-view-pill" aria-hidden="true">View project →</span>
+          </a>
         </figure>
         <figure class="work-card">
-          <img src="assets/images/work-2.jpg" alt="Wavelane voice AI demo — animated green audio waveform rippling across a dark interface" width="800" height="1000" loading="lazy">
-          <figcaption><span class="work-name">Wavelane</span> <span class="work-tag">Voice AI demo</span></figcaption>
+          <video class="work-media" muted loop playsinline preload="none"
+                 poster="assets/images/work-2.jpg" width="800" height="1000" aria-hidden="true">
+            <source src="assets/videos/work-2.mp4" type="video/mp4">
+          </video>
+          <figcaption><span class="work-name">Wavelane</span> <span class="work-tag">Voice interface concept</span></figcaption>
+          <a class="work-view" href="#contact" data-intake-service="3D web experiences">
+            <span class="sr-only">View the Wavelane project — Wavelane — emerald audio waveform ribbons rippling across a dark scene. Answer a few quick questions to unlock it.</span>
+            <span class="work-view-pill" aria-hidden="true">View project →</span>
+          </a>
         </figure>
         <figure class="work-card">
-          <img src="assets/images/work-3.jpg" alt="Gridworks ops platform — dashboard panels connected by a purple network lattice of nodes and lines" width="800" height="1000" loading="lazy">
-          <figcaption><span class="work-name">Gridworks</span> <span class="work-tag">Ops platform</span></figcaption>
+          <video class="work-media" muted loop playsinline preload="none"
+                 poster="assets/images/work-3.jpg" width="800" height="1000" aria-hidden="true">
+            <source src="assets/videos/work-3.mp4" type="video/mp4">
+          </video>
+          <figcaption><span class="work-name">Gridworks</span> <span class="work-tag">Ops visualisation</span></figcaption>
+          <a class="work-view" href="#contact" data-intake-service="3D web experiences">
+            <span class="sr-only">View the Gridworks project — Gridworks — violet conveyor network of glowing nodes and rails. Answer a few quick questions to unlock it.</span>
+            <span class="work-view-pill" aria-hidden="true">View project →</span>
+          </a>
         </figure>
         <figure class="work-card">
-          <img src="assets/images/work-4.jpg" alt="Orbital interactive brand globe — wireframe sphere of blue and purple points slowly rotating in space" width="800" height="1000" loading="lazy">
+          <video class="work-media" muted loop playsinline preload="none"
+                 poster="assets/images/work-4.jpg" width="800" height="1000" aria-hidden="true">
+            <source src="assets/videos/work-4.mp4" type="video/mp4">
+          </video>
           <figcaption><span class="work-name">Orbital</span> <span class="work-tag">Interactive brand globe</span></figcaption>
+          <a class="work-view" href="#contact" data-intake-service="3D web experiences">
+            <span class="sr-only">View the Orbital project — Orbital — wireframe globe of blue and purple neon edges slowly shimmering. Answer a few quick questions to unlock it.</span>
+            <span class="work-view-pill" aria-hidden="true">View project →</span>
+          </a>
         </figure>
       </div>
+      <p class="work-note">Full walkthroughs are private — tell us a little about your build and we’ll open them up.</p>
     </section>
 
     <!-- ============================= METRICS ============================ -->
@@ -426,7 +455,7 @@
         <section class="intake-step intake-success" data-step="done">
           <p class="intake-num" aria-hidden="true">&#10003;</p>
           <p class="intake-q">You&rsquo;re on the line.</p>
-          <p class="intake-sub">Your answers are in your mail app, ready to send &mdash; we reply within one business day.</p>
+          <p class="intake-sub">We&rsquo;ve got your answers &mdash; we reply within one business day.</p>
           <div class="intake-actions">
             <button type="button" class="btn btn-primary intake-close-done">Back to the site</button>
           </div>
@@ -438,8 +467,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="js/scene.js?v=3"></script>
-  <script src="js/scroll.js?v=3"></script>
-  <script src="js/main.js?v=3"></script>
+  <script src="js/scene.js?v=4"></script>
+  <script src="js/scroll.js?v=4"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

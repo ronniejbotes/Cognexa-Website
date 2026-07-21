@@ -1015,14 +1015,57 @@ body.js-enabled:not(.no-3d) .process-step {
   transform-style: preserve-3d; /* scroll.js pointer tilt (pointer:fine only) */
 }
 
-.work-card img {
+.work-card img,
+.work-card .work-media {
+  display: block;
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   transition: transform 500ms ease;
 }
 @media (hover: hover) and (pointer: fine) {
-  .work-card:hover img { transform: scale(1.04); }
+  .work-card:hover img,
+  .work-card:hover .work-media { transform: scale(1.04); }
+}
+
+/* Gated view link — stretched over the card; pill sits top-right */
+.work-view {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+}
+.work-view:hover { text-decoration: none; }
+
+.work-view-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 7px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: rgba(15, 17, 23, 0.78);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
+              background var(--transition-fast);
+}
+.work-view:hover .work-view-pill,
+.work-view:focus-visible .work-view-pill {
+  border-color: var(--accent-blue);
+  box-shadow: var(--glow-blue);
+  background: rgba(15, 17, 23, 0.92);
+}
+
+.work-note {
+  margin-top: 28px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-shadow: 0 1px 12px rgba(15, 17, 23, 0.9);
 }
 
 .work-card figcaption {
