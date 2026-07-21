@@ -1021,8 +1021,21 @@ body.js-enabled:not(.no-3d) .process-step {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  transition: transform 500ms ease;
+  transition: transform 500ms ease, opacity 650ms linear;
 }
+
+/* Crossfade looper (main.js adds body.work-loops + a stacked twin copy;
+   whichever copy holds .is-front is visible). Without JS the single video
+   stays fully visible. */
+.work-media-twin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+}
+body.work-loops .work-card .work-media:not(.is-front) { opacity: 0; }
 @media (hover: hover) and (pointer: fine) {
   .work-card:hover img,
   .work-card:hover .work-media { transform: scale(1.04); }

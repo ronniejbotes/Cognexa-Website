@@ -341,7 +341,7 @@
 
   /* Google Apps Script web-app URL (lead sheet + email notification).
      While empty, submissions fall back to composing a mailto. */
-  var INTAKE_ENDPOINT = '';
+  var INTAKE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwYakvOXoyUIMQAzjKqIYsrwguvBnIN407osOq5CoS3YV2R_b84QNYV_BEs_AdWuNoh/exec';
 
   function requiredMessage(field) {
     var name = (field.getAttribute('name') || field.id || '').toLowerCase();
@@ -893,18 +893,82 @@
     if (!videos.length || prefersReducedMotion()) return;
     if (!('IntersectionObserver' in window)) return;
 
+    /* Crossfade looper: each card runs two stacked copies of its clip.
+       As the front copy nears its end, the twin restarts from 0 and fades
+       in over ~0.65s — the loop point is dissolved away, so ANY footage
+       loops without a visible jump. */
+    var FADE_LEAD = 0.65;
+
+    body.classList.add('work-loops'); /* gates the opacity CSS */
+
+    videos.forEach(function (primary) {
+      var twin = primary.cloneNode(true);
+      twin.removeAttribute('poster');
+      twin.classList.add('work-media-twin');
+      primary.parentNode.insertBefore(twin, primary.nextSibling);
+
+      var state = {
+        active: primary,
+        standby: twin,
+        swapping: false,
+        visible: false
+      };
+      primary.__loop = state;
+      twin.__loop = state;
+
+      function beginCrossfade() {
+        if (state.swapping || !state.visible) return;
+        state.swapping = true;
+        var incoming = state.standby;
+        var outgoing = state.active;
+        incoming.muted = true;
+        incoming.currentTime = 0;
+        var played = incoming.play();
+        if (played && typeof played.catch === 'function') {
+          played.catch(function () {});
+        }
+        incoming.classList.add('is-front');
+        outgoing.classList.remove('is-front');
+        window.setTimeout(function () {
+          outgoing.pause();
+          state.active = incoming;
+          state.standby = outgoing;
+          state.swapping = false;
+        }, 720);
+      }
+
+      function onTime() {
+        if (state.swapping || !state.visible) return;
+        var v = state.active;
+        if (v.duration && v.duration - v.currentTime <= FADE_LEAD) {
+          beginCrossfade();
+        }
+      }
+
+      primary.addEventListener('timeupdate', onTime);
+      twin.addEventListener('timeupdate', onTime);
+      /* Safety net if timeupdate misses the fade window entirely */
+      primary.addEventListener('ended', beginCrossfade);
+      twin.addEventListener('ended', beginCrossfade);
+
+      primary.classList.add('is-front');
+    });
+
     var observer = new window.IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
-          var video = entry.target;
+          var state = entry.target.__loop;
+          if (!state) return;
+          state.visible = entry.isIntersecting;
           if (entry.isIntersecting) {
-            video.muted = true; /* belt & braces for autoplay policies */
-            var played = video.play();
+            state.active.muted = true;
+            var played = state.active.play();
             if (played && typeof played.catch === 'function') {
               played.catch(function () { /* poster stays — fine */ });
             }
-          } else if (!video.paused) {
-            video.pause();
+          } else {
+            if (!state.active.paused) state.active.pause();
+            if (!state.standby.paused) state.standby.pause();
           }
         });
       },
