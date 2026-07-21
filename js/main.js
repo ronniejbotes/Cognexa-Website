@@ -500,6 +500,9 @@
     var lastFocus = null;
     var condense = { v: 0 };
     var pageEls = null;
+    var burstTl = null;   /* open()'s timeline — killed by close() */
+    var hideTimer = null; /* close()'s deferred overlay.hidden */
+    var focusTimer = null;
 
     var SERVICE_BY_STATION = {
       'station-chat': 'Chatbots & WhatsApp automation',
@@ -526,25 +529,35 @@
     }
 
     function showStep(i) {
+      /* Dropping is-bursting here (old step display:none in the same
+         synchronous block) never restarts the entry animation on an
+         already-visible step — removing it while a step stays .active
+         flips animation-name none→intake-in, which replays it. */
+      overlay.classList.remove('is-bursting');
       current = i;
       steps.forEach(function (step, idx) {
         step.classList.toggle('active', idx === i);
       });
       if (successStep) successStep.classList.remove('active');
       setProgress((i + 1) / (total + 1));
-      window.setTimeout(function () {
+      if (focusTimer) window.clearTimeout(focusTimer);
+      focusTimer = window.setTimeout(function () {
+        focusTimer = null;
         focusStep(steps[i]);
       }, 60);
     }
 
     function showSuccess() {
+      overlay.classList.remove('is-bursting');
       steps.forEach(function (step) {
         step.classList.remove('active');
       });
       if (successStep) {
         successStep.classList.add('active');
         setProgress(1);
-        window.setTimeout(function () {
+        if (focusTimer) window.clearTimeout(focusTimer);
+        focusTimer = window.setTimeout(function () {
+          focusTimer = null;
           focusStep(successStep);
         }, 60);
       }
@@ -711,10 +724,21 @@
     }
 
     function revealOverlay() {
+      if (hideTimer) {
+        window.clearTimeout(hideTimer); /* a quick re-open must not race
+                                           close()'s deferred hide */
+        hideTimer = null;
+      }
       overlay.hidden = false;
       body.classList.add('intake-open');
-      void overlay.offsetWidth; /* flush so the opacity transition runs */
+      void overlay.offsetWidth; /* flush so the backdrop transition runs */
       overlay.classList.add('is-open');
+      /* Anchor focus inside the dialog immediately; focusStep() refines it. */
+      try {
+        overlay.focus({ preventScroll: true });
+      } catch (err) {
+        overlay.focus();
+      }
     }
 
     function open(preselectService) {
@@ -734,7 +758,8 @@
         var gsap = window.gsap;
         var mainEl = document.querySelector('main');
         var originY = window.scrollY + window.innerHeight * 0.5;
-        var tl = gsap.timeline();
+        burstTl = gsap.timeline();
+        var tl = burstTl;
         /* 1. the site implodes toward the viewport center… */
         tl.to(getPageEls(), {
           scale: 0.7,
@@ -753,23 +778,49 @@
           ease: 'power3.in',
           onUpdate: function () { sceneCondense(condense.v); }
         }, 0);
-        /* …then the big bang, resolving into the questionnaire. */
+        /* …hold the dense ball for a beat, then the big bang: the particle
+           blast and the questionnaire share the same detonation — the form
+           starts near-zero at the viewport center and explodes to full size
+           on the identical ease/duration as the particles. */
         tl.add(function () {
-          showStep(0);
+          showStep(0); /* strips any stale is-bursting — add ours after */
+          overlay.classList.add('is-bursting'); /* suppress the step's own
+                                                   slide-in for this reveal */
           revealOverlay();
-        });
+          /* Origin measured live so the burst emanates from the viewport
+             centre — where the particle ball actually is — not a guess. */
+          var rect = form.getBoundingClientRect();
+          var burstY = Math.max(
+            0,
+            Math.min(rect.height, window.innerHeight / 2 - rect.top)
+          );
+          gsap.fromTo(form, {
+            scale: 0.04,
+            autoAlpha: 0,
+            transformOrigin: '50% ' + burstY + 'px'
+          }, {
+            scale: 1,
+            autoAlpha: 1,
+            duration: 0.5,
+            ease: 'expo.out',
+            onComplete: function () {
+              gsap.set(form, { clearProps: 'transform,opacity,visibility' });
+            }
+          });
+        }, '+=0.12');
         tl.to(condense, {
           v: -0.55,
           duration: 0.5,
           ease: 'expo.out',
           onUpdate: function () { sceneCondense(condense.v); }
-        }, '+=0.15');
+        }, '<');
         tl.to(condense, {
           v: 0,
           duration: 1.4,
           ease: 'power2.out',
+          overwrite: 'auto', /* takes over cleanly from the bang's tail */
           onUpdate: function () { sceneCondense(condense.v); }
-        });
+        }, '<+=0.35');
       } else {
         showStep(0);
         revealOverlay();
@@ -779,16 +830,40 @@
     function close() {
       if (!isOpen) return;
       isOpen = false;
+      if (focusTimer) {
+        window.clearTimeout(focusTimer); /* a pending step-focus must not
+                                            yank focus back after close */
+        focusTimer = null;
+      }
       overlay.classList.remove('is-open');
       body.classList.remove('intake-open');
-      window.setTimeout(function () {
+      if (hideTimer) window.clearTimeout(hideTimer);
+      hideTimer = window.setTimeout(function () {
+        hideTimer = null;
+        if (isOpen) return; /* re-opened during the fade — leave it alone */
         overlay.hidden = true;
+        /* Reset any partial burst state only once it's invisible, so a
+           mid-burst close fades out at its current size instead of
+           snapping to full scale. */
+        if (window.gsap) {
+          window.gsap.set(form, { clearProps: 'transform,opacity,visibility' });
+        }
+        overlay.classList.remove('is-bursting');
       }, 320);
       clearFormErrors(form);
       if (window.gsap) {
+        if (burstTl) {
+          burstTl.kill(); /* also kills the pending bang callback — a close
+                             during the implosion must not re-reveal */
+          burstTl = null;
+        }
         window.gsap.killTweensOf(condense);
+        window.gsap.killTweensOf(form);
         condense.v = 0;
         sceneCondense(0);
+        /* Implode leaves inline visibility:hidden on the page elements —
+           restore it synchronously so lastFocus.focus() below can land. */
+        window.gsap.set(getPageEls(), { visibility: 'inherit' });
         window.gsap.to(getPageEls(), {
           scale: 1,
           autoAlpha: 1,
@@ -844,11 +919,13 @@
       }
     });
 
+    /* Document-level so Escape can also abort the implosion window,
+       when focus may sit on <body> rather than inside the overlay. */
+    document.addEventListener('keydown', function (event) {
+      if ((event.key === 'Escape' || event.key === 'Esc') && isOpen) close();
+    });
+
     overlay.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' || event.key === 'Esc') {
-        close();
-        return;
-      }
       if (event.key !== 'Tab') return;
       /* simple focus trap over currently visible controls */
       var focusables = overlay.querySelectorAll(
