@@ -19,6 +19,10 @@
 (function () {
   'use strict';
 
+  /* gsap.matchMedia context for the desktop process ring — kept at module
+     scope so a re-entrant init() can revert the previous one. */
+  var ringMedia = null;
+
   /* Guarded bridge to the Three.js particle engine (js/scene.js).
      A scene error must never break scrolling. */
   function sceneCall(method, value) {
@@ -71,6 +75,10 @@
         if (trigger.animation) trigger.animation.kill();
         trigger.kill();
       });
+      if (ringMedia) {
+        ringMedia.revert();
+        ringMedia = null;
+      }
 
       /* ------------------------------------------------------------------
        * 1. Whole-page progress
@@ -229,65 +237,109 @@
       });
 
       /* ------------------------------------------------------------------
-       * 5. Process — pinned horizontal conveyor. Vertical scroll drives the
-       *    track left; distance and end are function-based so refresh
-       *    recalculates after resize/layout changes. Particles dim while
-       *    the pin is active.
+       * 5. Process — circular 3D ring. While #process is pinned, vertical
+       *    scroll scrubs the ring's rotation (scroll back = it rewinds);
+       *    when the user pauses, the ring drifts slowly on its own.
+       *    Below 900px and in every fallback mode the cards remain the
+       *    swipeable scroll-snap strip — no pin, no ring.
        * ------------------------------------------------------------------ */
       var processSection = document.querySelector('#process');
       var processTrack = processSection
         ? processSection.querySelector('.process-track')
         : null;
-      var processViewport = processSection
-        ? processSection.querySelector('.process-viewport')
-        : null;
+      var processSteps = processTrack
+        ? Array.prototype.slice.call(processTrack.querySelectorAll('.process-step'))
+        : [];
 
-      if (processSection && processTrack && processViewport) {
-        var conveyorDistance = function () {
-          return Math.max(0, processTrack.scrollWidth - processViewport.clientWidth);
-        };
+      if (processSection && processTrack && processSteps.length > 1) {
+        ringMedia = gsap.matchMedia();
+        ringMedia.add('(min-width: 900px)', function () {
+          var stepCount = processSteps.length;
+          var anglePer = 360 / stepCount;
+          var scrubRot = 0;  /* scroll-driven — reverses when scrolling back */
+          var idleRot = 0;   /* slow drift accumulated while the user pauses */
+          var lastScrubAt = 0;
+          var rafId = null;
+          var pinActive = false;
 
-        var conveyor = gsap.to(processTrack, {
-          x: function () {
-            return -conveyorDistance();
-          },
-          ease: 'none', /* required: keeps scroll and x 1:1 for containerAnimation */
-          scrollTrigger: {
-            trigger: processSection,
-            pin: true,
-            scrub: 1,
-            start: 'top top',
-            end: function () {
-              return '+=' + conveyorDistance();
-            },
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-            onToggle: function (self) {
-              sceneCall('setDim', self.isActive ? 0.65 : 0);
+          function ringRadius() {
+            return Math.max(340, Math.min(520, window.innerWidth * 0.34));
+          }
+
+          /* Static per-card placement around the ring; transform order
+             (rotateY then translateZ) matters, so set it as a raw string. */
+          function layout() {
+            var radius = ringRadius();
+            processSteps.forEach(function (step, i) {
+              step.style.transform =
+                'rotateY(' + (i * anglePer) + 'deg) translateZ(' + radius + 'px)';
+            });
+          }
+
+          function render() {
+            var total = scrubRot + idleRot;
+            processTrack.style.transform = 'rotateY(' + total + 'deg)';
+            for (var i = 0; i < stepCount; i++) {
+              var rel = ((i * anglePer + total) % 360 + 360) % 360;
+              var facing = rel > 180 ? 360 - rel : rel; /* 0 = front */
+              processSteps[i].style.opacity =
+                String(Math.max(0.12, 1 - facing / 140).toFixed(3));
             }
           }
-        });
 
-        /* Steps brighten as the conveyor carries them toward center. */
-        Array.prototype.slice
-          .call(processTrack.querySelectorAll('.process-step'))
-          .forEach(function (step) {
-            gsap.fromTo(
-              step,
-              { autoAlpha: 0.3 },
-              {
-                autoAlpha: 1,
-                ease: 'none',
-                scrollTrigger: {
-                  containerAnimation: conveyor,
-                  trigger: step,
-                  start: 'left 90%',
-                  end: 'center 55%',
-                  scrub: true
-                }
+          function idleTick(now) {
+            rafId = window.requestAnimationFrame(idleTick);
+            if (!pinActive || document.hidden) return;
+            if (now - lastScrubAt < 150) return; /* user is driving */
+            idleRot -= 0.05;
+            render();
+          }
+
+          layout();
+          render();
+
+          var driver = { p: 0 };
+          gsap.to(driver, {
+            p: 1,
+            ease: 'none',
+            onUpdate: function () {
+              scrubRot = -driver.p * anglePer * (stepCount - 1);
+              lastScrubAt = performance.now();
+              render();
+            },
+            scrollTrigger: {
+              trigger: processSection,
+              pin: true,
+              scrub: 1,
+              start: 'top top',
+              end: '+=1800',
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              onRefresh: function () {
+                layout();
+                render();
+              },
+              onToggle: function (self) {
+                pinActive = self.isActive;
+                sceneCall('setDim', self.isActive ? 0.65 : 0);
               }
-            );
+            }
           });
+
+          rafId = window.requestAnimationFrame(idleTick);
+
+          /* Cleanup when leaving the breakpoint (or on re-init): the strip
+             fallback must get untouched cards back. */
+          return function () {
+            if (rafId !== null) window.cancelAnimationFrame(rafId);
+            rafId = null;
+            processTrack.style.transform = '';
+            processSteps.forEach(function (step) {
+              step.style.transform = '';
+              step.style.opacity = '';
+            });
+          };
+        });
       }
 
       /* ------------------------------------------------------------------
