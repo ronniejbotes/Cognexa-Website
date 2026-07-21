@@ -214,6 +214,19 @@ main, .site-footer {
   margin-top: 14px;
 }
 
+/* Headings that sit directly over the live particle canvas keep a soft dark
+   halo so bright particles passing behind never wash the text out (the canvas
+   itself is never dimmed). */
+.work h2,
+.work .section-sub,
+.contact h2,
+.contact .section-sub,
+.process h2 {
+  text-shadow:
+    0 2px 24px rgba(15, 17, 23, 0.95),
+    0 0 10px rgba(15, 17, 23, 0.85);
+}
+
 /* Glass panel — used only where text sits over busy canvas areas.
    Solid fallback first; translucent + blur where supported. */
 .glass,
@@ -866,8 +879,57 @@ body.js-enabled:not(.no-3d) .process-step {
     will-change: transform, opacity;
   }
 
-  body.js-enabled:not(.no-3d) .process-step::before,
-  body.js-enabled:not(.no-3d) .process-step::after { display: none; }
+  body.js-enabled:not(.no-3d) .process-step::before { display: none; }
+
+  /* LED strip: a faint continuous blue→purple rim plus one brighter segment
+     slowly traveling the perimeter. Masked to a 1.5px ring so it reads as
+     edge lighting, not a glow bath. (Replaces the strip-mode connector
+     arrow, which is display:none'd via ::before above.) */
+  body.js-enabled:not(.no-3d) .process-step::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
+    width: auto; height: auto;
+    margin: 0;
+    border: 0;
+    border-radius: var(--radius-lg);
+    padding: 1.5px;
+    background:
+      conic-gradient(from var(--led-angle, 0deg),
+        rgba(200, 214, 255, 0.85) 0deg,
+        rgba(74, 124, 255, 0.4) 40deg,
+        transparent 80deg 360deg),
+      linear-gradient(135deg,
+        rgba(74, 124, 255, 0.38),
+        rgba(167, 139, 250, 0.30) 45%,
+        rgba(52, 211, 153, 0.22) 75%,
+        rgba(74, 124, 255, 0.38));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+    transform: none;
+    pointer-events: none;
+    z-index: 2;
+    animation: led-run 8s linear infinite;
+  }
+
+  body.js-enabled:not(.no-3d) .process-track .process-step {
+    box-shadow: 0 0 22px rgba(74, 124, 255, 0.10), var(--shadow-card);
+  }
+}
+
+/* Registered property lets the conic angle interpolate; browsers without
+   @property simply show the static gradient rim — still an LED edge. */
+@property --led-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes led-run {
+  to { --led-angle: 360deg; }
 }
 
 /* Conveyor connectors: line + arrowhead across each gap */

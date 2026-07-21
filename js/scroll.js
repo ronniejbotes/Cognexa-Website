@@ -321,7 +321,6 @@
               },
               onToggle: function (self) {
                 pinActive = self.isActive;
-                sceneCall('setDim', self.isActive ? 0.65 : 0);
               }
             }
           });
@@ -345,20 +344,8 @@
       /* ------------------------------------------------------------------
        * 6. Work — batched card reveals + pointer-fine 3D tilt.
        * ------------------------------------------------------------------ */
-      /* Headings/sub-copy in #work sit straight over the canvas — dim the
-         particles while the section is in view so grey text keeps contrast. */
-      var workSection = document.querySelector('#work');
-      if (workSection) {
-        ScrollTrigger.create({
-          trigger: workSection,
-          start: 'top 60%',
-          end: 'bottom 40%',
-          onToggle: function (self) {
-            sceneCall('setDim', self.isActive ? 0.6 : 0);
-          }
-        });
-      }
-
+      /* Canvas stays at full brightness everywhere — headings that sit over
+         it get a soft text-shadow scrim in CSS instead of dimming particles. */
       if (document.querySelector('.work-card')) {
         ScrollTrigger.batch('.work-card', {
           start: 'top 85%',
@@ -468,14 +455,6 @@
           });
         }
 
-        ScrollTrigger.create({
-          trigger: contact,
-          start: 'top 60%',
-          end: 'bottom top',
-          onToggle: function (self) {
-            sceneCall('setDim', self.isActive ? 0.85 : 0);
-          }
-        });
       }
 
       /* Settle every start/end/pin measurement now that all triggers exist. */
