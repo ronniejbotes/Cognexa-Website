@@ -311,6 +311,7 @@
     'uniform float uFormB;',
     'uniform float uPointSize;',
     'uniform float uPixelRatio;',
+    'uniform float uCondense;',
     'varying float vAlpha;',
     '',
     '// per-formation idle animation, applied to raw formation positions',
@@ -352,8 +353,12 @@
     '    sin(uTime * 1.1 + aSeed.x * 39.47),',
     '    sin(uTime * 1.3 + aSeed.y * 27.13),',
     '    sin(uTime * 0.9 + aSeed.z * 33.31));',
+    '  // implosion / big-bang: +1 collapses to a dense ball, negative blasts out',
+    '  float cIn = clamp(uCondense, 0.0, 1.0);',
+    '  float cOut = max(0.0, -uCondense);',
+    '  pos *= 1.0 - 0.9 * cIn + 1.9 * cOut;',
     '  vec4 mv = modelViewMatrix * vec4(pos, 1.0);',
-    '  float size = uPointSize * (0.6 + aSeed.y * 0.8);',
+    '  float size = uPointSize * (0.6 + aSeed.y * 0.8) * (1.0 + cIn * 0.7);',
     '  gl_PointSize = clamp(size * uPixelRatio * (26.0 / max(0.1, -mv.z)), 1.0, 40.0);',
     '  vAlpha = 0.35 + 0.65 * aSeed.z;',
     '  gl_Position = projectionMatrix * mv;',
@@ -532,6 +537,7 @@
     var uniforms = {
       uMix: { value: 0 },
       uTime: { value: 0 },
+      uCondense: { value: 0 },
       uColorA: { value: colors[0].clone() },
       uColorB: { value: colors[1].clone() },
       uDim: sharedDim,
@@ -671,6 +677,13 @@
     state.uniforms.uDim.value = clamp(isFinite(d) ? +d : 0, 0, 1);
   }
 
+  /* +1 = fully imploded into a small dense ball; 0 = normal; negative values
+     (down to -1) blast the particles outward — the "big bang". */
+  function setCondense(c) {
+    if (!state) return;
+    state.uniforms.uCondense.value = clamp(isFinite(c) ? +c : 0, -1, 1);
+  }
+
   function resize() {
     if (!state) return;
     var w = window.innerWidth;
@@ -708,6 +721,7 @@
     setProgress: setProgress,
     setPointer: setPointer,
     setDim: setDim,
+    setCondense: setCondense,
     resize: resize,
     destroy: destroy
   };

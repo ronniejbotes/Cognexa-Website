@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=2">
 </head>
 <body>
 
@@ -290,11 +290,154 @@
     <p class="footer-copy">&copy; <span id="footer-year" class="footer-year">2026</span> Cognexa</p>
   </footer>
 
+  <!-- ====================== INTAKE (JS-only takeover) =====================
+       Opened by the CTA implosion sequence. No-JS visitors use the #contact
+       form above instead. -->
+  <div id="intake" class="intake" role="dialog" aria-modal="true" aria-labelledby="intake-heading" hidden>
+    <div class="intake-shell">
+      <div class="intake-chrome">
+        <p class="intake-brand">Cognexa</p>
+        <button class="intake-close" type="button" aria-label="Close questionnaire">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false">
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="intake-progress" aria-hidden="true"><span class="intake-progress-bar"></span></div>
+
+      <form id="intake-form">
+        <h2 id="intake-heading" class="sr-only">Start your build — a few quick questions</h2>
+
+        <section class="intake-step" data-step="1">
+          <div class="intake-meta">
+            <button type="button" class="intake-back">&larr; Back</button>
+            <span class="intake-count">1 of 7</span>
+          </div>
+          <p class="intake-num" aria-hidden="true">1 &rarr;</p>
+          <label class="intake-q" for="iq-name">What&rsquo;s your name?</label>
+          <input id="iq-name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" required>
+          <div class="intake-actions">
+            <button type="button" class="btn btn-primary intake-next">Next</button>
+            <span class="intake-hint">press Enter &crarr;</span>
+          </div>
+        </section>
+
+        <section class="intake-step" data-step="2">
+          <div class="intake-meta">
+            <button type="button" class="intake-back">&larr; Back</button>
+            <span class="intake-count">2 of 7</span>
+          </div>
+          <p class="intake-num" aria-hidden="true">2 &rarr;</p>
+          <label class="intake-q" for="iq-email">What&rsquo;s your business email?</label>
+          <p class="intake-sub">This is where we&rsquo;ll reply once we&rsquo;ve reviewed your answers.</p>
+          <input id="iq-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+          <div class="intake-actions">
+            <button type="button" class="btn btn-primary intake-next">Next</button>
+            <span class="intake-hint">press Enter &crarr;</span>
+          </div>
+        </section>
+
+        <section class="intake-step" data-step="3">
+          <div class="intake-meta">
+            <button type="button" class="intake-back">&larr; Back</button>
+            <span class="intake-count">3 of 7</span>
+          </div>
+          <p class="intake-num" aria-hidden="true">3 &rarr;</p>
+          <label class="intake-q" for="iq-company">What&rsquo;s your business called?</label>
+          <input id="iq-company" name="company" type="text" autocomplete="organization" placeholder="Acme Plumbing" required>
+          <div class="intake-actions">
+            <button type="button" class="btn btn-primary intake-next">Next</button>
+            <span class="intake-hint">press Enter &crarr;</span>
+          </div>
+        </section>
+
+        <section class="intake-step" data-step="4">
+          <div class="intake-meta">
+            <button type="button" class="intake-back">&larr; Back</button>
+            <span class="intake-count">4 of 7</span>
+          </div>
+          <p class="intake-num" aria-hidden="true">4 &rarr;</p>
+          <label class="intake-q" for="iq-industry">What does the business do?</label>
+          <p class="intake-sub">One line is plenty.</p>
+          <input id="iq-industry" name="industry" type="text" placeholder="e.g. Roofing in Cape Town" required>
+          <div class="intake-actions">
+            <button type="button" class="btn btn-primary intake-next">Next</button>
+            <span class="intake-hint">press Enter &crarr;</span>
+          </div>
+        </section>
+
+        <fieldset class="intake-step" data-step="5">
+          <div class="intake-meta">
+            <button type="button" class="intake-back">&larr; Back</button>
+            <span class="intake-count">5 of 7</span>
+          </div>
+          <p class="intake-num" aria-hidden="true">5 &rarr;</p>
+          <legend class="intake-q">Which solution are you interested in?</legend>
+          <div class="intake-options">
+            <label class="intake-option"><input type="radio" name="service" value="Chatbots &amp; WhatsApp automation" required><span>Chatbots &amp; WhatsApp automation</span></label>
+            <label class="intake-option"><input type="radio" name="service" value="AI voice agents"><span>AI voice agents</span></label>
+            <label class="intake-option"><input type="radio" name="service" value="Workflow automation"><span>Workflow automation</span></label>
+            <label class="intake-option"><input type="radio" name="service" value="3D web experiences"><span>3D web experiences</span></label>
+            <label class="intake-option"><input type="radio" name="service" value="Not sure yet"><span>Not sure &mdash; recommend for me</span></label>
+          </div>
+          <div class="intake-actions">
+            <button type="button" class="btn btn-primary intake-next">Next</button>
+            <span class="intake-hint">press Enter &crarr;</span>
+          </div>
+        </fieldset>
+
+        <fieldset class="intake-step" data-step="6">
+          <div class="intake-meta">
+            <button type="button" class="intake-back">&larr; Back</button>
+            <span class="intake-count">6 of 7</span>
+          </div>
+          <p class="intake-num" aria-hidden="true">6 &rarr;</p>
+          <legend class="intake-q">What eats most of your team&rsquo;s hours?</legend>
+          <div class="intake-options">
+            <label class="intake-option"><input type="radio" name="pain" value="Missed calls and slow replies" required><span>Missed calls and slow replies</span></label>
+            <label class="intake-option"><input type="radio" name="pain" value="Manual admin and follow-ups"><span>Manual admin and follow-ups</span></label>
+            <label class="intake-option"><input type="radio" name="pain" value="Not enough leads coming in"><span>Not enough leads coming in</span></label>
+            <label class="intake-option"><input type="radio" name="pain" value="An outdated website"><span>An outdated website</span></label>
+          </div>
+          <div class="intake-actions">
+            <button type="button" class="btn btn-primary intake-next">Next</button>
+            <span class="intake-hint">press Enter &crarr;</span>
+          </div>
+        </fieldset>
+
+        <section class="intake-step" data-step="7">
+          <div class="intake-meta">
+            <button type="button" class="intake-back">&larr; Back</button>
+            <span class="intake-count">7 of 7</span>
+          </div>
+          <p class="intake-num" aria-hidden="true">7 &rarr;</p>
+          <label class="intake-q" for="iq-message">Anything else we should know?</label>
+          <p class="intake-sub">Optional &mdash; deadlines, tools you already use, anything.</p>
+          <textarea id="iq-message" name="message" rows="4" placeholder="Tell us more&hellip;"></textarea>
+          <div class="intake-actions">
+            <button type="submit" class="btn btn-primary">Send it down the line</button>
+            <span class="intake-hint">press &#8984;/Ctrl + Enter &crarr;</span>
+          </div>
+        </section>
+
+        <section class="intake-step intake-success" data-step="done">
+          <p class="intake-num" aria-hidden="true">&#10003;</p>
+          <p class="intake-q">You&rsquo;re on the line.</p>
+          <p class="intake-sub">Your answers are in your mail app, ready to send &mdash; we reply within one business day.</p>
+          <div class="intake-actions">
+            <button type="button" class="btn btn-primary intake-close-done">Back to the site</button>
+          </div>
+        </section>
+      </form>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="js/scene.js"></script>
-  <script src="js/scroll.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/scene.js?v=2"></script>
+  <script src="js/scroll.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>

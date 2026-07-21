@@ -461,6 +461,343 @@
   }
 
   /* ====================================================================
+   * Intake — CTA implosion questionnaire.
+   * Every link to #contact collapses the page into the particle ball,
+   * big-bangs into a step-by-step form, then restores the page on close.
+   * Works without GSAP/WebGL too (plain fade, same questionnaire).
+   * ================================================================== */
+  function sceneCondense(v) {
+    var scene = window.CognexaScene;
+    if (scene && typeof scene.setCondense === 'function') {
+      try {
+        scene.setCondense(v);
+      } catch (err) {
+        /* decorative only */
+      }
+    }
+  }
+
+  function initIntake() {
+    var overlay = document.getElementById('intake');
+    var form = document.getElementById('intake-form');
+    if (!overlay || !form) return;
+
+    form.setAttribute('novalidate', '');
+
+    var steps = Array.prototype.slice.call(
+      form.querySelectorAll('.intake-step:not(.intake-success)')
+    );
+    var successStep = form.querySelector('.intake-success');
+    var progressBar = overlay.querySelector('.intake-progress-bar');
+    var closeBtn = overlay.querySelector('.intake-close');
+    var total = steps.length;
+    var current = 0;
+    var isOpen = false;
+    var lastFocus = null;
+    var condense = { v: 0 };
+    var pageEls = null;
+
+    var SERVICE_BY_STATION = {
+      'station-chat': 'Chatbots & WhatsApp automation',
+      'station-voice': 'AI voice agents',
+      'station-workflow': 'Workflow automation',
+      'station-web': '3D web experiences'
+    };
+
+    function setProgress(fraction) {
+      if (progressBar) progressBar.style.transform = 'scaleX(' + fraction + ')';
+    }
+
+    function focusStep(step) {
+      var target =
+        step.querySelector('input:checked') ||
+        step.querySelector('input, textarea, .intake-close-done');
+      if (target && typeof target.focus === 'function') {
+        try {
+          target.focus({ preventScroll: true });
+        } catch (err) {
+          target.focus();
+        }
+      }
+    }
+
+    function showStep(i) {
+      current = i;
+      steps.forEach(function (step, idx) {
+        step.classList.toggle('active', idx === i);
+      });
+      if (successStep) successStep.classList.remove('active');
+      setProgress((i + 1) / (total + 1));
+      window.setTimeout(function () {
+        focusStep(steps[i]);
+      }, 60);
+    }
+
+    function showSuccess() {
+      steps.forEach(function (step) {
+        step.classList.remove('active');
+      });
+      if (successStep) {
+        successStep.classList.add('active');
+        setProgress(1);
+        window.setTimeout(function () {
+          focusStep(successStep);
+        }, 60);
+      }
+    }
+
+    function validateStep(step) {
+      clearFormErrors(form);
+      var invalid = null;
+      var radios = step.querySelectorAll('input[type="radio"]');
+      if (radios.length) {
+        if (!step.querySelector('input[type="radio"]:checked') &&
+            step.querySelector('input[required]')) {
+          var options = step.querySelector('.intake-options');
+          var error = document.createElement('p');
+          error.className = 'field-error';
+          error.setAttribute('role', 'alert');
+          error.textContent = 'Pick one to carry on.';
+          if (options && options.parentNode) {
+            options.parentNode.insertBefore(error, options.nextSibling);
+          }
+          invalid = radios[0];
+        }
+      } else {
+        Array.prototype.slice
+          .call(step.querySelectorAll('input, textarea'))
+          .forEach(function (field) {
+            if (invalid) return;
+            var type = (field.getAttribute('type') || '').toLowerCase();
+            var value = (field.value || '').trim();
+            if (field.hasAttribute('required') && !value) {
+              addFieldError(field, requiredMessage(field));
+              invalid = field;
+            } else if (type === 'email' && value && !EMAIL_PATTERN.test(value)) {
+              addFieldError(field, 'Enter a valid email address, like name@company.com.');
+              invalid = field;
+            }
+          });
+      }
+      if (invalid) {
+        invalid.focus();
+        return false;
+      }
+      return true;
+    }
+
+    function next() {
+      if (!validateStep(steps[current])) return;
+      if (current < total - 1) showStep(current + 1);
+    }
+
+    function back() {
+      clearFormErrors(form);
+      if (current > 0) showStep(current - 1);
+    }
+
+    function fieldVal(name) {
+      var el = form.elements.namedItem(name);
+      if (!el) return '';
+      if (typeof el.value === 'string') return el.value.trim();
+      return '';
+    }
+
+    function submitIntake() {
+      if (!validateStep(steps[current])) return;
+      var lines = [
+        'Name: ' + fieldVal('name'),
+        'Email: ' + fieldVal('email'),
+        'Business: ' + fieldVal('company'),
+        'What they do: ' + fieldVal('industry'),
+        'Interested in: ' + fieldVal('service'),
+        'Biggest time drain: ' + fieldVal('pain')
+      ];
+      var message = fieldVal('message');
+      if (message) lines.push('', 'Notes:', message);
+      var mailto =
+        'mailto:' + CONTACT_EMAIL +
+        '?subject=' + encodeURIComponent('Build enquiry — ' + (fieldVal('company') || fieldVal('name'))) +
+        '&body=' + encodeURIComponent(lines.join('\r\n'));
+      showSuccess();
+      window.location.href = mailto;
+    }
+
+    function getPageEls() {
+      if (!pageEls) {
+        pageEls = [];
+        ['main', '.site-nav', '.site-footer'].forEach(function (sel) {
+          var el = document.querySelector(sel);
+          if (el) pageEls.push(el);
+        });
+      }
+      return pageEls;
+    }
+
+    function canAnimate() {
+      return !!window.gsap && sceneActive && !prefersReducedMotion();
+    }
+
+    function revealOverlay() {
+      overlay.hidden = false;
+      body.classList.add('intake-open');
+      void overlay.offsetWidth; /* flush so the opacity transition runs */
+      overlay.classList.add('is-open');
+    }
+
+    function open(preselectService) {
+      if (isOpen) return;
+      isOpen = true;
+      lastFocus = document.activeElement;
+      clearFormErrors(form);
+
+      if (preselectService) {
+        var radio = form.querySelector(
+          'input[name="service"][value="' + preselectService + '"]'
+        );
+        if (radio) radio.checked = true;
+      }
+
+      if (canAnimate()) {
+        var gsap = window.gsap;
+        var mainEl = document.querySelector('main');
+        var originY = window.scrollY + window.innerHeight * 0.5;
+        var tl = gsap.timeline();
+        /* 1. the site implodes toward the viewport center… */
+        tl.to(getPageEls(), {
+          scale: 0.7,
+          autoAlpha: 0,
+          duration: 0.65,
+          ease: 'power3.in',
+          overwrite: 'auto',
+          transformOrigin: function (i, el) {
+            return el === mainEl ? '50% ' + originY + 'px' : '50% 50%';
+          }
+        }, 0);
+        /* …while the particles collapse into a small dense ball… */
+        tl.to(condense, {
+          v: 1,
+          duration: 0.75,
+          ease: 'power3.in',
+          onUpdate: function () { sceneCondense(condense.v); }
+        }, 0);
+        /* …then the big bang, resolving into the questionnaire. */
+        tl.add(function () {
+          showStep(0);
+          revealOverlay();
+        });
+        tl.to(condense, {
+          v: -0.55,
+          duration: 0.5,
+          ease: 'expo.out',
+          onUpdate: function () { sceneCondense(condense.v); }
+        }, '+=0.15');
+        tl.to(condense, {
+          v: 0,
+          duration: 1.4,
+          ease: 'power2.out',
+          onUpdate: function () { sceneCondense(condense.v); }
+        });
+      } else {
+        showStep(0);
+        revealOverlay();
+      }
+    }
+
+    function close() {
+      if (!isOpen) return;
+      isOpen = false;
+      overlay.classList.remove('is-open');
+      body.classList.remove('intake-open');
+      window.setTimeout(function () {
+        overlay.hidden = true;
+      }, 320);
+      clearFormErrors(form);
+      if (window.gsap) {
+        window.gsap.killTweensOf(condense);
+        condense.v = 0;
+        sceneCondense(0);
+        window.gsap.to(getPageEls(), {
+          scale: 1,
+          autoAlpha: 1,
+          duration: 0.5,
+          ease: 'power3.out',
+          overwrite: 'auto',
+          clearProps: 'transform,opacity,visibility'
+        });
+      }
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    form.addEventListener('click', function (event) {
+      var t = event.target;
+      if (!t || typeof t.closest !== 'function') return;
+      if (t.closest('.intake-next')) next();
+      else if (t.closest('.intake-back')) back();
+      else if (t.closest('.intake-close-done')) close();
+    });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      submitIntake();
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', close);
+
+    form.addEventListener('keydown', function (event) {
+      if (event.key !== 'Enter') return;
+      var inTextarea = event.target && event.target.tagName === 'TEXTAREA';
+      if (inTextarea && !(event.metaKey || event.ctrlKey)) return;
+      event.preventDefault();
+      if (successStep && successStep.classList.contains('active')) {
+        close();
+      } else if (current === total - 1) {
+        submitIntake();
+      } else {
+        next();
+      }
+    });
+
+    overlay.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' || event.key === 'Esc') {
+        close();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      /* simple focus trap over currently visible controls */
+      var focusables = overlay.querySelectorAll(
+        'a[href], button:not([disabled]), input, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      var visible = Array.prototype.filter.call(focusables, function (el) {
+        return el.offsetParent !== null;
+      });
+      if (!visible.length) return;
+      var first = visible[0];
+      var last = visible[visible.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    /* Every CTA pointing at #contact starts the sequence. Station CTAs
+       pre-select their service in step 5. */
+    document.addEventListener('click', function (event) {
+      var link =
+        event.target && typeof event.target.closest === 'function'
+          ? event.target.closest('a[href="#contact"]')
+          : null;
+      if (!link) return;
+      event.preventDefault();
+      var station = link.closest('.station');
+      open(station ? SERVICE_BY_STATION[station.id] : null);
+    });
+  }
+
+  /* ====================================================================
    * Footer year
    * ================================================================== */
   function initYear() {
@@ -494,6 +831,7 @@
     initNav();
     initCounters();
     initForm();
+    initIntake();
     initYear();
     boot3D();
   }
