@@ -673,6 +673,8 @@
         'Biggest time drains: ' + checkedVals('pain')
       ];
       var message = fieldVal('message');
+      var source = fieldVal('source');
+      if (source) lines.push('Heard about us via: ' + source);
       if (message) lines.push('', 'Notes:', message);
       var mailto =
         'mailto:' + CONTACT_EMAIL +
@@ -698,6 +700,12 @@
         submitBtn.textContent = 'Sending…';
       }
 
+      var noteText = fieldVal('message');
+      var sourceText = fieldVal('source');
+      if (sourceText) {
+        /* Folded into notes so the deployed sheet script needs no change */
+        noteText = (noteText ? noteText + '\n\n' : '') + 'Heard about us via: ' + sourceText;
+      }
       var payload = {
         name: fieldVal('name'),
         email: fieldVal('email'),
@@ -705,7 +713,7 @@
         industry: fieldVal('industry'),
         service: checkedVals('service'),
         pain: checkedVals('pain'),
-        message: fieldVal('message'),
+        message: noteText,
         page: window.location.href
       };
 

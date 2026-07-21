@@ -1,4 +1,24 @@
+# Search engines
 User-agent: *
+Allow: /
+
+# AI answer engines — citation/search fetchers are welcome
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://cognexa.co.za/sitemap.xml
