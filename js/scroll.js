@@ -23,6 +23,33 @@
      scope so a re-entrant init() can revert the previous one. */
   var ringMedia = null;
 
+  /* Applied once: make every ScrollTrigger.refresh() immune to the CSS
+     `html { scroll-behavior: smooth }` this site uses for nav anchors.
+     refresh() measures each trigger by snapping the scroller to 0 and
+     reading getBoundingClientRect; with smooth-scroll active that snap
+     ANIMATES instead of jumping, so a refresh fired at a non-zero scroll
+     (bfcache restore, closing the intake, a resize) measures every start/end
+     off by the current scroll offset — the pinned #process ring then
+     collapses and the hero/stations stack on top of it. Forcing
+     scroll-behavior:auto around the measurement fixes it globally, for our
+     own refreshes AND ScrollTrigger's internal resize/load refreshes. */
+  var refreshPatched = false;
+  function patchSmoothSafeRefresh(ScrollTrigger) {
+    if (refreshPatched || typeof ScrollTrigger.refresh !== 'function') return;
+    refreshPatched = true;
+    var origRefresh = ScrollTrigger.refresh.bind(ScrollTrigger);
+    ScrollTrigger.refresh = function () {
+      var d = document.documentElement;
+      var prev = d.style.scrollBehavior;
+      d.style.scrollBehavior = 'auto';
+      try {
+        return origRefresh.apply(null, arguments);
+      } finally {
+        d.style.scrollBehavior = prev;
+      }
+    };
+  }
+
   /* Guarded bridge to the Three.js particle engine (js/scene.js).
      A scene error must never break scrolling. */
   function sceneCall(method, value) {
@@ -67,6 +94,7 @@
       var clamp = gsap.utils.clamp;
 
       gsap.registerPlugin(ScrollTrigger);
+      patchSmoothSafeRefresh(ScrollTrigger);
 
       /* Re-entrant: if init ever runs again (e.g. after a reduced-motion
          round-trip handled by main.js), rebuild everything from scratch.

@@ -226,23 +226,17 @@
     });
   });
 
-  /* bfcache restore (Insights → Back, etc.): ScrollTrigger resumes with
-     measurements cached before the page was frozen, which leaves pin and
-     start/end positions stale — the pinned #process ring then overlaps
-     neighbouring sections. Re-measure on the frame after the restore
-     settles (the intake's own pageshow reset has run by then, so nothing
-     is transformed while we measure). */
+  /* bfcache restore (Insights → Back, etc.): the page is served from the
+     back/forward cache with the WebGL scene, GSAP ticker and ScrollTrigger
+     pin measurements all frozen at their pre-navigation state. Re-measuring
+     with ScrollTrigger.refresh() is not reliable once a pinned section is
+     mid-scroll on a real (WebGL-compositing) browser — the #process pin
+     spacer can collapse, stacking the hero and stations on top of the ring.
+     A fresh load always rebuilds correctly, so force one. scrollRestoration
+     stays 'auto', so the browser puts the visitor back where they were and
+     the rebuild is clean. */
   window.addEventListener('pageshow', function (event) {
-    if (!event.persisted) return;
-    window.requestAnimationFrame(function () {
-      if (sceneActive && window.ScrollTrigger) {
-        try {
-          window.ScrollTrigger.refresh();
-        } catch (err) {
-          /* decorative only */
-        }
-      }
-    });
+    if (event.persisted) window.location.reload();
   });
 
   /* ====================================================================
@@ -920,14 +914,17 @@
        Must only run once the page elements carry no leftover transforms —
        a transformed <main> both skews getBoundingClientRect measurements
        and becomes the containing block for ScrollTrigger's position:fixed
-       pins, so a refresh mid-restore corrupts the pinned #process ring. */
+       pins, so a refresh mid-restore corrupts the pinned #process ring.
+       (The refresh itself is made smooth-scroll-safe in scroll.js, so it
+       measures correctly even though the intake was closed at a deep scroll
+       position; that patch re-drives the hero fade and formation driver to
+       the true scroll position on its own.) */
     function resyncScrollTriggers() {
-      if (sceneActive && window.ScrollTrigger) {
-        try {
-          window.ScrollTrigger.refresh();
-        } catch (err) {
-          /* decorative only */
-        }
+      if (!sceneActive || !window.ScrollTrigger) return;
+      try {
+        window.ScrollTrigger.refresh();
+      } catch (err) {
+        /* decorative only */
       }
     }
 
