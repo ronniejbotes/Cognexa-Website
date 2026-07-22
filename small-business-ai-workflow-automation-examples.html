@@ -7,12 +7,31 @@
   <meta name="description" content="12 concrete AI workflows small businesses can automate first — lead handling, admin, follow-up, reporting — plus what to leave to people.">
   <meta name="theme-color" content="#0f1117">
   <!-- Google Analytics 4 — TODO(owner): replace G-XXXXXXXXXX (both places) with the real Measurement ID from analytics.google.com -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <!-- Deferred off the critical path (mobile PageSpeed): loads https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX after window load or first interaction -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
+    (function () {
+      var loaded = false;
+      function loadGtag() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+        document.head.appendChild(s);
+      }
+      if (document.readyState === 'complete') {
+        window.setTimeout(loadGtag, 1500);
+      } else {
+        window.addEventListener('load', function () { window.setTimeout(loadGtag, 1500); });
+      }
+      ['pointerdown', 'keydown', 'touchstart'].forEach(function (evt) {
+        window.addEventListener(evt, loadGtag, { once: true, passive: true });
+      });
+    })();
   </script>
   <link rel="canonical" href="https://cognexa.co.za/small-business-ai-workflow-automation-examples.html">
 
@@ -29,11 +48,7 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
-
-  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link rel="stylesheet" href="css/styles.css?v=11">
 
   <script type="application/ld+json">
 {
@@ -83,6 +98,7 @@
   </script>
 </head>
 <body class="page-static">
+  <script>/* Runs during parse, before first paint: without it the no-JS nav fallback renders as a tall static menu until js/main.js executes (mobile CLS). js/main.js re-adds the class as a harmless no-op; with JS disabled this never runs and the fallback still applies. */document.body.classList.add('js-enabled');</script>
 
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -174,7 +190,7 @@
         <h2>Put it to work in your business</h2>
         <p>Cognexa designs and builds AI chatbots, voice agents and automated workflows — tell us what eats your team&rsquo;s hours and we&rsquo;ll map the automation that gives them back.</p>
         <a class="btn btn-primary" href="index.html#contact">Start your build</a>
-        <p>Prefer to talk it through? Call <a href="tel:+27662412155">066 241 2155</a> or email <a href="mailto:hello@cognexa.co.za">hello@cognexa.co.za</a>.</p>
+        <p>Prefer to talk it through? Call <a href="tel:+27662412155">066 241 2155</a> or email <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a>.</p>
       </aside>
 
       <section aria-labelledby="faq-heading">
@@ -213,7 +229,7 @@
       <div class="footer-about">
         <p class="footer-brand">Cognexa</p>
         <p class="footer-tagline">AI business solutions, built in South Africa.</p>
-        <p class="footer-contact"><a href="tel:+27662412155">066 241 2155</a> &middot; <a href="mailto:hello@cognexa.co.za">hello@cognexa.co.za</a></p>
+        <p class="footer-contact"><a href="tel:+27662412155">066 241 2155</a> &middot; <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a></p>
       </div>
       <nav class="footer-nav" aria-label="Footer">
         <a href="index.html#services">Services</a>
@@ -226,6 +242,6 @@
     <p class="footer-copy">&copy; <span class="footer-year">2026</span> Cognexa</p>
   </footer>
 
-  <script src="js/main.js?v=10"></script>
+  <script src="js/main.js?v=11"></script>
 </body>
 </html>

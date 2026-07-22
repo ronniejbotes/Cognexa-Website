@@ -378,7 +378,7 @@
    * Contact form — validate, then compose a mailto. No backend.
    * ================================================================== */
   var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  var CONTACT_EMAIL = 'hello@cognexa.co.za';
+  var CONTACT_EMAIL = 'hello\u0040cognexa.co.za';
 
   /* Google Apps Script web-app URL (lead sheet + email notification).
      While empty, submissions fall back to composing a mailto. */
@@ -473,7 +473,7 @@
             !EMAIL_PATTERN.test(value)
           ) {
             invalid.push(field);
-            addFieldError(field, 'Enter a valid email address, like name@company.com.');
+            addFieldError(field, 'Enter a valid email address, like name\u0040company.com.');
           }
         });
 
@@ -662,7 +662,7 @@
               addFieldError(field, requiredMessage(field));
               invalid = field;
             } else if (type === 'email' && value && !EMAIL_PATTERN.test(value)) {
-              addFieldError(field, 'Enter a valid email address, like name@company.com.');
+              addFieldError(field, 'Enter a valid email address, like name\u0040company.com.');
               invalid = field;
             }
           });

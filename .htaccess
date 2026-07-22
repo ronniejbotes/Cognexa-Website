@@ -1,9 +1,10 @@
 # .htaccess — Cognexa marketing site (Hostinger, Apache/LiteSpeed)
 #
-# Three concerns only:
+# Four concerns only:
 #   1. One-hop canonical redirect to https://cognexa.co.za/
 #   2. Text compression (mod_deflate)
 #   3. Browser caching (mod_expires)
+#   4. Security headers (mod_headers) — HSTS
 #
 # Keep this file lean — it is read on every request.
 
@@ -65,12 +66,22 @@
   ExpiresByType image/svg+xml "access plus 30 days"
   ExpiresByType image/x-icon "access plus 30 days"
 
-  # Fonts — 30 days (currently served from Google Fonts, kept for any
-  # future self-hosted fonts)
+  # Fonts — 30 days (self-hosted woff2; immutable files)
   ExpiresByType font/woff2 "access plus 30 days"
   ExpiresByType font/woff "access plus 30 days"
 
   # Videos — 30 days
   ExpiresByType video/mp4 "access plus 30 days"
   ExpiresByType video/webm "access plus 30 days"
+</IfModule>
+
+# ------------------------------------------------------------------
+# 4. Security headers.
+#   HSTS — tells browsers to always use HTTPS for this domain (and
+#   subdomains) for one year. Only meaningful on HTTPS responses;
+#   browsers ignore the header over plain HTTP, so setting it
+#   unconditionally is safe.
+# ------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 </IfModule>
