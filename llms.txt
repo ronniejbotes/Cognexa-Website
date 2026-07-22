@@ -1,0 +1,25 @@
+# Cognexa
+
+> Cognexa is a South African AI business solutions agency that designs and builds AI chatbots and WhatsApp automation, AI voice agents, workflow automation and immersive 3D websites. Scoping is free, quotes are fixed, and there is no minimum contract; built in South Africa, Cognexa works with clients worldwide and delivers POPIA-aware builds.
+
+Cognexa replies to every enquiry within one business day. Plain-English articles on AI chatbots, AI receptionists, voice agents and workflow automation are published at https://cognexa.co.za/blog.html.
+
+## Services
+
+- [AI chatbots & WhatsApp automation](https://cognexa.co.za/#station-chat): Website chat and WhatsApp automation that answers instantly, qualifies leads and books the meeting, then hands off to your team with full context.
+- [AI voice agents](https://cognexa.co.za/#station-voice): Inbound reception and outbound follow-up handled by natural-sounding AI voice agents that book, remind, confirm and escalate when a human should step in.
+- [Workflow automation](https://cognexa.co.za/#station-workflow): CRM, calendar, invoicing and inbox wired together into AI workflows that move work forward without anyone pushing it.
+- [3D web experiences](https://cognexa.co.za/#station-web): Immersive, scroll-driven 3D websites designed, built and tuned for performance.
+
+## Insights
+
+- [AI Receptionist Cost in South Africa (2026 Guide)](https://cognexa.co.za/ai-receptionist-cost-south-africa.html): What an AI receptionist costs in South Africa — real vendor pricing in Rand, compared against local receptionist salaries.
+- [AI Voice Agent vs IVR vs Human Receptionist](https://cognexa.co.za/ai-voice-agent-vs-ivr-vs-receptionist.html): Capability, caller experience and cost compared, plus when a call should be handed to a person.
+- [AI Workflow Automation for Small Business: 12 Wins](https://cognexa.co.za/small-business-ai-workflow-automation-examples.html): Twelve concrete workflows small businesses can automate first — lead handling, admin, follow-up, reporting — and what to leave to people.
+- [Is a WhatsApp AI Chatbot POPIA Compliant?](https://cognexa.co.za/whatsapp-ai-chatbot-popia-compliance.html): Consent rules, WhatsApp's opt-in policy and a practical compliance checklist for South African businesses.
+
+## Contact
+
+- Email: hello@cognexa.co.za
+- Phone / WhatsApp: +27 66 241 2155
+- [Start a project](https://cognexa.co.za/#contact): Free scoping and a fixed quote, with a reply within one business day.

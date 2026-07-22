@@ -204,6 +204,47 @@
     }
   }
 
+  /* Landing on a #hash (e.g. index.html#process from a blog page): the
+     browser performs its anchor jump before ScrollTrigger inserts its pin
+     spacers, so by the time the page settles the target sits ~1800px
+     further down than where the browser left us. Re-aim once ScrollTrigger's
+     own load refresh has run (its load listener registers before this one;
+     the double rAF lets that layout land first). */
+  window.addEventListener('load', function () {
+    if (!location.hash || location.hash.length < 2) return;
+    var target = null;
+    try {
+      target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    } catch (err) {
+      target = null;
+    }
+    if (!target) return;
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        target.scrollIntoView({ block: 'start' });
+      });
+    });
+  });
+
+  /* bfcache restore (Insights → Back, etc.): ScrollTrigger resumes with
+     measurements cached before the page was frozen, which leaves pin and
+     start/end positions stale — the pinned #process ring then overlaps
+     neighbouring sections. Re-measure on the frame after the restore
+     settles (the intake's own pageshow reset has run by then, so nothing
+     is transformed while we measure). */
+  window.addEventListener('pageshow', function (event) {
+    if (!event.persisted) return;
+    window.requestAnimationFrame(function () {
+      if (sceneActive && window.ScrollTrigger) {
+        try {
+          window.ScrollTrigger.refresh();
+        } catch (err) {
+          /* decorative only */
+        }
+      }
+    });
+  });
+
   /* ====================================================================
    * Mobile navigation
    * ================================================================== */
@@ -875,6 +916,21 @@
       }
     }
 
+    /* Refresh every ScrollTrigger measurement (start/end/pin positions).
+       Must only run once the page elements carry no leftover transforms —
+       a transformed <main> both skews getBoundingClientRect measurements
+       and becomes the containing block for ScrollTrigger's position:fixed
+       pins, so a refresh mid-restore corrupts the pinned #process ring. */
+    function resyncScrollTriggers() {
+      if (sceneActive && window.ScrollTrigger) {
+        try {
+          window.ScrollTrigger.refresh();
+        } catch (err) {
+          /* decorative only */
+        }
+      }
+    }
+
     function close() {
       if (!isOpen) return;
       isOpen = false;
@@ -923,20 +979,69 @@
           duration: 0.5,
           ease: 'power3.out',
           overwrite: 'auto',
-          clearProps: 'transform,opacity,visibility'
+          clearProps: 'transform,opacity,visibility',
+          onComplete: function () {
+            /* Re-sync the machine with the scroll position the page
+               returns to (refresh re-fires the formation + progress
+               onRefresh handlers) — but only AFTER clearProps has removed
+               the restore tween's inline transform. One rAF lets the
+               cleared styles render before anything is measured. */
+            window.requestAnimationFrame(resyncScrollTriggers);
+          }
         });
+      } else {
+        resyncScrollTriggers();
       }
-      /* Re-sync the machine with the scroll position the page returns to
-         (refresh re-fires the formation + progress onRefresh handlers). */
-      if (sceneActive && window.ScrollTrigger) {
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    /* bfcache: leaving the site mid-questionnaire (Insights link, browser
+       Back) freezes the page with the overlay open, the scroll lock still
+       on <html> and the implosion transforms still applied. On restore,
+       snap straight back to the closed state — frozen tweens and timers do
+       not survive the round-trip cleanly. */
+    window.addEventListener('pageshow', function (event) {
+      if (!event.persisted) return;
+      isOpen = false;
+      if (hideTimer) {
+        window.clearTimeout(hideTimer);
+        hideTimer = null;
+      }
+      if (focusTimer) {
+        window.clearTimeout(focusTimer);
+        focusTimer = null;
+      }
+      /* Unlock and hide first — whatever else happens below, the page must
+         never come back from bfcache scroll-locked behind a hidden overlay. */
+      overlay.classList.remove('is-open');
+      overlay.classList.remove('is-bursting');
+      overlay.hidden = true;
+      body.classList.remove('intake-open');
+      docEl.classList.remove('intake-open');
+      if (window.gsap) {
         try {
-          window.ScrollTrigger.refresh();
+          if (burstTl) {
+            burstTl.kill();
+            burstTl = null;
+          }
+          if (formationTween) {
+            formationTween.kill();
+            formationTween = null;
+          }
+          window.gsap.killTweensOf(condense);
+          window.gsap.killTweensOf(form);
+          /* Also kills close()'s 0.5s restore tween if the page was frozen
+             mid-close, so nothing resumes animating after the snap-back. */
+          window.gsap.killTweensOf(getPageEls());
+          window.gsap.set(getPageEls(), { clearProps: 'transform,opacity,visibility' });
+          window.gsap.set(form, { clearProps: 'transform,opacity,visibility' });
         } catch (err) {
           /* decorative only */
         }
       }
-      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
-    }
+      condense.v = 0;
+      sceneCondense(0);
+    });
 
     /* "Not sure — recommend for me" is exclusive with concrete picks. */
     form.addEventListener('change', function (event) {
