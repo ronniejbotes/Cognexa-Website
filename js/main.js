@@ -374,6 +374,23 @@
   var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var CONTACT_EMAIL = 'hello\u0040cognexa.co.za';
 
+  /* Deliberately loose: an optional +, then 9–15 digits once spaces,
+     dashes, dots and brackets are stripped. Covers 066 241 2155,
+     +27 66 241 2155 and every other way people type one number. */
+  var PHONE_PATTERN = /^\+?\d{9,15}$/;
+
+  function isPhoneField(field) {
+    var name = (field.getAttribute('name') || field.id || '').toLowerCase();
+    return (
+      (field.getAttribute('type') || '').toLowerCase() === 'tel' ||
+      name.indexOf('phone') !== -1
+    );
+  }
+
+  function isValidPhone(value) {
+    return PHONE_PATTERN.test(value.replace(/[\s\-().]/g, ''));
+  }
+
   /* Google Apps Script web-app URL (lead sheet + email notification).
      While empty, submissions fall back to composing a mailto. */
   var INTAKE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwYakvOXoyUIMQAzjKqIYsrwguvBnIN407osOq5CoS3YV2R_b84QNYV_BEs_AdWuNoh/exec';
@@ -381,6 +398,7 @@
   function requiredMessage(field) {
     var name = (field.getAttribute('name') || field.id || '').toLowerCase();
     if (name.indexOf('email') !== -1) return 'Please add your email address.';
+    if (name.indexOf('phone') !== -1) return 'Please add a contact number.';
     if (name.indexOf('name') !== -1) return 'Please add your name.';
     if (name.indexOf('message') !== -1) return 'Tell us a little about what you need.';
     return 'This field is required.';
@@ -461,6 +479,9 @@
           if (field.hasAttribute('required') && !value) {
             invalid.push(field);
             addFieldError(field, requiredMessage(field));
+          } else if (isPhoneField(field) && value && !isValidPhone(value)) {
+            invalid.push(field);
+            addFieldError(field, 'Enter a number we can reach you on, like 066 241 2155.');
           } else if (
             (type === 'email' || field.type === 'email') &&
             value &&
@@ -477,12 +498,13 @@
       }
 
       var name = fieldValue(form, 'name');
+      var phone = fieldValue(form, 'phone');
       var email = fieldValue(form, 'email');
       var company = fieldValue(form, 'company');
       var message = fieldValue(form, 'message');
 
       var subject = 'Website enquiry from ' + (name || 'the Cognexa site');
-      var lines = ['Name: ' + name, 'Email: ' + email];
+      var lines = ['Name: ' + name, 'Phone: ' + phone, 'Email: ' + email];
       if (company) lines.push('Company: ' + company);
       lines.push('', 'Message:', message);
 
@@ -655,6 +677,9 @@
             if (field.hasAttribute('required') && !value) {
               addFieldError(field, requiredMessage(field));
               invalid = field;
+            } else if (isPhoneField(field) && value && !isValidPhone(value)) {
+              addFieldError(field, 'Enter a number we can reach you on, like 066 241 2155.');
+              invalid = field;
             } else if (type === 'email' && value && !EMAIL_PATTERN.test(value)) {
               addFieldError(field, 'Enter a valid email address, like name\u0040company.com.');
               invalid = field;
@@ -701,6 +726,7 @@
     function submitViaMailto() {
       var lines = [
         'Name: ' + fieldVal('name'),
+        'Phone: ' + fieldVal('phone'),
         'Email: ' + fieldVal('email'),
         'Business: ' + fieldVal('company'),
         'What they do: ' + fieldVal('industry'),
@@ -743,6 +769,7 @@
       }
       var payload = {
         name: fieldVal('name'),
+        phone: fieldVal('phone'),
         email: fieldVal('email'),
         company: fieldVal('company'),
         industry: fieldVal('industry'),

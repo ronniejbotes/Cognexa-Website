@@ -160,7 +160,7 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
-  <link rel="stylesheet" href="css/styles.css?v=12">
+  <link rel="stylesheet" href="css/styles.css?v=13">
 </head>
 <body>
   <script>/* Runs during parse, before first paint: without it the no-JS nav fallback renders as a ~179px static menu until end-of-body scripts execute (measured mobile CLS 0.24). js/main.js re-adds the class as a harmless no-op; with JS disabled this never runs and the fallback still applies. */document.body.classList.add('js-enabled');</script>
@@ -490,6 +490,10 @@
           <input id="name" name="name" type="text" autocomplete="name" required>
         </div>
         <div class="form-field">
+          <label for="phone">Phone <abbr class="required" title="required">*</abbr></label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="066 241 2155" required>
+        </div>
+        <div class="form-field">
           <label for="email">Email <abbr class="required" title="required">*</abbr></label>
           <input id="email" name="email" type="email" autocomplete="email" required>
         </div>
@@ -550,7 +554,7 @@
         <section class="intake-step" data-step="1">
           <div class="intake-meta">
             <button type="button" class="intake-back">&larr; Back</button>
-            <span class="intake-count">1 of 7</span>
+            <span class="intake-count">1 of 8</span>
           </div>
           <p class="intake-num" aria-hidden="true">1 &rarr;</p>
           <label class="intake-q" for="iq-name">What&rsquo;s your name?</label>
@@ -564,12 +568,12 @@
         <section class="intake-step" data-step="2">
           <div class="intake-meta">
             <button type="button" class="intake-back">&larr; Back</button>
-            <span class="intake-count">2 of 7</span>
+            <span class="intake-count">2 of 8</span>
           </div>
           <p class="intake-num" aria-hidden="true">2 &rarr;</p>
-          <label class="intake-q" for="iq-email">What&rsquo;s your business email?</label>
-          <p class="intake-sub">This is where we&rsquo;ll reply once we&rsquo;ve reviewed your answers.</p>
-          <input id="iq-email" name="email" type="email" autocomplete="email" placeholder="you&#64;company&#46;com" required>
+          <label class="intake-q" for="iq-phone">What&rsquo;s your phone number?</label>
+          <p class="intake-sub">For anything quicker than email &mdash; a call or a WhatsApp.</p>
+          <input id="iq-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="066 241 2155" required>
           <div class="intake-actions">
             <button type="button" class="btn btn-primary intake-next">Next</button>
             <span class="intake-hint">press Enter &crarr;</span>
@@ -579,11 +583,12 @@
         <section class="intake-step" data-step="3">
           <div class="intake-meta">
             <button type="button" class="intake-back">&larr; Back</button>
-            <span class="intake-count">3 of 7</span>
+            <span class="intake-count">3 of 8</span>
           </div>
           <p class="intake-num" aria-hidden="true">3 &rarr;</p>
-          <label class="intake-q" for="iq-company">What&rsquo;s your business called?</label>
-          <input id="iq-company" name="company" type="text" autocomplete="organization" placeholder="Acme Plumbing" required>
+          <label class="intake-q" for="iq-email">What&rsquo;s your business email?</label>
+          <p class="intake-sub">This is where we&rsquo;ll reply once we&rsquo;ve reviewed your answers.</p>
+          <input id="iq-email" name="email" type="email" autocomplete="email" placeholder="you&#64;company&#46;com" required>
           <div class="intake-actions">
             <button type="button" class="btn btn-primary intake-next">Next</button>
             <span class="intake-hint">press Enter &crarr;</span>
@@ -593,9 +598,23 @@
         <section class="intake-step" data-step="4">
           <div class="intake-meta">
             <button type="button" class="intake-back">&larr; Back</button>
-            <span class="intake-count">4 of 7</span>
+            <span class="intake-count">4 of 8</span>
           </div>
           <p class="intake-num" aria-hidden="true">4 &rarr;</p>
+          <label class="intake-q" for="iq-company">What&rsquo;s your business called?</label>
+          <input id="iq-company" name="company" type="text" autocomplete="organization" placeholder="Acme Plumbing" required>
+          <div class="intake-actions">
+            <button type="button" class="btn btn-primary intake-next">Next</button>
+            <span class="intake-hint">press Enter &crarr;</span>
+          </div>
+        </section>
+
+        <section class="intake-step" data-step="5">
+          <div class="intake-meta">
+            <button type="button" class="intake-back">&larr; Back</button>
+            <span class="intake-count">5 of 8</span>
+          </div>
+          <p class="intake-num" aria-hidden="true">5 &rarr;</p>
           <label class="intake-q" for="iq-industry">What does the business do?</label>
           <p class="intake-sub">One line is plenty.</p>
           <input id="iq-industry" name="industry" type="text" placeholder="e.g. Roofing in Cape Town" required>
@@ -605,12 +624,12 @@
           </div>
         </section>
 
-        <fieldset class="intake-step" data-step="5" data-require-one="Pick at least one to carry on.">
+        <fieldset class="intake-step" data-step="6" data-require-one="Pick at least one to carry on.">
           <div class="intake-meta">
             <button type="button" class="intake-back">&larr; Back</button>
-            <span class="intake-count">5 of 7</span>
+            <span class="intake-count">6 of 8</span>
           </div>
-          <p class="intake-num" aria-hidden="true">5 &rarr;</p>
+          <p class="intake-num" aria-hidden="true">6 &rarr;</p>
           <legend class="intake-q">Which solutions are you interested in?</legend>
           <p class="intake-sub">Pick as many as you like.</p>
           <div class="intake-options">
@@ -626,12 +645,12 @@
           </div>
         </fieldset>
 
-        <fieldset class="intake-step" data-step="6" data-require-one="Pick at least one to carry on.">
+        <fieldset class="intake-step" data-step="7" data-require-one="Pick at least one to carry on.">
           <div class="intake-meta">
             <button type="button" class="intake-back">&larr; Back</button>
-            <span class="intake-count">6 of 7</span>
+            <span class="intake-count">7 of 8</span>
           </div>
-          <p class="intake-num" aria-hidden="true">6 &rarr;</p>
+          <p class="intake-num" aria-hidden="true">7 &rarr;</p>
           <legend class="intake-q">What eats most of your team&rsquo;s hours?</legend>
           <p class="intake-sub">Pick everything that applies.</p>
           <div class="intake-options">
@@ -646,12 +665,12 @@
           </div>
         </fieldset>
 
-        <section class="intake-step" data-step="7">
+        <section class="intake-step" data-step="8">
           <div class="intake-meta">
             <button type="button" class="intake-back">&larr; Back</button>
-            <span class="intake-count">7 of 7</span>
+            <span class="intake-count">8 of 8</span>
           </div>
-          <p class="intake-num" aria-hidden="true">7 &rarr;</p>
+          <p class="intake-num" aria-hidden="true">8 &rarr;</p>
           <label class="intake-q" for="iq-message">Anything else we should know?</label>
           <p class="intake-sub">Optional &mdash; deadlines, tools you already use, anything.</p>
           <textarea id="iq-message" name="message" rows="4" placeholder="Tell us more&hellip;"></textarea>
@@ -689,6 +708,6 @@
   <script src="assets/vendor/scrolltrigger-3.12.5.min.js"></script>
   <script src="js/scene.js?v=12"></script>
   <script src="js/scroll.js?v=12"></script>
-  <script src="js/main.js?v=12"></script>
+  <script src="js/main.js?v=13"></script>
 </body>
 </html>

@@ -1608,8 +1608,10 @@ legend.intake-q + * { clear: both; }
   text-shadow: 0 1px 12px rgba(15, 17, 23, 0.9);
 }
 
-#intake-form input[type="text"],
-#intake-form input[type="email"],
+/* Match on what a control ISN'T, not on a whitelist of types: a new
+   question (tel, url, number…) picks the styling up automatically instead
+   of silently falling back to the unstyled browser default. */
+#intake-form input:not([type="checkbox"]):not([type="radio"]),
 #intake-form textarea {
   display: block;
   width: 100%;
