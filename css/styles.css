@@ -1861,12 +1861,28 @@ body.page-static main {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 26px 24px 28px;
+  padding: 0 24px 28px;
   background: rgba(34, 37, 51, 0.78);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
+  overflow: hidden; /* clip the thumbnail to the card's rounded corners */
   transition: border-color var(--transition-fast), transform var(--transition-fast),
               box-shadow var(--transition-fast);
+}
+
+/* Card thumbnail. Fixed aspect + explicit width/height attrs in the markup
+   keep the grid from reflowing as images arrive (CLS). */
+.blog-card-media {
+  display: block;
+  /* Bleed back over the card's 24px side padding. max-width must be cleared
+     explicitly — the global `img { max-width: 100% }` reset otherwise clamps
+     this back to the content box and leaves a gap down the right edge. */
+  width: calc(100% + 48px);
+  max-width: none;
+  margin: 0 -24px 16px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--bg-secondary);
 }
 .blog-card:hover {
   border-color: var(--accent-blue);
@@ -1886,6 +1902,19 @@ body.page-static main {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--accent-blue);
+}
+
+/* Article hero. Sits between the meta line and the answer block; decorative
+   support for the topic rather than information, so alt text stays short. */
+.post-hero {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin: 8px 0 28px;
+  background: var(--bg-secondary);
 }
 
 /* Article pages */
@@ -2155,6 +2184,30 @@ body.page-static main {
   .local-intro,
   .local-outro,
   .local-block p { color: #333 !important; text-shadow: none; }
+}
+
+/* ==========================================================================
+   Reading run (#local, #faq) — the quiet sections after the set-pieces.
+   Both used to be 820px columns centred in the viewport, which put them
+   squarely on top of the particle machine: the globe got sliced in half by
+   the cards and read as an accident rather than a decision.
+
+   Now they take a 640px column on alternating sides — #local left, #faq
+   right, continuing the rhythm the stations established — and js/scroll.js
+   parks the machine in the strip each one leaves free, dimmed, so it reads
+   as deliberate ambience you can actually see whole.
+
+   Below 1100px there is no strip worth parking in, so both stay centred and
+   the machine simply dims further instead (see READING_DIM in scroll.js).
+   ========================================================================== */
+@media (min-width: 1100px) {
+  .local-seo,
+  .faq {
+    /* 640px of prose + the 24px gutters the base rule already pads */
+    max-width: 688px;
+  }
+  .local-seo { margin-inline: clamp(24px, 5vw, 64px) auto; }
+  .faq { margin-inline: auto clamp(24px, 5vw, 64px); }
 }
 
 /* Footer contact line (index footer): phone + email links get comfortable

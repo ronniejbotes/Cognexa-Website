@@ -17,6 +17,9 @@ Cognexa replies to every enquiry within one business day. Plain-English articles
 - [AI Voice Agent vs IVR vs Human Receptionist](https://cognexa.co.za/ai-voice-agent-vs-ivr-vs-receptionist.html): Capability, caller experience and cost compared, plus when a call should be handed to a person.
 - [AI Workflow Automation for Small Business: 12 Wins](https://cognexa.co.za/small-business-ai-workflow-automation-examples.html): Twelve concrete workflows small businesses can automate first — lead handling, admin, follow-up, reporting — and what to leave to people.
 - [Is a WhatsApp AI Chatbot POPIA Compliant?](https://cognexa.co.za/whatsapp-ai-chatbot-popia-compliance.html): Consent rules, WhatsApp's opt-in policy and a practical compliance checklist for South African businesses.
+- [AI Agent vs Chatbot: What's the Difference?](https://cognexa.co.za/ai-agent-vs-chatbot-difference.html): A chatbot answers, an AI agent acts — what each can do, how build and running costs differ, and which one a business should start with.
+- [How Long Does AI Automation Take to Set Up?](https://cognexa.co.za/how-long-ai-automation-setup-roi.html): Realistic build timelines for chatbots, voice agents and workflow automation, why enterprise timelines mislead small businesses, and how to work out payback.
+- [Can an AI Chatbot Speak Afrikaans and isiZulu?](https://cognexa.co.za/ai-chatbot-south-african-languages.html): How well AI chatbots and voice agents handle South Africa's languages, why voice is harder than text, code-switching, and how to test quality before committing.
 
 ## Contact
 

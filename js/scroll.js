@@ -63,6 +63,31 @@
     }
   }
 
+  /* Where should the machine park so a given content column can be read?
+     Returns the centre of the widest strip the column leaves free and that
+     strip's width, both as fractions of the viewport, plus which side it is
+     on. amp is a magnitude — callers that alternate (the stations) supply
+     their own sign; callers that just dodge the column use `sign`.
+
+     Zeroes out below 900px, and whenever the free strip is too narrow to be
+     worth the swing — the machine then stays centred, which is what every
+     layout below the desktop breakpoint wants. */
+  function parkFor(el) {
+    var none = { amp: 0, strip: 0, sign: 1 };
+    if (!el || window.innerWidth < 900) return none;
+    var rect = el.getBoundingClientRect();
+    var vw = window.innerWidth;
+    var leftFree = rect.left;
+    var rightFree = vw - rect.right;
+    var free = Math.max(leftFree, rightFree);
+    if (free < vw * 0.3) return none;
+    return {
+      amp: 1 - free / vw,
+      strip: free / vw,
+      sign: rightFree >= leftFree ? 1 : -1
+    };
+  }
+
   /* The ghost number is the huge outlined "01"–"04" behind each station
      heading. The contract does not pin its class name down, so resolve it
      defensively: known class candidates first, then any leaf element inside
@@ -185,16 +210,9 @@
       var lateralStrip = 0; /* free strip width as a fraction of the viewport */
       function measureLateralAmp() {
         var panel = services ? services.querySelector('.station-inner') : null;
-        lateralAmp = 0;
-        lateralStrip = 0;
-        if (!panel || window.innerWidth < 900) return;
-        var rect = panel.getBoundingClientRect();
-        var vw = window.innerWidth;
-        var free = Math.max(rect.left, vw - rect.right);
-        /* Too little room to be worth the swing — stay centered. */
-        if (free < vw * 0.3) return;
-        lateralStrip = free / vw;
-        lateralAmp = 1 - lateralStrip; /* center of the strip, from center */
+        var park = parkFor(panel);
+        lateralAmp = park.amp;
+        lateralStrip = park.strip;
       }
 
       /* Hold at one side while a station is centered, cross over during the
@@ -509,8 +527,72 @@
       }
 
       /* ------------------------------------------------------------------
-       * 8. Contact — batched reveal of the section's blocks; particles dim
-       *    further so the form stays readable.
+       * 7b. Reading run — #local and #faq are long prose sections that used
+       *     to sit centred right on top of the machine, slicing it in half.
+       *     Now the machine dims and parks in the strip each column leaves
+       *     free (CSS puts #local left and #faq right), so it reads as
+       *     deliberate ambience instead of a backdrop nobody placed.
+       *
+       *     Created HERE, not next to the station code it resembles: these
+       *     triggers must be built in page order, AFTER the #process pin
+       *     above, or their start/end are measured without the pin's spacer
+       *     and land thousands of pixels up the page.
+       *
+       *     The two ranges deliberately overlap, so an "active list" decides
+       *     who owns the machine rather than each section resetting it on the
+       *     way out — otherwise leaving #local would blank the dim #faq had
+       *     just set.
+       * ------------------------------------------------------------------ */
+      var READING_DIM_PARKED = 0.35;  /* parked clear of the text — stay visible */
+      var READING_DIM_BEHIND = 0.7;   /* nowhere to park: properly recede */
+
+      var readingActive = [];
+
+      function applyReading() {
+        if (!readingActive.length) {
+          sceneCall('setDim', 0);
+          sceneCall('setLateral', 0, 0);
+          return;
+        }
+        /* Last one to activate owns it — correct scrolling both directions. */
+        var owner = readingActive[readingActive.length - 1];
+        var park = owner.park;
+        sceneCall('setDim', park.strip ? READING_DIM_PARKED : READING_DIM_BEHIND);
+        sceneCall('setLateral', park.amp * park.sign, park.strip);
+      }
+
+      ['#local', '#faq'].forEach(function (sel) {
+        var section = document.querySelector(sel);
+        if (!section) return;
+        var entry = { park: { amp: 0, strip: 0, sign: 1 } };
+
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 75%',
+          end: 'bottom 25%',
+          onRefresh: function (self) {
+            entry.park = parkFor(section);
+            if (self.isActive) {
+              if (readingActive.indexOf(entry) === -1) readingActive.push(entry);
+              applyReading();
+            }
+          },
+          onToggle: function (self) {
+            var at = readingActive.indexOf(entry);
+            if (self.isActive) {
+              if (at === -1) readingActive.push(entry);
+            } else if (at !== -1) {
+              readingActive.splice(at, 1);
+            }
+            applyReading();
+          }
+        });
+      });
+
+      /* ------------------------------------------------------------------
+       * 8. Contact — batched reveal of the section's blocks; the reading run
+       *    above hands the machine back (undimmed, centred) as #faq exits,
+       *    ready for the intake implosion.
        * ------------------------------------------------------------------ */
       var contact = document.querySelector('#contact');
       if (contact) {

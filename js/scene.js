@@ -494,6 +494,10 @@
     lat.value += (want - lat.value) * 0.08;
     state.points.position.x = lat.value;
 
+    /* Dim eases on the same filter as the slide above. */
+    var dim = state.uniforms.uDim;
+    dim.value += (state.dimTarget - dim.value) * 0.08;
+
     state.renderer.render(state.scene, state.camera);
   }
 
@@ -676,6 +680,7 @@
       /* Sideways parking spot: target is a -1..1 fraction of the half
          viewport, value is the eased world-space x actually applied. */
       lateral: { target: 0, strip: 0, value: 0, fit: 1 },
+      dimTarget: 0,
       /* Viewport-driven scale from resize(); tick() multiplies it by the
          strip-fit factor, so resize and parking never fight over scale. */
       baseScale: 1,
@@ -763,9 +768,12 @@
     state.pointer.ty = clamp(isFinite(y) ? +y : 0, -1, 1);
   }
 
+  /* 0..1 particle fade. Sets a TARGET the render loop eases toward, so the
+     reading sections can hand the machine a new value on a scroll toggle
+     without it stepping visibly. */
   function setDim(d) {
     if (!state) return;
-    state.uniforms.uDim.value = clamp(isFinite(d) ? +d : 0, 0, 1);
+    state.dimTarget = clamp(isFinite(d) ? +d : 0, 0, 1);
   }
 
   /* +1 = fully imploded into a small dense ball; 0 = normal; negative values
