@@ -538,6 +538,21 @@
     }
   }
 
+  /* The stations park the machine off to one side; the intake needs it back
+     on the axis so the implosion collapses into the middle of the screen.
+     scene.js eases the move, so it gathers inward as it condenses. Closing
+     the intake fires a ScrollTrigger refresh, which re-parks it. */
+  function sceneLateral(v) {
+    var scene = window.CognexaScene;
+    if (scene && typeof scene.setLateral === 'function') {
+      try {
+        scene.setLateral(v, 0);
+      } catch (err) {
+        /* decorative only */
+      }
+    }
+  }
+
   function initIntake() {
     var overlay = document.getElementById('intake');
     var form = document.getElementById('intake-form');
@@ -845,6 +860,7 @@
       isOpen = true;
       lastFocus = document.activeElement;
       clearFormErrors(form);
+      sceneLateral(0);
 
       /* Seed the step morph from wherever the scroll choreography left the
          machine, so the first morph animates rather than snapping. */

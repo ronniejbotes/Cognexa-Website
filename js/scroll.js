@@ -52,11 +52,11 @@
 
   /* Guarded bridge to the Three.js particle engine (js/scene.js).
      A scene error must never break scrolling. */
-  function sceneCall(method, value) {
+  function sceneCall(method, value, value2) {
     var scene = window.CognexaScene;
     if (scene && typeof scene[method] === 'function') {
       try {
-        scene[method](value);
+        scene[method](value, value2);
       } catch (err) {
         /* Decorative layer only — swallow and keep scrolling. */
       }
@@ -169,12 +169,53 @@
        * ------------------------------------------------------------------ */
       var services = document.querySelector('#services');
 
+      /* Which side of the screen each formation parks on, indexed by
+         formation (0 = hero, 1..4 = the four stations). Mirrors the CSS rule
+         that alternates .station-inner left/right from 900px up: panel left
+         → machine right (+1), panel right → machine left (−1). The hero
+         holds it dead center. */
+      var LATERAL_SIDE = [0, 1, -1, 1, -1];
+
+      /* How far off-center to park, as a fraction of the half viewport: the
+         middle of the strip the panel leaves free. Measured from the live
+         panel rather than hard-coded, so it tracks the fluid padding and
+         max-width — and collapses to 0 below the CSS breakpoint, where the
+         panel is full-bleed and there is no free strip to park in. */
+      var lateralAmp = 0;
+      var lateralStrip = 0; /* free strip width as a fraction of the viewport */
+      function measureLateralAmp() {
+        var panel = services ? services.querySelector('.station-inner') : null;
+        lateralAmp = 0;
+        lateralStrip = 0;
+        if (!panel || window.innerWidth < 900) return;
+        var rect = panel.getBoundingClientRect();
+        var vw = window.innerWidth;
+        var free = Math.max(rect.left, vw - rect.right);
+        /* Too little room to be worth the swing — stay centered. */
+        if (free < vw * 0.3) return;
+        lateralStrip = free / vw;
+        lateralAmp = 1 - lateralStrip; /* center of the strip, from center */
+      }
+
+      /* Hold at one side while a station is centered, cross over during the
+         handoff. The middle half of each formation-to-formation span does the
+         travelling, so the machine is parked and still while you are reading. */
+      function lateralAt(f) {
+        var i = Math.min(Math.floor(f), 3);
+        var t = clamp(0, 1, (f - i - 0.25) / 0.5);
+        t = t * t * (3 - 2 * t); /* smoothstep */
+        var from = LATERAL_SIDE[i];
+        return (from + (LATERAL_SIDE[i + 1] - from) * t) * lateralAmp;
+      }
+
       function applyFormation(self) {
         /* Tuned so formation i is fully formed exactly while station i's
            sticky panel is centered: stations are 150vh each (600vh total),
            the trigger range spans 700vh (top bottom → bottom top), and each
            panel holds during the first 50vh of its station. */
-        sceneCall('setFormation', clamp(0, 4, self.progress * 4.67 + 0.165));
+        var f = clamp(0, 4, self.progress * 4.67 + 0.165);
+        sceneCall('setFormation', f);
+        sceneCall('setLateral', lateralAt(f), lateralStrip);
       }
 
       if (services) {
@@ -184,11 +225,19 @@
           end: 'bottom top',
           scrub: true,
           onUpdate: applyFormation,
-          onRefresh: applyFormation,
+          onRefresh: function (self) {
+            /* Re-measure first: a resize changes the panel's width, and the
+               refresh is the only place the new layout is settled. */
+            measureLateralAmp();
+            applyFormation(self);
+          },
           onToggle: function (self) {
             /* Outside the stations the site falls back to the default
-               blue accent. */
-            if (!self.isActive) html.setAttribute('data-accent', 'blue');
+               blue accent, and the machine returns to center. */
+            if (!self.isActive) {
+              html.setAttribute('data-accent', 'blue');
+              sceneCall('setLateral', 0, 0);
+            }
           }
         });
       }

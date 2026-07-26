@@ -430,6 +430,20 @@
     }
   }
 
+  /* Clear air to leave on each side when fitting a formation into the strip a
+     station panel leaves free, as a fraction of the viewport width. Real
+     margin rather than a percentage of the strip: particles are drawn as
+     sprites with an additive glow that bleeds well past the point itself, so
+     a formation whose outermost POINT lands exactly on the strip edge still
+     reads as clipped. */
+  var STRIP_MARGIN = 0.035;
+
+  /* The shader nudges every point around at idle — a 5.5% breathe on the core
+     plus a ±0.035 wobble everywhere — so the geometry measured off the
+     formation arrays runs slightly narrow. Pad it rather than let a formation
+     breathe over the edge it was just fitted inside. */
+  var IDLE_HEADROOM = 1.07;
+
   function tick() {
     if (!state || !state.running) return;
     state.raf = requestAnimationFrame(tick);
@@ -448,6 +462,37 @@
     cam.position.y = -p.y * 0.4 - prog * 0.35;
     cam.position.z = 7.0 - prog * 0.7;
     cam.lookAt(0, 0, 0);
+
+    /* Lateral parking: slide the formation into the strip of screen its
+       station panel leaves free. The camera keeps looking at the origin —
+       moving the points (not the camera) is what shifts them in frame.
+       Formations differ hugely in width (the waveform is nearly twice the
+       bubble), so a shape too wide for the strip is also scaled down to fit
+       rather than sliding until it hangs off the edge. Both channels ease
+       per-frame like the pointer parallax above. */
+    var lat = state.lateral;
+    var halfH = Math.tan((cam.fov * Math.PI) / 360) * cam.position.z;
+    var halfW = halfH * cam.aspect;
+    var mix = state.uniforms.uMix.value;
+    var reachA = state.formHalfW[state.pairIndex];
+    var reachB = state.formHalfW[Math.min(state.pairIndex + 1, 4)];
+    /* Half-width of the formation currently on screen, before fitting. */
+    var reach = (reachA + (reachB - reachA) * mix) * state.baseScale;
+
+    /* strip = 0 means "no panel to dodge" (hero, intake, narrow screens):
+       leave the scale exactly as it has always been. */
+    var wantFit = 1;
+    if (lat.strip > 0 && reach > 0) {
+      var usableHalf = Math.max(0, lat.strip - 2 * STRIP_MARGIN) * halfW;
+      wantFit = Math.min(1, usableHalf / reach);
+    }
+    lat.fit += (wantFit - lat.fit) * 0.08;
+    state.points.scale.setScalar(state.baseScale * lat.fit);
+
+    var limit = Math.max(0, halfW - reach * lat.fit);
+    var want = clamp(lat.target * halfW, -limit, limit);
+    lat.value += (want - lat.value) * 0.08;
+    state.points.position.x = lat.value;
 
     state.renderer.render(state.scene, state.camera);
   }
@@ -510,6 +555,25 @@
       buildNetwork(count),
       buildGlobe(count)
     ];
+
+    // How far each formation reaches sideways, in world units — setLateral
+    // uses these to park a formation in the strip its station panel leaves
+    // free without pushing it past the viewport edge.
+    //
+    // Measured as the radius in the XZ plane rather than just |x|: formation
+    // 4 spins slowly around Y (see animatePos), so a point sitting at depth
+    // z swings all the way out to x within a few seconds. |x| alone reads
+    // that shape as narrower than it ever actually is on screen.
+    var formHalfW = formations.map(function (arr) {
+      var widest = 0;
+      for (var fi = 0; fi < arr.length; fi += 3) {
+        var fx = arr[fi];
+        var fz = arr[fi + 2];
+        var r = Math.sqrt(fx * fx + fz * fz);
+        if (r > widest) widest = r;
+      }
+      return widest * IDLE_HEADROOM;
+    });
 
     // ---- formation colors ------------------------------------------
     var blue = new THREE.Color('#4a7cff');
@@ -605,9 +669,16 @@
       starMat: starMat,
       stars: stars,
       formations: formations,
+      formHalfW: formHalfW,
       colors: colors,
       uniforms: uniforms,
       pairIndex: -1,
+      /* Sideways parking spot: target is a -1..1 fraction of the half
+         viewport, value is the eased world-space x actually applied. */
+      lateral: { target: 0, strip: 0, value: 0, fit: 1 },
+      /* Viewport-driven scale from resize(); tick() multiplies it by the
+         strip-fit factor, so resize and parking never fight over scale. */
+      baseScale: 1,
       clock: new THREE.Clock(),
       time: 0,
       progress: 0,
@@ -673,6 +744,19 @@
     state.uniforms.uProg.value = p;
   }
 
+  /* Park the formation off to one side.
+       offset — -1..1, how far from center, as a fraction of the half
+                viewport. 0 is dead center (hero, the intake).
+       strip  — 0..1, the width of the clear strip it has to live in, as a
+                fraction of the viewport. 0 means unconstrained: keep the
+                formation at its natural size, exactly as before this
+                existed. Anything wider than the strip is scaled to fit. */
+  function setLateral(offset, strip) {
+    if (!state) return;
+    state.lateral.target = clamp(isFinite(offset) ? +offset : 0, -1, 1);
+    state.lateral.strip = clamp(isFinite(strip) ? +strip : 0, 0, 1);
+  }
+
   function setPointer(x, y) {
     if (!state) return;
     state.pointer.tx = clamp(isFinite(x) ? +x : 0, -1, 1);
@@ -702,8 +786,8 @@
     state.camera.aspect = w / h;
     state.camera.updateProjectionMatrix();
     // slightly shrink formations on narrow portrait viewports
-    var s = clamp(0.72 + 0.28 * (w / h), 0.8, 1);
-    state.points.scale.setScalar(s);
+    state.baseScale = clamp(0.72 + 0.28 * (w / h), 0.8, 1);
+    state.points.scale.setScalar(state.baseScale * state.lateral.fit);
   }
 
   function destroy() {
@@ -727,6 +811,7 @@
     setFormation: setFormation,
     getFormation: getFormation,
     setProgress: setProgress,
+    setLateral: setLateral,
     setPointer: setPointer,
     setDim: setDim,
     setCondense: setCondense,
