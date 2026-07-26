@@ -2216,3 +2216,13 @@ body.page-static main {
   display: inline-block;
   padding: 8px 4px;
 }
+
+/* Locality line under the footer contact details. Quiet by design — it exists
+   for the local-SEO/NAP signal, not to compete with the phone and email.
+   --text-secondary, NOT --text-muted: muted is 2.95:1 on this background and
+   fails AA for copy, where secondary is 5.89:1. */
+.footer-locality {
+  margin-top: 2px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
