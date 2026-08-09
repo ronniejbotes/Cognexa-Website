@@ -49,6 +49,15 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
+  <!-- Resource hints. The two latin subsets are what actually render this page —
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="stylesheet" href="css/styles.css?v=26">
 
   <script type="application/ld+json">
@@ -120,14 +129,6 @@
         },
         {
           "@type": "Question",
-          "name": "Do I have to replace the software I already use?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. Automation sits between the tools already in use and moves information between them. A business keeps its accounting package, its calendar and its phone number, and gains the connections that previously depended on somebody remembering to rekey the same details twice."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "Is automated processing of customer data allowed under POPIA?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -169,6 +170,7 @@
       <a class="nav-link" href="/#services">Services</a>
       <a class="nav-link" href="/#process">Process</a>
       <a class="nav-link" href="/#work">Work</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
       <a class="nav-link" href="blog.html">Insights</a>
       <a class="nav-link" href="/#contact">Contact</a>
       <a class="btn btn-primary" href="/#contact">Start your build</a>
@@ -189,35 +191,35 @@
 
       <p><strong>Workflow automation is software that runs a defined business process from its trigger to its finished record</strong> &mdash; it takes the enquiry in, applies the rules you already follow, writes the result into your systems and tells the right person what happened.</p>
 
-      <p>This is not enterprise RPA and it is not a transformation programme. It is five or six jobs your staff do by hand, done by software instead. It is also what turns an <a href="ai-receptionist-south-africa.html">AI receptionist</a> or a <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbot</a> from a conversation into a finished job.</p>
+      <p>It is not enterprise RPA and not a transformation programme. It is a short list of jobs your staff do by hand, done by software instead &mdash; and it is what turns an <a href="ai-receptionist-south-africa.html">AI receptionist</a> or a <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbot</a> into a finished job.</p>
 
       <h2>What can a small business actually automate first?</h2>
-      <p><strong>Automate the job with the clearest rules and the highest repetition first &mdash; for most South African small businesses that is quoting or bookings.</strong> Both run the same way every week, both are easy to measure, and both hold up revenue the moment somebody is too busy to get to them.</p>
-      <p>The wrong place to start is the exception: the odd project, the awkward client, the pricing nobody has ever written down. Automating that first produces a system that argues with reality. Start where the rules are boring and the volume is high, prove it against real work, then widen the rules. Our post on <a href="small-business-ai-workflow-automation-examples.html">small business AI workflow automation examples</a> shows what each of these looks like once it is running.</p>
+      <p><strong>Automate the job with the clearest rules and the highest repetition first, which for most South African businesses is quoting or bookings.</strong> Both run the same way every week, both are easy to measure, and both hold up revenue the moment somebody is too busy to get to them.</p>
+      <p>The wrong place to start is the exception: the odd project, the awkward client, the pricing nobody has written down. Automating that first builds a system that argues with reality. See <a href="small-business-ai-workflow-automation-examples.html">small business AI workflow automation examples</a> for what a sensible first build looks like.</p>
 
       <h2>How do you automate quoting?</h2>
-      <p><strong>Automated quoting captures the enquiry, applies your pricing rules, sends a branded quotation in minutes instead of days, chases it when it is not accepted, and turns an acceptance into a job and an invoice.</strong> Nothing in that chain needs a person to retype what a customer has already told you.</p>
-      <p>Intake sets the pace. The automation starts on whatever channel the enquiry arrives on &mdash; a form, WhatsApp, or a call answered by a voice agent &mdash; and asks the same qualifying questions every time: product, quantity, suburb, urgency. Your rate card, quantity breaks, travel bands and VAT then do the arithmetic, and the output is your own numbered quotation document, logged against the customer record. The follow-up is where the money hides: an unanswered quotation gets a polite reminder without anyone deciding to send it.</p>
+      <p><strong>Automated quoting captures the enquiry, applies your pricing rules, sends a branded quotation in minutes instead of days, chases it when it is not accepted, and turns an acceptance into a job and an invoice.</strong> Nobody retypes what the customer has already said.</p>
+      <p>Intake sets the pace: the automation asks the same qualifying questions on whatever channel the enquiry arrives on &mdash; a form, WhatsApp, or a call answered by a voice agent. Your rate card, quantity breaks, travel bands and VAT then do the arithmetic, and the output is your own numbered quotation, logged against the customer record.</p>
 
       <h2>How do you automate invoicing?</h2>
-      <p><strong>Invoice automation raises the invoice from an accepted quotation or a completed job, writes it into your accounting system, sends reminders on overdue accounts and matches payments back against the record.</strong> It closes the gap between finishing work and billing for it, which is where cash flow quietly goes wrong.</p>
-      <p>The compliance detail is specific in South Africa. SARS requires a full tax invoice when the price is more than R5&nbsp;000, permits an abridged one at R5&nbsp;000 or less, and prescribes issue within 21 days of the supply &mdash; the <a href="https://www.sars.gov.za/businesses-and-employers/government/tax-invoices/" rel="nofollow">SARS guidance on tax invoices</a> lists every required field. Software should enforce that, because a missing field stays invisible until an input tax deduction is refused.</p>
-      <p>Integration targets are the packages South African businesses actually run. <a href="https://www.sage.com/en-za/sage-business-cloud/accounting/developer-api/" rel="nofollow">Sage&rsquo;s South African Accounting developer API</a> and the <a href="https://developer.xero.com/documentation/api/accounting/invoices" rel="nofollow">Xero Accounting API invoices endpoint</a> are publicly documented, which is what makes a write-back reliable. Cognexa is not a certified partner of any accounting vendor &mdash; we build against published interfaces, and confirm at scoping which ones your plan exposes.</p>
+      <p><strong>Invoice automation raises the invoice from an accepted quotation or a completed job, writes it into your accounting system, sends reminders on overdue accounts and reconciles payments against the record.</strong> It closes the gap between finishing work and billing for it.</p>
+      <p>The compliance detail is specific here. SARS requires a full tax invoice above R5&nbsp;000, permits an abridged one at R5&nbsp;000 or less, and prescribes issue within 21 days of the supply; the <a href="https://www.sars.gov.za/businesses-and-employers/government/tax-invoices/" rel="nofollow">SARS guidance on tax invoices</a> lists every required field. A missing field stays invisible until an input tax deduction is refused.</p>
+      <p>Integration targets are the packages South African businesses actually run: <a href="https://www.sage.com/en-za/sage-business-cloud/accounting/developer-api/" rel="nofollow">Sage&rsquo;s South African Accounting developer API</a> and the <a href="https://developer.xero.com/documentation/api/accounting/invoices" rel="nofollow">Xero Accounting API invoices endpoint</a> are both publicly documented. Cognexa is no vendor&rsquo;s certified partner &mdash; we build against published interfaces and confirm at scoping which ones your plan exposes.</p>
 
       <h2>How do you automate bookings and cut no-shows?</h2>
-      <p><strong>Booking automation lets a customer take a real slot themselves, writes the appointment into your calendar, and sends the confirmation and the reminder over WhatsApp without anyone remembering to.</strong> A no-show usually begins as a forgotten appointment, so the reminder is the part that earns its keep.</p>
-      <p>We will not publish a no-show reduction percentage, because we have no verified South African figure to stand behind. The mechanism we can describe exactly. When a customer messages you, a <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/messages/send-messages" rel="nofollow">24-hour customer service window</a> opens in which you may reply freely; once it closes, only pre-approved template messages may be sent. Appointment reminders fall in the utility category under Meta&rsquo;s <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/templates/template-categorization" rel="nofollow">template categorisation rules</a>, so a compliant build gets those approved up front. Calendar write-back then removes the slot from availability, so two customers cannot book the same technician. The conversation side is covered on our page about <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbots in South Africa</a>.</p>
+      <p><strong>Booking automation lets a customer take a real slot themselves, writes the appointment into your calendar, and sends the confirmation and reminder over WhatsApp without anyone remembering to.</strong> A no-show usually begins as a forgotten appointment.</p>
+      <p>We publish no no-show reduction percentage, because we have no verified South African figure behind one. The mechanism, though, is exact: when a customer messages you a <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/messages/send-messages" rel="nofollow">24-hour customer service window</a> opens in which you may reply freely, and once it closes only pre-approved template messages may be sent. A reminder sent after that window has closed therefore has to be a template, and Meta&rsquo;s <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/templates/template-categorization" rel="nofollow">template categorisation rules</a> only allow the utility category where the message is non-promotional and either specific to or requested by that customer &mdash; so a compliant build gets the wording written and approved up front. See <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbots in South Africa</a> for the conversation side.</p>
 
       <h2>Can AI sort and route my inbox?</h2>
-      <p><strong>AI inbox triage classifies every incoming message, extracts the fields that matter, routes it to the right person or system, and drafts a reply for a human to approve.</strong> It is genuinely strong at the first three and useful but not autonomous at the fourth. Judgement stays with your team.</p>
-      <p>Classification is the workhorse. A shared inbox carries five or six recognisable kinds of message &mdash; a new enquiry, a quotation request, a supplier invoice, a complaint, an appointment change, noise &mdash; and sorting those reliably is the difference between an inbox you scan and one you dread. Extraction goes further, pulling the name, number, address and reference into structured fields so the enquiry becomes a CRM record without anyone transcribing it. A drafted reply saves the blank page, not the responsibility: anything contested or sensitive reaches a person first. We unpack that boundary in <a href="ai-agent-vs-chatbot-difference.html">the difference between an AI agent and a chatbot</a>.</p>
+      <p><strong>AI inbox triage classifies every incoming message, extracts the fields that matter, routes it to the right person or system, and drafts a reply for a human to approve.</strong> It is strong at the first three and useful but not autonomous at the fourth.</p>
+      <p>Classification is the workhorse: a shared inbox carries a handful of recognisable kinds of message &mdash; a new enquiry, a supplier invoice, a complaint, an appointment change &mdash; and sorting those reliably turns an inbox you dread into one you scan. A drafted reply saves the blank page, not the responsibility, so anything contested reaches a person first &mdash; a boundary we unpack in <a href="ai-agent-vs-chatbot-difference.html">the difference between an AI agent and a chatbot</a>.</p>
 
       <h2>How does this keep my CRM clean?</h2>
-      <p><strong>Automation keeps a CRM clean by writing to it automatically instead of relying on memory: every call, message and quotation lands on the correct record, duplicates merge on a rule, and missing fields are filled from the source that supplied them.</strong> A CRM decays when updating it is a separate chore.</p>
-      <p>Data hygiene is not only tidiness here, it is a legal condition. Section 16 of the <a href="https://www.gov.za/sites/default/files/gcis_document/201409/3706726-11act4of2013protectionofpersonalinforcorrect.pdf" rel="nofollow">Protection of Personal Information Act 4 of 2013</a> requires a responsible party to take reasonably practicable steps to keep personal information complete, accurate, not misleading and updated. Three versions of one customer, two of them wrong, is a compliance problem rather than a filing one. Our guide to <a href="whatsapp-ai-chatbot-popia-compliance.html">POPIA compliance for WhatsApp AI chatbots</a> covers consent and retention under the same Act, and <a href="custom-crm-development-south-africa.html">custom CRM development in South Africa</a> covers building the record around your process.</p>
+      <p><strong>Automation keeps a CRM clean by writing to it automatically instead of relying on memory: every call, message and quotation lands on the correct record, duplicates merge on a rule, and missing fields fill from the source.</strong> A CRM decays when updating it is a separate chore.</p>
+      <p>Data hygiene is a legal condition here, not merely tidiness. Section 16 of the <a href="https://www.gov.za/sites/default/files/gcis_document/201409/3706726-11act4of2013protectionofpersonalinforcorrect.pdf" rel="nofollow">Protection of Personal Information Act 4 of 2013</a> requires a responsible party to keep personal information complete, accurate, not misleading and updated. Our guide to <a href="whatsapp-ai-chatbot-popia-compliance.html">POPIA compliance for WhatsApp AI chatbots</a> covers consent and retention; <a href="custom-crm-development-south-africa.html">custom CRM development in South Africa</a> covers building the record around your process.</p>
 
       <h2>What changes when you automate?</h2>
-      <p><strong>The pattern repeats across all five jobs: software takes the retyping and the remembering, and the person keeps the decision.</strong> The table sets out how each process runs by hand today, what the automation takes over, and what a human still signs off.</p>
+      <p><strong>The pattern repeats across all five jobs: software takes the retyping and the remembering, and the person keeps the decision.</strong> The table shows each process by hand today, what the automation takes over, and what a human still signs off.</p>
 
       <div class="table-scroll" tabindex="0" role="region" aria-label="What changes when you automate, by process">
         <table>
@@ -233,13 +235,13 @@
           <tbody>
             <tr>
               <th scope="row">Quoting</th>
-              <td>A staff member retypes the enquiry and builds the document days later.</td>
-              <td>Captures the intake, applies your pricing rules and sends a branded quotation in minutes.</td>
-              <td>Non-standard pricing, discounts, and whether to take the job.</td>
+              <td>A staffer retypes the enquiry and builds the document days later.</td>
+              <td>Applies your pricing rules and sends a branded quotation in minutes.</td>
+              <td>Discounts, non-standard pricing, and whether to take the job.</td>
             </tr>
             <tr>
               <th scope="row">Invoicing</th>
-              <td>Someone rekeys the accepted quotation into the accounting package, then chases payment.</td>
+              <td>Someone rekeys the quotation into the accounting package, then chases payment.</td>
               <td>Raises the invoice from the completed job and sends overdue reminders.</td>
               <td>Write-offs, payment arrangements and disputed line items.</td>
             </tr>
@@ -251,14 +253,14 @@
             </tr>
             <tr>
               <th scope="row">Inbox triage</th>
-              <td>Every message is read in arrival order and forwarded manually.</td>
+              <td>Messages are read in arrival order and forwarded on manually.</td>
               <td>Classifies each message, extracts the fields and drafts a reply.</td>
               <td>Whether a drafted reply is sent, and anything contested.</td>
             </tr>
             <tr>
               <th scope="row">CRM updates</th>
               <td>Records are updated when someone remembers; duplicates accumulate.</td>
-              <td>Logs every call against the record and merges duplicates on a rule.</td>
+              <td>Logs every call on the record and merges duplicates on a rule.</td>
               <td>Which record survives a merge, and what may be stored.</td>
             </tr>
           </tbody>
@@ -266,40 +268,40 @@
       </div>
 
       <h2>Who is this for?</h2>
-      <p><strong>This suits owner-run South African businesses where a small team does administration that follows a predictable pattern.</strong> If the same five questions are asked of every enquiry and the same document comes out at the end, the process is a candidate. These are the kinds of business the model fits:</p>
+      <p><strong>This suits owner-run South African businesses where a small team does administration that follows a predictable pattern.</strong> If the same questions are asked of every enquiry and the same document comes out at the end, the process is a candidate:</p>
       <ul>
         <li>Trades and installers quote from site measurements and schedule technicians across suburbs.</li>
         <li>Attorneys, accountants and brokers run intake, engagement letters and recurring billing.</li>
-        <li>Salons, dentists and physiotherapy clinics depend on the appointment book and the reminder protecting it.</li>
-        <li>Agencies and consultancies chase proposals, log billable time and invoice on milestones.</li>
-        <li>Suppliers and wholesalers price from a rate card and confirm stock before promising a delivery date.</li>
-        <li>Letting agents route maintenance requests to the right contractor and record every instruction.</li>
+        <li>Salons, dentists and clinics depend on the appointment book and its reminders.</li>
+        <li>Agencies log billable time, chase proposals and invoice on milestones.</li>
+        <li>Suppliers price from a rate card and confirm stock before promising delivery.</li>
+        <li>Letting agents route maintenance requests to contractors and record every instruction.</li>
       </ul>
 
       <h2>What does it connect to?</h2>
-      <p><strong>Automation is only as useful as the systems it can read from and write to, so scoping starts with an inventory of what you already run.</strong> We build against documented interfaces, and confirm which of your plans expose the access a build needs. The usual categories:</p>
+      <p><strong>Automation is only as useful as the systems it can read from and write to, so scoping starts with an inventory of what you already run.</strong> We build against documented interfaces, never screen-scraping. The usual categories:</p>
       <ul>
-        <li>Messaging platforms carry the conversation, most often WhatsApp, web chat, SMS and email.</li>
+        <li>Messaging platforms carry the conversation: WhatsApp, web chat, SMS and email.</li>
         <li>Telephony systems route calls and hand transcripts to the workflow.</li>
         <li>Calendars hold availability and receive the confirmed booking.</li>
         <li>Accounting packages such as Sage or Pastel, Xero and QuickBooks receive the invoice.</li>
-        <li>Payment providers confirm that money has arrived against a reference.</li>
-        <li>CRM systems hold the customer record every other step writes to.</li>
-        <li>Document storage keeps the signed quotation, the photograph and the delivery note findable.</li>
+        <li>Payment providers confirm that money arrived against a reference.</li>
+        <li>CRM systems hold the record every other step writes to.</li>
+        <li>Document storage keeps signed quotations, photographs and delivery notes findable.</li>
       </ul>
 
       <h2>What does it cost and how long does it take?</h2>
       <p><strong>Scoping is free, and afterwards you get one number: a fixed monthly figure in Rand, agreed before you commit, with no minimum contract.</strong> We publish no rate card, because the honest cost depends on how many processes you automate and how many systems each one touches.</p>
-      <p>On timing, one well-defined process with a single integration goes live far faster than five that share data. The variable is rarely the automation logic &mdash; it is access: API credentials, message template approval, and testing against real work first. We set out how we think about payback in <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to set up and show a return</a>. The cost model lives on our <a href="/pricing.html">pricing page</a>, further reading sits on the <a href="/blog.html">Cognexa insights blog</a>, and all four service pillars are on the <a href="/">Cognexa homepage</a>.</p>
+      <p>Timing turns on access rather than logic &mdash; API credentials, template approval, and testing against real work first. We set out payback in <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to set up and show a return</a>; the cost model lives on our <a href="/pricing.html">pricing page</a>, further reading on the <a href="/blog.html">Cognexa insights blog</a>, and all four service pillars on the <a href="/">Cognexa homepage</a>.</p>
 
       <aside class="post-cta">
         <h2>How do I get a quote for automating this?</h2>
-        <p>Tell us which jobs eat your team&rsquo;s week &mdash; quoting, invoicing, bookings, the inbox, the CRM &mdash; and we will map what can be automated and what should stay human. Scoping is free, the quotation is one fixed monthly figure in Rand, and there is no minimum contract.</p>
+        <p>Tell us which jobs eat your team&rsquo;s week &mdash; quoting, invoicing, bookings, the inbox, the CRM &mdash; and we will map what can be automated and what stays human. Scoping is free, the quotation is one fixed monthly figure in Rand, and there is no minimum contract.</p>
         <a class="btn btn-primary" href="/#contact">Start your build</a>
         <p class="post-cta-contact">Or message us on <a href="https://wa.me/27662412155" rel="nofollow">WhatsApp</a> or call <a href="tel:+27662412155">066 241 2155</a> &mdash; we reply within one business day.</p>
       </aside>
 
-      <h2>Questions people ask</h2>
+      <h2>What else do people ask about workflow automation?</h2>
 
       <h3>What is business process automation?</h3>
       <p>Business process automation is the use of software to carry a repeatable business process from its trigger to its finished record. The software takes the input, applies the rules the business already follows, updates the relevant systems and notifies whoever must act next.</p>
@@ -312,9 +314,6 @@
 
       <h3>How much does business automation cost in South Africa?</h3>
       <p>Cost depends on how many processes are automated and how many systems each one touches, so Cognexa publishes no flat rate. Scoping is free, the quotation is one fixed monthly figure in Rand agreed before you commit, and there is no minimum contract.</p>
-
-      <h3>Do I have to replace the software I already use?</h3>
-      <p>No. Automation sits between the tools already in use and moves information between them. A business keeps its accounting package, its calendar and its phone number, and gains the connections that previously depended on somebody remembering to rekey the same details twice.</p>
 
       <h3>Is automated processing of customer data allowed under POPIA?</h3>
       <p>Automated processing is allowed, within limits. Section 16 of POPIA requires a responsible party to keep personal information complete, accurate and updated, and section 71 restricts decisions taken solely by automated means. Cognexa builds so a person reviews any materially affecting decision.</p>
@@ -349,10 +348,15 @@
       </div>
       <nav class="footer-nav" aria-label="Footer">
         <a href="/#services">Services</a>
-        <a href="/#process">Process</a>
-        <a href="/#work">Work</a>
+        <a href="ai-receptionist-south-africa.html">AI receptionists</a>
+        <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a>
+        <a href="workflow-automation-south-africa.html">Workflow automation</a>
+        <a href="custom-crm-development-south-africa.html">Custom CRMs</a>
+        <a href="pricing.html">Pricing</a>
         <a href="blog.html">Insights</a>
+        <a href="about.html">About</a>
         <a href="/#contact">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
       </nav>
     </div>
     <p class="footer-copy">&copy; <span class="footer-year">2026</span> Cognexa</p>

@@ -50,6 +50,15 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
+  <!-- Resource hints. The two latin subsets are what actually render this page —
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="stylesheet" href="css/styles.css?v=26">
 
   <script type="application/ld+json">
@@ -63,7 +72,7 @@
       "description": "Can an AI chatbot or voice agent handle Afrikaans, isiZulu and other South African languages? What works, what doesn't, and how to test it.",
       "image": "https://cognexa.co.za/assets/images/blog-sa-languages.jpg",
       "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "dateModified": "2026-08-09",
       "author": {
         "@type": "Organization",
         "name": "Cognexa",
@@ -135,15 +144,15 @@
 
       <p class="post-eyebrow">AI chatbots</p>
       <h1>Can an AI chatbot or voice agent speak Afrikaans, isiZulu and other South African languages?</h1>
-      <p class="post-meta">By the Cognexa team &middot; <time datetime="2026-07-26">26 July 2026</time></p>
+      <p class="post-meta">By <a href="about.html">the Cognexa team</a> &middot; <time datetime="2026-07-26">26 July 2026</time> &middot; Updated <time datetime="2026-08-09">9 August 2026</time></p>
 
-      <img class="post-hero" src="assets/images/blog-sa-languages.jpg" width="1200" height="675" alt="Ribbons of blue, purple and green light braiding together into one bright stream" loading="eager" decoding="async">
+      <img class="post-hero" src="assets/images/blog-sa-languages.jpg" width="1200" height="675" alt="Ribbons of blue, purple and green light braiding together into one bright stream" loading="eager" fetchpriority="high" decoding="async">
 
-      <div class="post-answer">Yes &mdash; but quality varies sharply by language and by channel. Text chat in Afrikaans is generally strong; isiZulu, isiXhosa, Sesotho and Setswana are usable and improving, but noticeably weaker than English. Voice is harder than text everywhere, because the system must also recognise accents and pronounce names correctly. The practical answer for most South African businesses is to launch in English plus the one or two languages your customers actually use, test each one with real speakers before going live, and always leave a path to a human.</div>
+      <div class="post-answer">Yes &mdash; AI chatbots and voice agents can work in South African languages and can understand South African accents, but quality varies sharply by language and by channel. Afrikaans text chat is generally strong; isiZulu, isiXhosa, Sesotho and Setswana are usable and improving, but weaker. Voice is harder than text, because accents and local names must be recognised too. Test each language with real speakers before going live, and always leave a path to a human.</div>
 
       <h2>Why does language support matter here more than elsewhere?</h2>
       <p>South Africa has 12 official languages, and English is not the most widely spoken at home. Census 2022 put isiZulu first at 24.4% of the population &mdash; roughly 15.1 million people &mdash; followed by isiXhosa at 16.3% and Afrikaans at 10.6%, about 6.57 million people. The census also recorded Afrikaans continuing a long decline as a home language, from 14.5% in 1996.</p>
-      <p>Those numbers have a direct commercial consequence. A front desk that only operates in English is asking a large share of your market to conduct business in their second or third language, at exactly the moment they&rsquo;re deciding whether to trust you with money. For businesses serving KwaZulu-Natal, the Eastern Cape, the Western Cape or the Northern Cape in particular, the language your automation speaks is not a nice-to-have.</p>
+      <p>Those numbers have a direct commercial consequence. A front desk that only operates in English &mdash; a person on reception, <a href="ai-receptionist-south-africa.html">an AI receptionist answering the phone</a> or a <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbot handling enquiries</a> &mdash; is asking a large share of your market to conduct business in their second or third language, at exactly the moment they&rsquo;re deciding whether to trust you with money. For businesses serving KwaZulu-Natal, the Eastern Cape, the Western Cape or the Northern Cape in particular, the language your automation speaks is not a nice-to-have.</p>
 
       <h2>Which South African languages do AI chatbots handle well?</h2>
       <p>It helps to think in three tiers rather than a yes/no list, because vendors will happily tick a box for any language the model can produce a sentence in:</p>
@@ -154,20 +163,66 @@
       </ul>
       <p>This is an area that has genuinely improved, and continues to. South African providers have built multilingual deployments at real scale &mdash; Botlhale AI, for instance, has published work with MultiChoice extending a DStv WhatsApp chatbot into isiZulu, Afrikaans and Setswana. The capability is real; the variance between languages is also real.</p>
 
-      <h2>Is voice harder than chat?</h2>
-      <p>Yes, and it&rsquo;s worth understanding why, because it changes what you should test. A text chatbot has one language problem: understand what was written, write a sensible reply. A <a href="/#station-voice">voice agent</a> has three:</p>
+      <h2>Can AI understand South African accents, and is voice harder than chat?</h2>
+      <p>Yes, and it&rsquo;s worth understanding why, because it changes what you should test. A text chatbot has one language problem: understand what was written, write a sensible reply. A <a href="ai-receptionist-south-africa.html">voice agent</a> has three:</p>
       <ul>
         <li><strong>Speech recognition.</strong> Converting audio to text, across South African accents that are often under-represented in training data. A model trained mostly on American English will mishear a Cape Flats or KZN accent more often than it mishears a Californian one.</li>
         <li><strong>Understanding.</strong> The same language task the chatbot has.</li>
         <li><strong>Speech synthesis.</strong> Producing a voice that sounds natural and, critically, pronounces local place names and surnames correctly. A voice that says &ldquo;Mthatha&rdquo; or &ldquo;Khoza&rdquo; wrongly undermines the whole interaction in a way a typo never would.</li>
       </ul>
-      <p>Any of the three can fail independently. When you test a voice agent, test all three separately &mdash; ask it to repeat back a name and an address, not just to answer a question. Our comparison of <a href="ai-receptionist-vs-human-receptionist.html">voice agents, IVR menus and human receptionists</a> covers where voice fits more broadly.</p>
+      <p>Any of the three can fail independently. When you test a voice agent, test all three separately &mdash; ask it to repeat back a name and an address, not just to answer a question. Our comparison of <a href="ai-receptionist-vs-human-receptionist.html">AI receptionists, human receptionists and answering services</a> covers where voice fits more broadly.</p>
+
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What to test in each South African language and accent before committing to an AI chatbot or voice agent">
+        <table>
+          <caption>What to test before you commit. Deliberately qualitative &mdash; quality differs by provider and shifts with every model release, so test rather than trust a features list.</caption>
+          <thead>
+            <tr>
+              <th scope="col">What you&rsquo;re testing</th>
+              <th scope="col">What usually works</th>
+              <th scope="col">What to test for</th>
+              <th scope="col">How to test it</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">South African English accent</th>
+              <td>Clear speech on a good line, and written English of any kind</td>
+              <td>Words dropped or misheard on broader regional accents, on a mobile connection, or with noise behind the caller</td>
+              <td>Have several people with different accents phone the agent from their own handsets and talk normally</td>
+            </tr>
+            <tr>
+              <th scope="row">Afrikaans</th>
+              <td>Written Afrikaans, which is generally good enough for real customer conversations with light review</td>
+              <td>Spoken Afrikaans separately from written &mdash; recognition and pronunciation are different problems</td>
+              <td>Run real Afrikaans messages through chat, then make the same requests by phone and compare</td>
+            </tr>
+            <tr>
+              <th scope="row">isiZulu, isiXhosa, Sesotho, Setswana</th>
+              <td>Usable replies that carry a straightforward conversation</td>
+              <td>Fluent-but-wrong answers &mdash; errors that read naturally and are subtly incorrect rather than obviously broken</td>
+              <td>A native speaker reviews real transcripts for correctness rather than grammar, before launch and by sample afterwards</td>
+            </tr>
+            <tr>
+              <th scope="row">Code-switching mid-sentence</th>
+              <td>Mixed-language input, handled better than it used to be</td>
+              <td>The system locking on to one language for the rest of the conversation, or misreading intent entirely</td>
+              <td>Send genuinely mixed messages taken from your own inbox, unedited &mdash; never clean single-language demo sentences</td>
+            </tr>
+            <tr>
+              <th scope="row">Proper nouns and place names</th>
+              <td>Everyday vocabulary and common English words</td>
+              <td>Local surnames, suburbs and street names misheard in transcription or mispronounced in the reply</td>
+              <td>Ask the agent to repeat back a name and an address, and to confirm a spelling, on a real phone call</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <h2>What about code-switching?</h2>
       <p>This is the requirement most businesses forget and most demos avoid. South Africans routinely mix languages inside a single sentence &mdash; a bit of English, a bit of isiZulu, a bit of Afrikaans, sometimes all three. Real customer messages look like that. Scripted demos never do.</p>
       <p>Modern systems handle mixed-language input better than they used to, and the better multilingual platforms specifically claim code-switching support. But it&rsquo;s the first thing to break under pressure, and the failure mode is unhelpful: the system locks on to one language and answers the whole conversation in it, or misreads intent entirely. Test it deliberately with genuinely mixed messages, not clean single-language sentences.</p>
 
-      <h2>How do I test language quality before committing?</h2>
+      <h2>How do I test accent and language quality before committing?</h2>
       <p>Don&rsquo;t take a features list at face value. A short, structured test tells you more than any sales call:</p>
       <ul>
         <li><strong>Use real messages.</strong> Take twenty actual enquiries from your inbox or WhatsApp &mdash; typos, slang, mixed languages and all &mdash; and run them through. Do not clean them up first.</li>
@@ -182,6 +237,14 @@
 
       <h2>How Cognexa handles it</h2>
       <p>We scope language coverage from your actual message history rather than a wish list, because businesses routinely guess wrong about which languages their customers use in writing versus on the phone. Where a language is business-critical, we test it with native speakers on real transcripts before launch and keep reviewing samples after &mdash; and where quality isn&rsquo;t good enough to trust, we&rsquo;ll tell you that and route those conversations to a person instead of shipping something that sounds fluent and gets things wrong.</p>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="ai-receptionist-south-africa.html">How an AI receptionist works for a South African business</a> &mdash; what it handles on a call, and why accent and language testing belongs in the build.</li>
+        <li><a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbots for South African businesses</a> &mdash; the channel where multilingual and code-switched messages actually arrive.</li>
+        <li><a href="ai-receptionist-vs-human-receptionist.html">AI receptionist vs human receptionist vs answering service</a> &mdash; where a voice agent fits once you know which languages it has to hold.</li>
+        <li><a href="whatsapp-ai-chatbot-popia-compliance.html">Is a WhatsApp AI chatbot POPIA compliant?</a> &mdash; consent, opt-outs and data handling, including in the customer&rsquo;s own language.</li>
+      </ul>
 
       <aside class="post-cta">
         <h2>Put it to work in your business</h2>
@@ -198,7 +261,7 @@
         </details>
         <details class="faq-item">
           <summary>Does supporting more languages cost more?</summary>
-          <p>The per-message cost barely moves; the testing and review effort does. Each additional language needs its own content review, its own native-speaker testing and its own ongoing sampling of real conversations. Budget for the review effort rather than the compute, and add languages one at a time rather than all at once.</p>
+          <p>The per-message cost barely moves; the testing and review effort does. Each additional language needs its own content review, its own native-speaker testing and its own ongoing sampling of real conversations. Budget for the review effort rather than the compute, and add languages one at a time rather than all at once. <a href="pricing.html">How we scope and price a build</a> covers what else moves the number.</p>
         </details>
         <details class="faq-item">
           <summary>What if the AI gets a translation wrong with a customer?</summary>

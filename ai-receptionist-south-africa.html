@@ -48,6 +48,15 @@
   <meta name="twitter:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <!-- Resource hints. The two latin subsets are what actually render this page —
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="stylesheet" href="css/styles.css?v=26">
 
   <script type="application/ld+json">
@@ -90,7 +99,7 @@
           "name": "Does an AI receptionist sound like a real person?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Current voice models sound natural enough that most callers carry on normally, though an attentive listener can usually tell. Cognexa configures the agent to say plainly that it is an assistant whenever a caller asks, because a caller who feels tricked is a caller lost."
+            "text": "A synthesised voice is good enough to hold an ordinary conversation, though an attentive listener can usually tell. Cognexa configures the agent to say plainly that it is an assistant when asked."
           }
         },
         {
@@ -98,7 +107,7 @@
           "name": "Can an AI receptionist transfer a call to a human?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, on any properly built system. The agent transfers the call live where somebody is available, and takes the details for a callback where nobody is. If a supplier cannot describe its handover path clearly, treat that as a gap rather than a detail."
+            "text": "Yes. It transfers live where somebody is available and books a callback where nobody is. A supplier who cannot describe that handover has a gap."
           }
         },
         {
@@ -106,7 +115,7 @@
           "name": "How much does an AI receptionist cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Cognexa quotes one fixed monthly figure in Rand after a free scoping call, with no minimum contract. Published vendor pricing, and how it compares with employing somebody, is set out in our separate guide to AI receptionist cost in South Africa."
+            "text": "Cognexa quotes one fixed monthly figure in Rand after a free scoping call, with no minimum contract. Vendor pricing sits in our AI receptionist cost guide."
           }
         },
         {
@@ -114,15 +123,7 @@
           "name": "Is an AI receptionist worth it for a small business?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "It earns its place when you are losing calls you would otherwise have won, whether after hours, at peak, or while one person answers everything. If your phone rings rarely and every caller needs deep expertise, an AI receptionist is the wrong tool."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can an AI receptionist book appointments?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, once it is connected to your calendar. The agent checks an open slot, confirms the details with the caller, writes the booking and sends a confirmation. Without calendar access the agent can only take a message for somebody else to action."
+            "text": "It earns its place when you are losing calls you would otherwise have won. If your phone rings rarely and every caller needs deep expertise, skip it."
           }
         },
         {
@@ -130,7 +131,7 @@
           "name": "What happens if the AI receptionist does not know the answer?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A well-built agent says so plainly instead of guessing, captures the caller's details and routes the question to a person. Confident invention is the worst failure mode a voice agent has, and a bounded knowledge base is what designs it out."
+            "text": "A well-built agent says so instead of guessing, then routes the question to a person. Confident invention is the worst failure mode a voice agent has."
           }
         },
         {
@@ -138,7 +139,7 @@
           "name": "Do I have to tell callers they are speaking to an AI?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Cognexa discloses by default. POPIA requires you to tell people what personal information you are collecting and why, and a caller who works out mid-conversation that nobody told them tends to lose trust in the business rather than in the software."
+            "text": "Cognexa discloses by default. POPIA requires you to tell people what personal information you collect and why, and a caller who works it out unaided loses trust."
           }
         }
       ]
@@ -168,6 +169,7 @@
       <a class="nav-link" href="/#services">Services</a>
       <a class="nav-link" href="/#process">Process</a>
       <a class="nav-link" href="/#work">Work</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
       <a class="nav-link" href="blog.html">Insights</a>
       <a class="nav-link" href="/#contact">Contact</a>
       <a class="btn btn-primary" href="/#contact">Start your build</a>
@@ -188,57 +190,57 @@
 
       <p><strong>An AI receptionist is</strong> a software voice agent that answers your business number, works out what the caller needs, books or reschedules in your calendar, and hands the call to a human when the situation calls for one.</p>
 
-      <p>It is not a robot replacing your front desk. It answers the calls your front desk was never awake for &mdash; ten past six on a Friday, a long weekend, the rush when every line is busy. Those callers rarely leave a voicemail. They ring the next business on the list.</p>
+      <p>It is not a robot replacing your front desk. It answers the calls your front desk was never awake for &mdash; ten past six on a Friday, a long weekend, the rush when every line is busy. A caller who reaches voicemail instead can just as easily ring the next business.</p>
 
       <h2>What is an AI receptionist, and how does it actually work?</h2>
-      <p><strong>An AI receptionist answers an inbound call, converts the caller&rsquo;s speech to text, works out the intent with a language model, then answers, books or escalates.</strong> It replies in a synthesised voice, so the caller holds an ordinary conversation instead of pressing buttons on a menu. Every call is logged and summarised.</p>
-      <p>Four things sit behind that. Telephony gives it a number to answer, either newly issued or your existing line forwarded to it. A knowledge base built from your own material &mdash; services, trading hours, suburbs you cover, what you explicitly do not do &mdash; is what stops it inventing an answer. A defined set of tools lets it read your calendar for an open slot and write a confirmed booking into it. An escalation rule fixes the conditions under which it stops talking and fetches a human.</p>
-      <p>Everything after that is configuration rather than technology. How the agent greets a caller, what it may quote on, which questions it must never guess at, whose phone a transfer rings &mdash; that is the actual work, and it separates a useful agent from an irritating one.</p>
+      <p><strong>An AI receptionist answers an inbound call, converts speech to text, works out the intent with a language model, then answers, books or escalates.</strong> It replies in a synthesised voice, so the caller holds an ordinary conversation instead of pressing buttons. Every call is logged.</p>
+      <p>Four things sit behind that. Telephony gives it a number to answer, new or forwarded from your existing line. A knowledge base built from your own material &mdash; services, trading hours, suburbs covered, what you do not do &mdash; stops it inventing an answer. A defined set of tools lets it read your calendar and write a booking into it. An escalation rule fixes when it stops talking and fetches a human.</p>
+      <p>Everything after that is configuration rather than technology. How it greets a caller, what it may quote on, which questions it must never guess at, whose phone a transfer rings &mdash; that is the work, and it separates a useful agent from an irritating one.</p>
 
       <h2>What can an AI receptionist actually handle &mdash; and what should it never handle?</h2>
-      <p><strong>An AI receptionist is dependable on repetitive calls that follow a predictable shape, and unreliable on anything needing judgement, discretion or an emotional read.</strong> It should own the routine and hand over the rest. A build that pretends otherwise will embarrass you in front of a customer.</p>
+      <p><strong>An AI receptionist is dependable on repetitive calls that follow a predictable shape, and unreliable on anything needing judgement, discretion or an emotional read.</strong> It should own the routine and hand over the rest, or it will embarrass you in front of a customer.</p>
       <p>It handles these well:</p>
       <ul>
         <li>It answers calls after hours, over weekends and on public holidays.</li>
-        <li>It absorbs overflow, so four people ringing at once all get answered.</li>
-        <li>It answers the routine questions your team fields daily &mdash; hours, location, parking, turnaround times.</li>
-        <li>It books, reschedules and cancels appointments in your calendar, then reads the slot back.</li>
-        <li>It qualifies a lead by asking what the job is, where, and when.</li>
-        <li>It captures a caller&rsquo;s name, number and reason for calling, then routes that onward.</li>
-        <li>It screens cold sales calls and obvious spam before they reach your team.</li>
+        <li>It absorbs overflow, so callers ringing at the same time all get answered instead of queueing.</li>
+        <li>It answers the questions your team fields daily: hours, location, parking, turnaround.</li>
+        <li>It books, reschedules and cancels appointments in your calendar.</li>
+        <li>It qualifies a lead by asking what, where and when.</li>
+        <li>It captures a caller&rsquo;s name, number and reason for calling.</li>
+        <li>It screens cold sales calls and spam before they reach your team.</li>
       </ul>
-      <p>Route these to a person, every time:</p>
+      <p>Route these to a person:</p>
       <ul>
-        <li>An angry complaint needs somebody who can apologise properly and decide on the spot.</li>
-        <li>Anything turning on medical, legal or financial judgement belongs with the professional carrying the liability.</li>
-        <li>Anything emotional &mdash; a bereavement, an emergency, a distressed caller &mdash; deserves a human voice.</li>
+        <li>An angry complaint needs somebody who can apologise and decide on the spot.</li>
+        <li>Anything turning on medical, legal or financial judgement belongs with the professional.</li>
+        <li>Anything emotional &mdash; a bereavement, an emergency, a distressed caller &mdash; needs a human voice.</li>
         <li>A high-value negotiation or a bespoke quote is worth a salesperson&rsquo;s attention.</li>
-        <li>Any call where a wrong answer causes real harm should never sit with a system that can be confidently wrong.</li>
+        <li>Any call where a wrong answer causes real harm needs a person.</li>
       </ul>
 
       <h2>Will an AI receptionist understand South African accents and Afrikaans?</h2>
-      <p><strong>Recognition of South African English has improved sharply, but accent and language handling still varies enough between suppliers that you must test it on your own callers before committing.</strong> Afrikaans, isiZulu and Sesotho support is never a given, and &ldquo;multilingual&rdquo; on a feature list proves nothing on its own.</p>
-      <p>The test is simple, and nobody should charge you for it. Have three or four people from your actual customer base ring the agent and behave normally: talk over it, change their mind mid-sentence, say a street name, spell a surname. If the transcription drops words, or the agent asks twice for a repeat, that is your answer. No prompt tuning fixes a model that cannot hear.</p>
-      <p>Code-switching is the specifically South African problem. A caller who opens in English and finishes in Afrikaans is entirely normal here, and it is what international platforms handle worst. We work through it in <a href="ai-chatbot-south-african-languages.html">AI chatbots in South African languages</a>; voice is harder still, because it has no time to think.</p>
+      <p><strong>Accent and language handling varies enough between suppliers that you must test it on your own callers before committing.</strong> Afrikaans, isiZulu and Sesotho support is never a given, and &ldquo;multilingual&rdquo; on a feature list proves nothing on its own.</p>
+      <p>The test is simple, and nobody should charge you for it. Have a handful of people from your customer base ring the agent and behave normally: talk over it, change their mind mid-sentence, spell a surname. If the transcription drops words, or the agent keeps asking for a repeat, that is your answer. No prompt tuning fixes a model that cannot hear.</p>
+      <p>Code-switching is the specifically South African problem. A caller who opens in English and finishes in Afrikaans is normal here, and it is what international platforms handle worst. We work through it in <a href="ai-chatbot-south-african-languages.html">AI chatbots in South African languages</a>.</p>
 
       <h2>What does an AI receptionist cost in South Africa?</h2>
       <p><strong>Cognexa quotes one fixed monthly figure in Rand, after a free scoping call, with no minimum contract.</strong> We publish no price list, because a single-branch practice taking bookings and a plumbing firm dispatching jobs across three towns are not the same build.</p>
       <p>What moves the number:</p>
       <ul>
-        <li>Call volume sets the underlying usage cost, because voice minutes are metered upstream.</li>
-        <li>Each integration adds build effort, since every system needs its own authentication and testing.</li>
+        <li>Call volume sets the usage cost, because voice minutes are metered upstream.</li>
+        <li>Each integration adds build effort, since every system needs its own authentication.</li>
         <li>Languages beyond English add voice, transcription and test work per language.</li>
-        <li>After-hours coverage widens the window the agent must stay available and monitored.</li>
+        <li>After-hours coverage widens the window the agent must stay monitored.</li>
         <li>Systems the agent writes into cost more than the ones it only reads.</li>
-        <li>Script complexity matters, because qualifying and quoting takes longer to build than answering three questions.</li>
+        <li>Script complexity matters: qualifying and quoting takes longer than answering three questions.</li>
       </ul>
-      <p>For published vendor pricing set against a salary, read <a href="ai-receptionist-cost-south-africa.html">what an AI receptionist costs in South Africa</a>. Our commercial terms sit on the <a href="pricing.html">pricing page</a>.</p>
+      <p>For vendor pricing set against a salary, read <a href="ai-receptionist-cost-south-africa.html">what an AI receptionist costs in South Africa</a>, then our <a href="pricing.html">pricing page</a>.</p>
 
       <h2>How is this different from an IVR menu or an answering service?</h2>
-      <p><strong>An IVR menu makes the caller do the work, an answering service takes a message, and an AI receptionist completes the task.</strong> A press-one menu offers only the options somebody recorded. An answering service knows your business exactly as deeply as its script. An AI receptionist reads your calendar and finishes the job on the call.</p>
+      <p><strong>An IVR menu makes the caller do the work, an answering service takes a message, and an AI receptionist completes the task.</strong> A recorded menu offers only preset options. An answering service knows your business exactly as deeply as its script. An AI receptionist reads your calendar and finishes the job on the call.</p>
       <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison of AI receptionist, IVR menu, human receptionist and outsourced answering service">
         <table>
-          <caption>Cost is shown as a model, not a figure &mdash; see the cost guide for published vendor pricing.</caption>
+          <caption>Cost shown as a model, not a figure.</caption>
           <thead>
             <tr>
               <th scope="col">Option</th>
@@ -246,33 +248,33 @@
               <th scope="col">Unscripted questions</th>
               <th scope="col">Books your calendar</th>
               <th scope="col">Scales at peak</th>
-              <th scope="col">Escalates to a human</th>
+              <th scope="col">Escalates</th>
               <th scope="col">Cost model</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">AI receptionist</th>
-              <td>Round the clock</td>
-              <td>Yes, it interprets meaning</td>
+              <td>Always, weekends too</td>
+              <td>Yes, interprets meaning</td>
               <td>Yes, once connected</td>
               <td>Yes, many at once</td>
-              <td>Yes, transfer or callback</td>
-              <td>Fixed monthly, or per minute</td>
+              <td>Transfer or callback</td>
+              <td>Fixed monthly, or metered</td>
             </tr>
             <tr>
               <th scope="row">IVR menu</th>
-              <td>Round the clock</td>
-              <td>No, recorded options only</td>
+              <td>Always</td>
+              <td>No, recorded options</td>
               <td>No</td>
-              <td>Yes, but callers queue</td>
-              <td>Queue or voicemail only</td>
-              <td>Bundled with the phone system</td>
+              <td>Yes, then queueing</td>
+              <td>Queue or voicemail</td>
+              <td>Bundled with telephony</td>
             </tr>
             <tr>
               <th scope="row">Human receptionist</th>
-              <td>Trading hours, minus leave</td>
-              <td>Yes, strongest on nuance</td>
+              <td>Trading hours only</td>
+              <td>Yes, best on nuance</td>
               <td>Yes</td>
               <td>No, one at a time</td>
               <td>Already a person</td>
@@ -280,76 +282,73 @@
             </tr>
             <tr>
               <th scope="row">Outsourced answering service</th>
-              <td>Whatever the plan covers</td>
-              <td>Partly, scripted and shallow</td>
-              <td>Sometimes, if granted access</td>
+              <td>Per plan bought</td>
+              <td>Partly, scripted only</td>
+              <td>Sometimes, with access</td>
               <td>Yes, shared agent pool</td>
-              <td>Yes, message or patch-through</td>
+              <td>Message or patch-through</td>
               <td>Per minute or per call</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p>This does not make a human receptionist redundant, and the real comparison is not AI against people. It is AI against the gap: the hours nobody is at the desk, and the calls arriving while everyone is on a line. Most businesses that get this right run both. We set the trade-off out in <a href="ai-receptionist-vs-human-receptionist.html">AI voice agent vs IVR vs human receptionist</a>.</p>
+      <p>This does not make a human receptionist redundant. The real comparison is AI against the gap: the hours nobody is at the desk, and the calls arriving while everyone is busy. Most run both, and we compare them in <a href="ai-receptionist-vs-human-receptionist.html">AI receptionist vs human receptionist vs answering service</a>.</p>
 
       <h2>What does an AI receptionist connect to?</h2>
-      <p><strong>An AI receptionist is only as useful as the systems it can read from and write into.</strong> In practice that means a calendar, a CRM, an email inbox, your invoicing or accounting tool, WhatsApp, and whatever telephony carries your number. Anything with documented API access can usually be connected; anything without one usually cannot, and that is worth establishing before anybody quotes you.</p>
-      <p>Two are worth naming precisely, because their documentation is public and you can check the constraints yourself. Google&rsquo;s <a href="https://developers.google.com/calendar/api/guides/overview" rel="nofollow">Calendar API</a> is what lets an agent see a free slot and write a confirmed booking into it, rather than emailing somebody a request that then sits unread. Meta&rsquo;s <a href="https://developers.facebook.com/docs/whatsapp/cloud-api/overview" rel="nofollow">WhatsApp Cloud API</a> is the official route for a business to send and receive WhatsApp messages programmatically, which is how a call that ends in &ldquo;send me the details&rdquo; becomes a message the caller keeps.</p>
-      <p>The rest we treat as categories rather than a wall of logos, because the right CRM is whichever one you already use. If yours has no usable API &mdash; or the business still runs out of a spreadsheet &mdash; that is a <a href="custom-crm-development-south-africa.html">custom CRM</a> conversation before it is a receptionist one. The same connective work sits behind <a href="workflow-automation-south-africa.html">workflow automation</a> and a <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbot</a>.</p>
+      <p><strong>An AI receptionist is only as useful as the systems it can read from and write into.</strong> In practice that means a calendar, a CRM, an email inbox, your invoicing tool, WhatsApp, and whatever telephony carries your number. Anything with a documented API can usually be connected.</p>
+      <p>Two are worth naming, because their documentation is public and the constraints are checkable. Google&rsquo;s <a href="https://developers.google.com/calendar/api/guides/overview" rel="nofollow">Calendar API</a> lets an agent see a free slot and write a booking into it, rather than emailing a request that sits unread. Meta&rsquo;s <a href="https://developers.facebook.com/docs/whatsapp/cloud-api/overview" rel="nofollow">WhatsApp Cloud API</a> is the official route for sending and receiving WhatsApp messages programmatically, which is how &ldquo;send me the details&rdquo; becomes a message the caller keeps.</p>
+      <p>The rest we treat as categories, because the right CRM is whichever one you already use. If yours has no usable API, that is a <a href="custom-crm-development-south-africa.html">custom CRM</a> conversation first. The same connective work sits behind <a href="workflow-automation-south-africa.html">workflow automation</a> and a <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbot</a>.</p>
 
       <h2>How long does it take to go live?</h2>
-      <p><strong>An AI receptionist that answers questions and takes messages can be live within days; one that books into your calendar and writes into your CRM takes longer, because it depends on access to those systems.</strong> The integrations set the timeline, not the AI. Anyone promising a launch date before the integrations are confirmed is guessing.</p>
-      <p>The sequence rarely changes. We scope what the agent must handle and what it must never touch, write the knowledge base from your own material, connect the systems it needs, then test it against awkward callers and real recordings before a member of the public ever reaches it. Only then does the number go live &mdash; on a deliberately narrow scope that widens as you come to trust it.</p>
-      <p>When there is a delay, it is almost always waiting on somebody else: a platform administrator who has to grant API access, or a telephony provider who has to configure forwarding. We cover realistic timelines and how to think about payback in <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to set up and pay for itself</a>.</p>
+      <p><strong>An AI receptionist that answers questions and takes messages can be live within days; one that books into your calendar and writes into your CRM takes longer, because it depends on access to those systems.</strong> The integrations set the timeline, not the AI.</p>
+      <p>The sequence rarely changes. We scope what the agent must handle and what it must never touch, write the knowledge base from your own material, connect the systems, then test against awkward callers before the public reaches it. Only then does the number go live, on a narrow scope that widens as you trust it.</p>
+      <p>Delays are almost always a wait on somebody else: an administrator granting API access, or a provider configuring forwarding. We cover timelines and payback in <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to pay for itself</a>.</p>
 
       <h2>Is an AI receptionist POPIA compliant?</h2>
-      <p><strong>An AI receptionist can be run compliantly under POPIA, but compliance is something you configure rather than something a supplier certifies on your behalf.</strong> Three things matter for a voice agent in South Africa: telling callers what you are collecting, handling recordings lawfully, and keeping a person in the loop on decisions that materially affect somebody.</p>
-      <p>POPIA is administered by the <a href="https://inforegulator.org.za/popia/" rel="nofollow">Information Regulator</a>, and <a href="https://www.justice.gov.za/legislation/acts/2013-004.pdf" rel="nofollow">the Act itself</a> sets out both the duty to notify a data subject when you collect their personal information and, in section 71, limits on decisions taken solely by automated means. In practice the agent should say who it is and what it is doing at the start of a call, and no material decision about a caller should be finalised without a person able to review it.</p>
-      <p>Recording is where people trip. <a href="https://www.justice.gov.za/legislation/acts/2002-070.pdf" rel="nofollow">RICA</a> governs when a communication may lawfully be intercepted, including by a party to that communication and with prior written consent, so recording your own business calls is not itself the problem. What POPIA adds is the duty to tell the caller. Announce the recording in the greeting, explain what it is used for, keep it only as long as you actually need it, and know which operator stores it and in which country. Our guide to <a href="whatsapp-ai-chatbot-popia-compliance.html">POPIA compliance for AI chatbots</a> works through consent, retention and cross-border storage in detail, and our <a href="privacy-policy.html">privacy policy</a> shows how we apply the same rules to ourselves.</p>
+      <p><strong>An AI receptionist can be run compliantly under POPIA, but compliance is something you configure rather than something a supplier certifies on your behalf.</strong> Three things matter for a voice agent in South Africa: telling callers what you collect, handling recordings lawfully, and keeping a person in the loop.</p>
+      <p>POPIA is administered by the <a href="https://inforegulator.org.za/popia/" rel="nofollow">Information Regulator</a>, and <a href="https://www.justice.gov.za/legislation/acts/2013-004.pdf" rel="nofollow">the Act itself</a> sets out the duty to notify a data subject when you collect personal information and, in section 71, limits on decisions taken solely by automated means. So the agent should identify itself at the start of a call, and no material decision should be final without a person able to review it.</p>
+      <p>Recording is where people trip. <a href="https://www.justice.gov.za/legislation/acts/2002-070.pdf" rel="nofollow">RICA</a> governs when a communication may lawfully be intercepted, including by a party to that communication and with prior written consent, so recording your own calls is not itself the problem. POPIA adds the duty to tell the caller: announce it in the greeting, keep it no longer than needed, and know which operator stores it. Our guide to <a href="whatsapp-ai-chatbot-popia-compliance.html">POPIA compliance for AI chatbots</a> covers consent, retention and cross-border storage, and our <a href="privacy-policy.html">privacy policy</a> applies it to us.</p>
 
       <aside class="post-cta">
         <h2>How do I get an AI receptionist for my business?</h2>
-        <p><strong>Start with a free scoping call, after which Cognexa quotes one fixed monthly figure in Rand before you commit.</strong> There is no minimum contract. Tell us what your phone does on a bad day &mdash; the calls you miss, the ones arriving after six, the questions your team answers forty times a week &mdash; and we will map what an agent should and should not take off them.</p>
+        <p><strong>Start with a free scoping call, after which Cognexa quotes one fixed monthly figure in Rand before you commit.</strong> There is no minimum contract. Tell us what your phone does on a bad day &mdash; the calls you miss, the ones arriving after six &mdash; and we will map what an agent should take off you.</p>
         <div class="post-cta-actions">
           <a class="btn btn-primary" href="/#contact">Book a free scoping call</a>
           <a class="btn btn-ghost" href="https://wa.me/27662412155" rel="noopener">Message us on WhatsApp</a>
         </div>
-        <p class="post-cta-contact">Or call <a href="tel:+27662412155">066 241 2155</a> &mdash; we reply within one business day. More on <a href="/">what we build</a> and on the <a href="blog.html">Insights</a> pages.</p>
+        <p class="post-cta-contact">Or call <a href="tel:+27662412155">066 241 2155</a> &mdash; we reply within one business day. More on <a href="/">what we build</a>, and our <a href="blog.html">Insights</a>.</p>
       </aside>
 
       <section aria-labelledby="faq-heading">
         <h2 id="faq-heading">Questions people ask</h2>
 
         <h3>Does an AI receptionist sound like a real person?</h3>
-        <p>Current voice models sound natural enough that most callers carry on normally, though an attentive listener can usually tell. Cognexa configures the agent to say plainly that it is an assistant whenever a caller asks, because a caller who feels tricked is a caller lost.</p>
+        <p>A synthesised voice is good enough to hold an ordinary conversation, though an attentive listener can usually tell. Cognexa configures the agent to say plainly that it is an assistant when asked.</p>
 
         <h3>Can an AI receptionist transfer a call to a human?</h3>
-        <p>Yes, on any properly built system. The agent transfers the call live where somebody is available, and takes the details for a callback where nobody is. If a supplier cannot describe its handover path clearly, treat that as a gap rather than a detail.</p>
+        <p>Yes. It transfers live where somebody is available and books a callback where nobody is. A supplier who cannot describe that handover has a gap.</p>
 
         <h3>How much does an AI receptionist cost?</h3>
-        <p>Cognexa quotes one fixed monthly figure in Rand after a free scoping call, with no minimum contract. Published vendor pricing, and how it compares with employing somebody, is set out in our separate guide to <a href="ai-receptionist-cost-south-africa.html">AI receptionist cost in South Africa</a>.</p>
+        <p>Cognexa quotes one fixed monthly figure in Rand after a free scoping call, with no minimum contract. Vendor pricing sits in our <a href="ai-receptionist-cost-south-africa.html">AI receptionist cost guide</a>.</p>
 
         <h3>Is an AI receptionist worth it for a small business?</h3>
-        <p>It earns its place when you are losing calls you would otherwise have won, whether after hours, at peak, or while one person answers everything. If your phone rings rarely and every caller needs deep expertise, an AI receptionist is the wrong tool.</p>
-
-        <h3>Can an AI receptionist book appointments?</h3>
-        <p>Yes, once it is connected to your calendar. The agent checks an open slot, confirms the details with the caller, writes the booking and sends a confirmation. Without calendar access the agent can only take a message for somebody else to action.</p>
+        <p>It earns its place when you are losing calls you would otherwise have won. If your phone rings rarely and every caller needs deep expertise, skip it.</p>
 
         <h3>What happens if the AI receptionist does not know the answer?</h3>
-        <p>A well-built agent says so plainly instead of guessing, captures the caller&rsquo;s details and routes the question to a person. Confident invention is the worst failure mode a voice agent has, and a bounded knowledge base is what designs it out.</p>
+        <p>A well-built agent says so instead of guessing, then routes the question to a person. Confident invention is the worst failure mode a voice agent has.</p>
 
         <h3>Do I have to tell callers they are speaking to an AI?</h3>
-        <p>Cognexa discloses by default. POPIA requires you to tell people what personal information you are collecting and why, and a caller who works out mid-conversation that nobody told them tends to lose trust in the business rather than in the software.</p>
+        <p>Cognexa discloses by default. POPIA requires you to tell people what personal information you collect and why, and a caller who works it out unaided loses trust.</p>
       </section>
 
       <section class="post-sources" aria-labelledby="sources-heading">
         <h2 id="sources-heading">Sources &amp; further reading</h2>
         <ol>
-          <li><a href="https://inforegulator.org.za/popia/" rel="nofollow">Information Regulator (South Africa) &mdash; POPIA</a></li>
-          <li><a href="https://www.justice.gov.za/legislation/acts/2013-004.pdf" rel="nofollow">Protection of Personal Information Act 4 of 2013 (full text, Department of Justice)</a></li>
-          <li><a href="https://www.justice.gov.za/legislation/acts/2002-070.pdf" rel="nofollow">Regulation of Interception of Communications Act 70 of 2002 (RICA, full text)</a></li>
-          <li><a href="https://developers.facebook.com/docs/whatsapp/cloud-api/overview" rel="nofollow">Meta &mdash; WhatsApp Cloud API overview</a></li>
-          <li><a href="https://developers.google.com/calendar/api/guides/overview" rel="nofollow">Google &mdash; Calendar API overview</a></li>
+          <li><a href="https://inforegulator.org.za/popia/" rel="nofollow">Information Regulator &mdash; POPIA</a></li>
+          <li><a href="https://www.justice.gov.za/legislation/acts/2013-004.pdf" rel="nofollow">POPIA, Act 4 of 2013 (full text)</a></li>
+          <li><a href="https://www.justice.gov.za/legislation/acts/2002-070.pdf" rel="nofollow">RICA, Act 70 of 2002 (full text)</a></li>
+          <li><a href="https://developers.facebook.com/docs/whatsapp/cloud-api/overview" rel="nofollow">Meta &mdash; WhatsApp Cloud API</a></li>
+          <li><a href="https://developers.google.com/calendar/api/guides/overview" rel="nofollow">Google &mdash; Calendar API</a></li>
         </ol>
       </section>
     </article>
@@ -368,10 +367,15 @@
       </div>
       <nav class="footer-nav" aria-label="Footer">
         <a href="/#services">Services</a>
-        <a href="/#process">Process</a>
-        <a href="/#work">Work</a>
+        <a href="ai-receptionist-south-africa.html">AI receptionists</a>
+        <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a>
+        <a href="workflow-automation-south-africa.html">Workflow automation</a>
+        <a href="custom-crm-development-south-africa.html">Custom CRMs</a>
+        <a href="pricing.html">Pricing</a>
         <a href="blog.html">Insights</a>
+        <a href="about.html">About</a>
         <a href="/#contact">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
       </nav>
     </div>
     <p class="footer-copy">&copy; <span class="footer-year">2026</span> Cognexa</p>

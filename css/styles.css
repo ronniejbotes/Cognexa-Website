@@ -2290,67 +2290,6 @@ body.page-static main {
   color: var(--text-secondary);
 }
 
-/* ==========================================================================
-   Article tables (service pages)
-
-   The service pages compare four options across six criteria, and nothing
-   sensible happens if that reflows at 360px — the cells shred into one word
-   per line. So the table keeps a usable minimum width and .table-scroll
-   absorbs the overflow instead of the page body, which must never scroll
-   sideways. The wrapper carries tabindex="0" + role="region" in the markup
-   so a keyboard user can actually reach the scroll, hence the focus ring.
-   ========================================================================== */
-.table-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 0 0 24px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  background: rgba(34, 37, 51, 0.5);
-}
-.table-scroll:focus-visible {
-  outline: 2px solid var(--accent-blue);
-  outline-offset: 2px;
-}
-
-.post table {
-  width: 100%;
-  min-width: 660px;
-  border-collapse: collapse;
-  font-size: 0.92rem;
-}
-.post table caption {
-  caption-side: top;
-  padding: 14px 16px 0;
-  text-align: left;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-}
-.post th,
-.post td {
-  padding: 12px 16px;
-  text-align: left;
-  vertical-align: top;
-  line-height: 1.55;
-  border-bottom: 1px solid var(--border-color);
-  color: var(--text-secondary);
-}
-/* Column headers stay on one line: they are short labels, and wrapping them
-   is what pushes the natural table width past the point of readability. */
-.post thead th {
-  white-space: nowrap;
-  font-weight: 600;
-  color: var(--text-primary);
-  background: rgba(74, 124, 255, 0.08);
-}
-.post tbody th {
-  font-weight: 600;
-  color: var(--text-primary);
-}
-.post tbody tr:last-child th,
-.post tbody tr:last-child td { border-bottom: 0; }
-
 /* Two-button CTA row. Adjacent .btn elements have no margin of their own, and
    at 360px the pair must wrap rather than overflow. */
 .post-cta-actions {
@@ -2359,65 +2298,6 @@ body.page-static main {
   gap: 12px;
   margin-bottom: 18px;
 }
-
-
-/* ==========================================================================
-   Article tables.
-   Real <table> markup, not a grid of divs — a div grid renders identically
-   but is not extractable as tabular data by search engines or answer engines,
-   and comparison tables are the single most-cited element on a commercial page.
-   The scroll wrapper is what holds the 360px floor: `html { overflow-x: clip }`
-   silently hides page-level overflow rather than showing a scrollbar, so a wide
-   table must scroll inside its own container or it breaks the layout invisibly.
-   ========================================================================== */
-.table-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 28px 0;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  background: var(--bg-card);
-}
-
-.post table {
-  width: 100%;
-  min-width: 520px;
-  border-collapse: collapse;
-  font-size: 0.95rem;
-}
-
-.post table caption {
-  caption-side: top;
-  text-align: left;
-  padding: 16px 18px 12px;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-}
-
-.post table th,
-.post table td {
-  padding: 12px 18px;
-  text-align: left;
-  vertical-align: top;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.post table thead th {
-  color: var(--text-primary);
-  font-weight: 600;
-  white-space: nowrap;
-  background: var(--bg-secondary);
-}
-
-.post table tbody th[scope="row"] {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.post table td { color: var(--text-secondary); }
-
-.post table tbody tr:last-child th,
-.post table tbody tr:last-child td { border-bottom: 0; }
 
 /* ==========================================================================
    Article comparison tables
@@ -2477,3 +2357,41 @@ body.page-static main {
 }
 .post tbody tr:last-child th,
 .post tbody tr:last-child td { border-bottom: 0; }
+
+/* ==========================================================================
+   Founder photo (about.html).
+   Portrait crop, so it is width-capped rather than full-bleed — at .post's
+   760px measure a full-width portrait would push the bios two screens down.
+   ========================================================================== */
+.founders {
+  margin: 28px 0;
+  text-align: center;
+}
+
+.founders-photo {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.founders figcaption {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  /* --text-secondary, not --text-muted: muted fails AA for copy. */
+  color: var(--text-secondary);
+}
+
+/* --- Article CTA contact line ---------------------------------------------
+   Appended: `.post-cta-contact` was in the pillar-page markup with no rule, so
+   the phone/WhatsApp line rendered at body size and inherited `.post-cta p`'s
+   18px bottom margin, leaving dead space under the card. Scoped to `.post-cta`
+   so it cannot leak into ordinary article paragraphs. --text-secondary, not
+   --text-muted: muted fails AA for copy. */
+.post-cta .post-cta-contact {
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}

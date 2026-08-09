@@ -6,9 +6,12 @@ Cognexa is based in Centurion, Gauteng, and replies to every enquiry within one 
 
 ## Services
 
-- [AI chatbots & WhatsApp automation](https://cognexa.co.za/): Website chat and WhatsApp automation that answers instantly, qualifies leads and books the meeting, then hands off to your team with full context.
-- [AI receptionists & voice agents](https://cognexa.co.za/): Inbound reception and outbound follow-up handled by natural-sounding AI voice agents that book, remind, confirm and escalate when a human should step in.
-- [Workflow automation — quoting, invoicing, bookings, inbox triage, CRM](https://cognexa.co.za/): CRM, calendar, invoicing and inbox wired together into AI workflows that move work forward without anyone pushing it.
+- [AI receptionists & voice agents](https://cognexa.co.za/ai-receptionist-south-africa.html): AI voice agents that answer every inbound call, qualify the caller, book into your calendar and escalate to a human when a call needs judgement.
+- [AI chatbots & WhatsApp automation](https://cognexa.co.za/whatsapp-ai-chatbot-south-africa.html): Website chat and WhatsApp Business Platform automation that answers instantly, qualifies leads and books the meeting, then hands off with full context.
+- [Workflow automation](https://cognexa.co.za/workflow-automation-south-africa.html): Automated quoting, invoicing, appointment booking and reminders, inbox triage and CRM data hygiene, wired into the tools you already run.
+- [Custom CRM development](https://cognexa.co.za/custom-crm-development-south-africa.html): Bespoke CRMs built around how your business actually sells, plus integration and automation of the CRM you already have.
+- [Pricing](https://cognexa.co.za/pricing.html): What drives the cost of an AI automation project in South Africa. Free scoping, fixed monthly quote in Rand, no minimum contract.
+- [About Cognexa](https://cognexa.co.za/about.html): Who builds Cognexa, how projects run, and why the work is quoted in Rand.
 - [3D web experiences](https://cognexa.co.za/): Immersive, scroll-driven 3D websites designed, built and tuned for performance.
 
 ## Insights

@@ -48,6 +48,15 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
+  <!-- Resource hints. The two latin subsets are what actually render this page —
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="stylesheet" href="css/styles.css?v=26">
 
   <script type="application/ld+json">
@@ -65,7 +74,7 @@
     },
     {
       "@type": "Article",
-      "headline": "AI voice agent vs IVR vs human receptionist: which should answer your calls?",
+      "headline": "AI receptionist vs human receptionist vs answering service",
       "url": "https://cognexa.co.za/ai-receptionist-vs-human-receptionist.html"
     },
     {
@@ -156,8 +165,8 @@
         </a>
         <a class="blog-card" href="ai-receptionist-vs-human-receptionist.html">
           <img class="blog-card-media" src="assets/images/blog-voice-vs-ivr.jpg" width="1200" height="675" alt="" loading="lazy" decoding="async">
-          <h2>AI voice agent vs IVR vs human receptionist: which should answer your calls?</h2>
-          <p>AI voice agents vs IVR menus vs human receptionists: capability, caller experience, cost, and when to hand a call to a person.</p>
+          <h2>AI receptionist vs human receptionist vs answering service</h2>
+          <p>Hours covered, unscripted questions, bookings, escalation and cost model &mdash; the four ways a business phone gets answered, compared.</p>
           <span class="blog-card-meta">Read the answer &rarr;</span>
         </a>
         <a class="blog-card" href="whatsapp-ai-chatbot-popia-compliance.html">

@@ -50,6 +50,15 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
+  <!-- Resource hints. The two latin subsets are what actually render this page —
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="stylesheet" href="css/styles.css?v=26">
 
   <script type="application/ld+json">
@@ -63,7 +72,7 @@
       "description": "What an AI receptionist costs in South Africa: real vendor pricing in Rand, compared against local receptionist salaries. A practical guide.",
       "image": "https://cognexa.co.za/assets/images/blog-receptionist-cost.jpg",
       "datePublished": "2026-07-22",
-      "dateModified": "2026-07-22",
+      "dateModified": "2026-08-09",
       "author": {
         "@type": "Organization",
         "name": "Cognexa",
@@ -135,15 +144,15 @@
 
       <p class="post-eyebrow">AI voice agents</p>
       <h1>What does an AI receptionist cost in South Africa? (2026 guide)</h1>
-      <p class="post-meta">By the Cognexa team &middot; <time datetime="2026-07-22">22 July 2026</time></p>
+      <p class="post-meta">By <a href="about.html">the Cognexa team</a> &middot; <time datetime="2026-07-22">22 July 2026</time> &middot; Updated <time datetime="2026-08-09">9 August 2026</time></p>
 
-      <img class="post-hero" src="assets/images/blog-receptionist-cost.jpg" width="1200" height="675" alt="A glowing telephone handset beside a rising stack of translucent glass tiles" loading="eager" decoding="async">
+      <img class="post-hero" src="assets/images/blog-receptionist-cost.jpg" width="1200" height="675" alt="A glowing telephone handset beside a rising stack of translucent glass tiles" loading="eager" fetchpriority="high" decoding="async">
 
       <div class="post-answer">An off-the-shelf AI receptionist typically costs about R800–R5,000 a month, or roughly R1.80–R3.30 per minute on usage-based plans — well below the R8,000+ monthly cost of employing a receptionist in South Africa. Custom builds, including Cognexa’s, are quoted after a free scoping call as one fixed monthly fee in Rand, with no minimum contract.</div>
 
       <h2>How much does an AI receptionist cost in South Africa?</h2>
       <p>There's no single number, because "AI receptionist" covers everything from a basic chatbot widget to a fully integrated voice system that books jobs into your calendar. But published pricing from real vendors gives a useful range. Off-the-shelf AI receptionist platforms typically run from around R800 to R5,000 a month depending on call volume, or roughly R1.80 to R3.30 a minute on usage-based plans. Those figures come from Rosie's published US dollar plans ($49–$299 a month) and Bland AI's per-minute rates ($0.11–$0.14), converted at roughly R16.50 to the US dollar — an approximate rate, since none of these platforms bill in Rand directly and your actual cost will move with the exchange rate.</p>
-      <p>Custom-built AI receptionists — trained on your services, your booking system, your way of qualifying a caller — don't fit neatly into a published price list, because the cost depends on integration work, not just minutes answered. That's true whether you're comparing <a href="ai-receptionist-vs-human-receptionist.html">a voice agent, an IVR menu or a human receptionist</a>.</p>
+      <p><a href="ai-receptionist-south-africa.html">Custom-built AI receptionists</a> — trained on your services, your booking system, your way of qualifying a caller — don't fit neatly into a published price list, because the cost depends on integration work, not just minutes answered. That's true whether you're comparing <a href="ai-receptionist-vs-human-receptionist.html">an AI receptionist, a human receptionist or an answering service</a>.</p>
 
       <h2>What makes one AI receptionist quote higher than another?</h2>
       <p>Before comparing prices, it helps to know what actually moves them. The same platform can cost R800 a month for one business and R8,000 for another, because of:</p>
@@ -156,10 +165,55 @@
         <li><strong>Number and telephony setup.</strong> A new dedicated number is usually simpler (and cheaper) than porting or forwarding an existing landline.</li>
       </ul>
 
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What moves an AI receptionist quote up or down">
+        <table>
+          <caption>Direction of cost, not fixed prices &mdash; every vendor weighs these differently, so use it to interrogate a quote rather than to predict one.</caption>
+          <thead>
+            <tr>
+              <th scope="col">What we scope</th>
+              <th scope="col">Cheaper end</th>
+              <th scope="col">More expensive end</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Call volume</th>
+              <td>Low, steady volume that fits inside one pricing band</td>
+              <td>High or spiky volume that tips into a higher band, plus overage on top</td>
+            </tr>
+            <tr>
+              <th scope="row">Number of integrations</th>
+              <td>None &mdash; the agent answers, screens and takes a message</td>
+              <td>Calendar, CRM, dispatch board or POS, each one its own access and testing job</td>
+            </tr>
+            <tr>
+              <th scope="row">Languages required</th>
+              <td>English only, which is close to universal across platforms</td>
+              <td>Afrikaans, isiZulu or Xhosa, where support varies vendor to vendor and needs real testing</td>
+            </tr>
+            <tr>
+              <th scope="row">After-hours coverage</th>
+              <td>Trading hours, with after-hours callers leaving a message</td>
+              <td>Round the clock with live escalation, which means routing rules and an on-call person behind them</td>
+            </tr>
+            <tr>
+              <th scope="row">Script complexity</th>
+              <td>Answers a short set of FAQs</td>
+              <td>Qualifies the caller, checks availability, quotes a range and books the slot</td>
+            </tr>
+            <tr>
+              <th scope="row">Custom vs off-the-shelf</th>
+              <td>Self-serve platform on a published plan, generic script</td>
+              <td>Built around your services and systems &mdash; usually a build fee, then a flat monthly</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <h2>Is an AI receptionist cheaper than hiring a receptionist?</h2>
       <p>On salary alone, yes, usually by a wide margin — but the comparison needs the full picture. Indeed's South African salary data puts the average receptionist wage at R8,017 a month, based on over 750 reported salaries. PayScale's figure is close: R107,300 a year, or roughly R8,942 a month on average, with a range of R56,000 to R191,000 a year (about R4,700 to R15,900 a month) depending on experience and location.</p>
       <p>That's gross salary only. On top, an employer typically adds UIF contributions, paid leave, sick leave, public holiday cover, and the recruitment and training cost every time someone leaves. A receptionist also works set hours — evenings, weekends and lunch breaks go to voicemail unless you pay for a second person or overtime.</p>
-      <p>By contrast, even Rosie's top consumer plan (R4,934 a month for 2,000 minutes) or Ruby's entry-level human virtual receptionist plan (R4,125 a month for 50 minutes) sits at or below a single month's receptionist salary, and answers around the clock without leave days. That said, an AI receptionist isn't a like-for-like swap for a skilled front-desk person handling awkward complaints or judgement calls — most businesses that get this right run a blended setup, with AI handling volume and routine bookings, and a clear handoff to a human when it matters. We go deeper on that trade-off in <a href="ai-receptionist-vs-human-receptionist.html">AI voice agent vs IVR vs receptionist</a>.</p>
+      <p>By contrast, even Rosie's top consumer plan (R4,934 a month for 2,000 minutes) or Ruby's entry-level human virtual receptionist plan (R4,125 a month for 50 minutes) sits at or below a single month's receptionist salary, and answers around the clock without leave days. That said, an AI receptionist isn't a like-for-like swap for a skilled front-desk person handling awkward complaints or judgement calls — most businesses that get this right run a blended setup, with AI handling volume and routine bookings, and a clear handoff to a human when it matters. We go deeper on that trade-off in <a href="ai-receptionist-vs-human-receptionist.html">AI receptionist vs human receptionist</a>.</p>
 
       <h2>What's the price per minute or per call, in Rand?</h2>
       <p>Pricing models vary, so here's what real vendors publish, converted at roughly R16.50 to the US dollar:</p>
@@ -168,7 +222,7 @@
         <li><strong>Rosie</strong> (consumer AI receptionist): $49 a month for 250 minutes (about R809) up to $299 a month for 2,000 minutes (about R4,934) — an effective R2.45–R3.25 a minute depending on plan.</li>
         <li><strong>Ruby</strong> (human virtual receptionist, for contrast): $250 a month for 50 minutes (about R4,125) up to $1,725 a month for 500 minutes (about R28,463) — an effective R57–R83 a minute, because you're paying for a live person's time, not compute.</li>
       </ul>
-      <p>Chat-based tools often use a different unit entirely: price per resolved conversation rather than per minute. If you're weighing up a <a href="/#station-voice">voice agent</a> alongside WhatsApp or web chat, expect the chat side to be billed by conversation, not by the minute. Whichever unit a vendor quotes, ask what counts as one billable unit — a missed call, a hang-up after two seconds, or a caller who rings back three times can all be billed differently depending on the platform.</p>
+      <p>Chat-based tools often use a different unit entirely: price per resolved conversation rather than per minute. If you're weighing up a <a href="/#station-voice">voice agent</a> alongside <a href="whatsapp-ai-chatbot-south-africa.html">a WhatsApp or website chatbot</a>, expect the chat side to be billed by conversation, not by the minute. Whichever unit a vendor quotes, ask what counts as one billable unit — a missed call, a hang-up after two seconds, or a caller who rings back three times can all be billed differently depending on the platform.</p>
 
       <h2>Setup fees vs monthly fees: what's typical?</h2>
       <p>Three models show up repeatedly in the pricing pages we checked:</p>
@@ -180,9 +234,17 @@
       <p>Whichever model you're quoted, a fixed monthly fee is easier to budget against than usage that can spike with a busy month, and it's worth asking whether the quote is locked in Rand or will drift with the dollar or pound.</p>
 
       <h2>How does Cognexa price an AI receptionist?</h2>
-      <p>We don't publish a flat price list, because a receptionist for a single-branch dental practice answering routine bookings looks nothing like one for a plumbing outfit dispatching jobs across three towns, or an agency screening inbound leads before they hit a salesperson's calendar. Every build starts with a free scoping call, so the quote reflects what your business actually needs — not a generic per-minute rate that under- or over-shoots your real call volume.</p>
+      <p>We don't publish a flat price list, because a receptionist for a single-branch dental practice answering routine bookings looks nothing like one for a plumbing outfit dispatching jobs across three towns, or an agency screening inbound leads before they hit a salesperson's calendar. Every build starts with a <a href="pricing.html">free scoping call</a>, so the quote reflects what your business actually needs — not a generic per-minute rate that under- or over-shoots your real call volume.</p>
       <p>After scoping, you get one number: a fixed monthly price in Rand, not a floating per-minute charge you can't predict from month to month. There's no minimum contract — if it isn't earning its keep, you're not locked in.</p>
 
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="ai-receptionist-south-africa.html">How an AI receptionist works for a South African business</a> &mdash; what it handles on a call, what it connects to, and where it hands over to a person.</li>
+        <li><a href="ai-receptionist-vs-human-receptionist.html">AI receptionist vs human receptionist vs answering service</a> &mdash; the trade-offs behind the cost comparison above.</li>
+        <li><a href="ai-chatbot-south-african-languages.html">Can an AI chatbot or voice agent speak Afrikaans and isiZulu?</a> &mdash; why language support moves both the build and the price.</li>
+        <li><a href="pricing.html">What AI automation actually costs in South Africa</a> &mdash; how we scope a build and quote one fixed monthly figure in Rand.</li>
+      </ul>
 
       <aside class="post-cta">
         <h2>Put it to work in your business</h2>

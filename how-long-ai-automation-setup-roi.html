@@ -50,6 +50,15 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
+  <!-- Resource hints. The two latin subsets are what actually render this page —
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="stylesheet" href="css/styles.css?v=26">
 
   <script type="application/ld+json">
@@ -63,7 +72,7 @@
       "description": "Realistic timelines for AI automation: how long a chatbot, voice agent or workflow build takes to go live, and when it starts paying for itself.",
       "image": "https://cognexa.co.za/assets/images/blog-timeline-roi.jpg",
       "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "dateModified": "2026-08-09",
       "author": {
         "@type": "Organization",
         "name": "Cognexa",
@@ -135,9 +144,9 @@
 
       <p class="post-eyebrow">Workflow automation</p>
       <h1>How long does AI automation take to set up &mdash; and when does it pay for itself?</h1>
-      <p class="post-meta">By the Cognexa team &middot; <time datetime="2026-07-26">26 July 2026</time></p>
+      <p class="post-meta">By <a href="about.html">the Cognexa team</a> &middot; <time datetime="2026-07-26">26 July 2026</time> &middot; Updated <time datetime="2026-08-09">9 August 2026</time></p>
 
-      <img class="post-hero" src="assets/images/blog-timeline-roi.jpg" width="1200" height="675" alt="A glowing timeline arc with milestone nodes curving upward into a rising ribbon of light" loading="eager" decoding="async">
+      <img class="post-hero" src="assets/images/blog-timeline-roi.jpg" width="1200" height="675" alt="A glowing timeline arc with milestone nodes curving upward into a rising ribbon of light" loading="eager" fetchpriority="high" decoding="async">
 
       <div class="post-answer">For a small business, a focused AI chatbot or voice agent with no deep integrations typically goes live in days to a few weeks. Add calendar, CRM or invoicing integrations and it&rsquo;s more commonly four to twelve weeks. Payback follows the same shape: simple automations that recover a few hours a week often cover their cost within one to two months, while integrated multi-step workflows take longer to build and correspondingly longer to repay. Enterprise timelines quoted in industry surveys &mdash; six to eighteen months &mdash; describe a different kind of project and shouldn&rsquo;t be used to budget a small-business build.</div>
 
@@ -153,14 +162,60 @@
 
       <h2>Why do enterprise timelines look so much longer?</h2>
       <p>Because they&rsquo;re measuring something else. Analyst reporting through 2026 puts enterprise AI agent projects at roughly six to twelve months from pilot to limited production and twelve to eighteen months to full deployment &mdash; and notes that a large majority of pilots never graduate to production at all, with governance friction, evaluation gaps and model reliability cited as the usual blockers.</p>
-      <p>Those numbers are real, but they describe organisations with procurement cycles, security review boards, works councils and legacy systems nobody fully understands. A ten-person plumbing business connecting a WhatsApp chatbot to Google Calendar is not running that project. Be sceptical when a vendor quotes enterprise timelines at you &mdash; and equally sceptical of anyone promising a fully integrated build by Friday.</p>
+      <p>Those numbers are real, but they describe organisations with procurement cycles, security review boards, works councils and legacy systems nobody fully understands. A ten-person plumbing business <a href="whatsapp-ai-chatbot-south-africa.html">connecting a WhatsApp chatbot to Google Calendar</a> is not running that project. Be sceptical when a vendor quotes enterprise timelines at you &mdash; and equally sceptical of anyone promising a fully integrated build by Friday.</p>
+
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Realistic build timelines by type of build">
+        <table>
+          <caption>Realistic build timelines: what has to be in place before each kind of build can start.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Build</th>
+              <th scope="col">What has to be in place first</th>
+              <th scope="col">What usually sets the timeline</th>
+              <th scope="col">Band from the sections above</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">FAQ chatbot, no integrations</th>
+              <td>Written answers to the questions you actually get, and an agreed point where it hands off to a person.</td>
+              <td>How quickly somebody in the business can confirm those answers are accurate and current.</td>
+              <td>Days to two weeks &mdash; the answer-only band.</td>
+            </tr>
+            <tr>
+              <th scope="row">WhatsApp chatbot with booking</th>
+              <td>A WhatsApp business number you control, plus access to the calendar the bot must write into.</td>
+              <td>Waiting on channel approval and calendar access &mdash; both sit outside your control.</td>
+              <td>Four to twelve weeks, because it writes to another system.</td>
+            </tr>
+            <tr>
+              <th scope="row">AI receptionist with calendar and CRM</th>
+              <td>Your line forwarded or a new number issued, API access to the calendar and CRM, and escalation rules written down.</td>
+              <td>Whoever administers the CRM granting access &mdash; and that access being verified, not just promised.</td>
+              <td>Four to twelve weeks, integration-dependent.</td>
+            </tr>
+            <tr>
+              <th scope="row">Multi-step workflow automation</th>
+              <td>The steps written down as they actually run today, exceptions included, and sign-off on anything touching money.</td>
+              <td>The number of exception paths, and the number of people who have to approve them.</td>
+              <td>Several months once it spans departments.</td>
+            </tr>
+            <tr>
+              <th scope="row">Custom CRM</th>
+              <td>Agreement on what data you keep, who may see it, and how existing records get migrated across.</td>
+              <td>Migration and the number of processes it has to replace &mdash; rarely the software itself.</td>
+              <td>Longest of the five; scoped case by case.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <h2>When does AI automation actually pay for itself?</h2>
       <p>Payback is easier to reason about than it looks, because the maths is simple: you&rsquo;re comparing a monthly fee against hours recovered plus revenue that would otherwise have leaked away.</p>
       <p>Work it out for your own business rather than trusting a headline percentage:</p>
       <ul>
         <li><strong>Hours recovered.</strong> Estimate hours per week the automation removes, multiply by a realistic loaded hourly cost for whoever does that work now. Ten hours a week at R150 an hour is about R6,500 a month.</li>
-        <li><strong>Leads recovered.</strong> Count enquiries currently missed after hours or lost to slow replies. Multiply by your close rate and average job value. For many trades and clinics this number dwarfs the hours saved.</li>
+        <li><strong>Leads recovered.</strong> Count <a href="ai-receptionist-south-africa.html">enquiries currently missed after hours</a> or lost to slow replies. Multiply by your close rate and average job value. For many trades and clinics this number dwarfs the hours saved.</li>
         <li><strong>Cost avoided.</strong> If the alternative was hiring, compare against the real cost of that person &mdash; salary plus UIF, leave, cover and recruitment. We break those figures down in <a href="ai-receptionist-cost-south-africa.html">what an AI receptionist costs in South Africa</a>.</li>
         <li><strong>Against:</strong> the monthly fee, any build fee amortised over a sensible period, and your own team&rsquo;s time during setup &mdash; which is real and routinely forgotten.</li>
       </ul>
@@ -180,7 +235,15 @@
       <p>Pick the workflow with the highest volume and the least judgement involved &mdash; usually first-response and booking. Our guide to <a href="small-business-ai-workflow-automation-examples.html">12 workflows that pay off first</a> works through the usual candidates, and <a href="ai-agent-vs-chatbot-difference.html">AI agent vs chatbot</a> covers which kind of build each one needs.</p>
 
       <h2>How Cognexa handles timelines</h2>
-      <p>Every build starts with free scoping, and the quote you get back includes a concrete timeline with the integration dependencies named &mdash; including the ones that sit on your side, so nobody is surprised in week three. Most chatbot and voice-agent builds go live within a few weeks of scoping; deeper multi-workflow automation takes longer, and we&rsquo;d rather tell you that upfront than discover it together later. There&rsquo;s no minimum contract, so if it isn&rsquo;t earning its keep you aren&rsquo;t locked in.</p>
+      <p>Every build starts with <a href="pricing.html">free scoping</a>, and the quote you get back includes a concrete timeline with the integration dependencies named &mdash; including the ones that sit on your side, so nobody is surprised in week three. Most chatbot and voice-agent builds go live within a few weeks of scoping; <a href="workflow-automation-south-africa.html">deeper multi-workflow automation</a> takes longer, and we&rsquo;d rather tell you that upfront than discover it together later. There&rsquo;s no minimum contract, so if it isn&rsquo;t earning its keep you aren&rsquo;t locked in.</p>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="small-business-ai-workflow-automation-examples.html">12 small-business workflows worth automating first</a> &mdash; where to point your first build.</li>
+        <li><a href="ai-agent-vs-chatbot-difference.html">AI agent vs chatbot: which one your workflow needs</a> &mdash; the choice that decides how long the build takes.</li>
+        <li><a href="custom-crm-development-south-africa.html">Custom CRM development in South Africa</a> &mdash; when an off-the-shelf CRM is the thing holding your timeline up.</li>
+        <li><a href="pricing.html">What AI automation costs in South Africa</a> &mdash; what drives the number, and how our fixed monthly quote works.</li>
+      </ul>
 
       <aside class="post-cta">
         <h2>Put it to work in your business</h2>

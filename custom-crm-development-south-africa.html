@@ -90,7 +90,7 @@
           "name": "Is it worth building your own CRM?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For most businesses, no. An off-the-shelf CRM with custom fields and an automation builder covers an ordinary sales process at a fraction of the effort. Building is worth it when the process is unusual enough that the product forces daily workarounds, or when the CRM itself is a competitive advantage."
+            "text": "For most businesses, no. An off-the-shelf CRM with custom fields and an automation builder covers an ordinary sales process for far less effort. Building pays only when the product forces daily workarounds."
           }
         },
         {
@@ -98,7 +98,7 @@
           "name": "How much does it cost to build a custom CRM in South Africa?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "There is no meaningful list price, and any agency quoting one before seeing the process is guessing. The cost is driven by user roles, integrations, data migration and reporting depth. Cognexa runs a free scoping call and then quotes one fixed monthly figure in Rand, with no minimum contract."
+            "text": "There is no meaningful list price, and any agency quoting one before seeing your process is guessing. Cost is driven by user roles, integrations, data migration and reporting depth. Cognexa scopes for free."
           }
         },
         {
@@ -106,7 +106,7 @@
           "name": "How long does it take to build a custom CRM?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Longer than buying a subscription and shorter than most people fear, because a first useful version rarely needs every feature. A sensible build ships the one workflow that hurts most, puts it in front of real users, and grows from there rather than launching everything at once."
+            "text": "Longer than buying a subscription, shorter than most people fear, because a first useful version rarely needs every feature. A sensible build ships the workflow that hurts most and grows from there."
           }
         },
         {
@@ -114,7 +114,7 @@
           "name": "Can I customise HubSpot or Zoho instead of building from scratch?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Usually yes, and it is normally the right first move. Custom objects, custom fields, automation builders and open APIs cover a large share of what businesses ask for. The limit appears when a customisation depends on vendor behaviour that a platform update can change underneath you."
+            "text": "Usually yes, and it is normally the right first move. Custom objects, automation builders and open APIs cover a large share of what businesses ask for, until a vendor update changes the behaviour underneath."
           }
         },
         {
@@ -122,15 +122,7 @@
           "name": "Who owns the code and the data in a custom CRM?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Settle this in writing before the first line is written. Cognexa hands over the source code and the database to the client, and the client chooses where the system is hosted. Ownership of the data matters most, because it is what makes leaving any supplier survivable."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is a custom CRM POPIA compliant by default?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No system is compliant by default, custom or otherwise. POPIA compliance is about lawful purpose, security safeguards, retention limits and honouring data subject requests. A custom build makes those obligations easier to meet, because deletion, access logging and retention rules can be built in rather than worked around."
+            "text": "Settle this in writing before the first line is written. Ask any developer to put it in the contract: who holds the source code, who holds the database, and who chooses the hosting. Owning the data is what makes leaving any supplier survivable."
           }
         },
         {
@@ -138,15 +130,7 @@
           "name": "What happens if the developer disappears?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "This is the real risk of building, and it deserves a straight answer. Insist on your own source code repository, documented setup steps, standard technologies rather than exotic ones, and a database another developer can read. Those four things turn a disaster into an inconvenience."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can a custom CRM connect to WhatsApp?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. The WhatsApp Business Platform exposes an API that a custom system can send and receive messages through, so conversations land against the right customer record automatically. The same applies to a phone line answered by an AI voice agent and to a shared email inbox."
+            "text": "This is the real risk of building, and it deserves a straight answer. Insist on your own code repository, documented setup steps, ordinary technologies, and a database another developer can read."
           }
         }
       ]
@@ -176,6 +160,7 @@
       <a class="nav-link" href="/#services">Services</a>
       <a class="nav-link" href="/#process">Process</a>
       <a class="nav-link" href="/#work">Work</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
       <a class="nav-link" href="blog.html">Insights</a>
       <a class="nav-link" href="/#contact">Contact</a>
       <a class="btn btn-primary" href="/#contact">Start your build</a>
@@ -188,147 +173,141 @@
         <a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">Custom CRM development</span>
       </nav>
 
-      <p class="post-eyebrow">CRM &amp; workflow automation</p>
+      <p class="post-eyebrow">CRM &amp; automation</p>
       <h1>Custom CRM development for South African businesses</h1>
       <p class="post-meta">Last updated: 9 August 2026</p>
 
       <div class="post-answer">Custom CRM development means building a customer database and sales system around a company&rsquo;s actual process, instead of reshaping that process to fit a licensed product. Most South African businesses are better served by an off-the-shelf CRM. Cognexa builds custom CRMs, and integrates existing ones, for South African companies whose workflow genuinely does not fit.</div>
 
-      <p><strong>A custom CRM is</strong> a customer relationship management system built for one business alone &mdash; its own data model, its own screens, its own permissions, its own automations &mdash; rather than a licensed product that thousands of subscribers share. This page sets out when that is the right call for a South African company, when it is an expensive mistake, and what to do instead.</p>
+      <p><strong>A custom CRM is</strong> a customer relationship management system built for one business alone &mdash; its own data model, screens, permissions and automations &mdash; rather than a licensed product thousands of subscribers share. This page covers when that is the right call, and when it is an expensive mistake.</p>
 
       <h2>What is a custom CRM, and how is it different from HubSpot or Zoho?</h2>
-      <p><strong>The difference is who the software was designed for.</strong> HubSpot, Zoho, Pipedrive and Salesforce are products designed for hundreds of thousands of businesses at once, so they ship a generic shape of a sales process. A custom CRM is designed for one business, so it carries that business&rsquo;s process and nothing else.</p>
-      <p>In practice the gap shows up in three places. The first is vocabulary. An off-the-shelf CRM talks about leads, deals and pipelines; if your business actually runs on sites, loads, panels, matters, claims or files, your team spends every day translating between the screen and reality. The second is the record itself. A standard CRM hands you a contact and a deal, where a plant-hire firm needs a machine, an operator, a site and a rate card all hanging off the same job before the record makes sense.</p>
-      <p>The third is the difference between what a product can be configured to do and what it can be built to do. Off-the-shelf CRMs are far more flexible than people assume &mdash; custom fields, custom objects, pipeline stages, automation builders and open APIs will cover a large share of what most companies want without anyone writing code. That flexibility is exactly why the honest answer for most businesses is buy, not build.</p>
+      <p><strong>The difference is who the software was designed for.</strong> HubSpot, Zoho, Pipedrive and Salesforce are built for hundreds of thousands of businesses at once, so they ship a generic shape of a sales process. A custom CRM is built for one business only.</p>
+      <p>The gap shows up first in vocabulary. An off-the-shelf CRM talks about leads, deals and pipelines; if your business runs on sites, loads, panels or claims, your team translates all day. It shows up next in the record itself: a plant-hire firm needs a machine, an operator, a site and a rate card on one job.</p>
+      <p>It shows up last in the gap between configuring a product and building one. Off-the-shelf CRMs are more flexible than people assume: custom objects, automation builders and open APIs cover most of what companies want without code. That is why the honest answer for most businesses is buy, not build.</p>
 
       <h2>When should you build a custom CRM &mdash; and when should you absolutely not?</h2>
-      <p><strong>Build only when the process is itself the advantage.</strong> A custom CRM earns its cost when the way a business quotes, schedules, prices or fulfils work is genuinely unusual, is worth protecting, and cannot be expressed in an off-the-shelf product without a stack of workarounds. If none of those three things is true, buy the subscription and spend the difference on selling.</p>
+      <p><strong>Build only when the process is itself the advantage.</strong> A custom CRM earns its cost when the way a business quotes, schedules or fulfils work is genuinely unusual and cannot be expressed off the shelf without a stack of workarounds. Otherwise, buy the subscription.</p>
       <p>Build a custom CRM if:</p>
       <ul>
-        <li>Your quoting or pricing logic is unusual enough that no product on the market models it correctly.</li>
-        <li>Your business revolves around an object standard CRMs do not have &mdash; a vehicle, a site, a machine, a herd, a claim, a case file.</li>
-        <li>You are paying for full seats for people who only ever need to see one screen.</li>
-        <li>Audit or regulatory requirements mean you need to control where records live and who touched them.</li>
-        <li>Several disconnected systems already hold pieces of the same customer, and nobody in the business trusts any of them.</li>
-        <li>The system is something you intend to licence onward to the businesses you serve.</li>
+        <li>Your quoting logic is unusual enough that no product models it correctly.</li>
+        <li>Your business revolves around an object standard CRMs lack &mdash; a machine, a site, a claim.</li>
+        <li>You pay full seats for people who only open one screen.</li>
+        <li>Several systems hold pieces of the same customer, and nobody trusts them.</li>
+        <li>You intend to licence the system onward to businesses you serve.</li>
       </ul>
       <p>Buy an off-the-shelf CRM instead if:</p>
       <ul>
         <li>Your sales process is an ordinary pipeline of enquiry, quote, follow-up and close.</li>
-        <li>You need something running this month rather than next quarter.</li>
-        <li>Nobody internally will own the system, chase adoption and decide what changes after launch.</li>
-        <li>Your real problem is that staff do not capture data, because new software does not fix a habit.</li>
-        <li>Reporting is the actual requirement, and a standard CRM already reports on everything you track.</li>
-        <li>You have not yet written the process down, because building software around an undecided process produces expensive software you decide against.</li>
+        <li>You need something running this month, not next quarter.</li>
+        <li>Nobody internally will own the system and its changes after launch.</li>
+        <li>Your real problem is that staff do not capture data, because software cannot fix a habit.</li>
+        <li>You have not written the process down, so a build would chase a moving target.</li>
       </ul>
-
-      <h2>How do off-the-shelf, customised and custom-built CRMs compare?</h2>
-      <p><strong>There are three routes, not two, and the middle one is the most common.</strong> You can licence a product as it comes, licence it and pay someone to bend it around your process, or build a system outright. Each route trades a different thing away: speed, flexibility, control or the cost of leaving later.</p>
+      <p>The third route &mdash; licence, then customise heavily &mdash; is the commonest of all.</p>
       <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison of off-the-shelf, customised and custom-built CRM routes">
         <table>
-          <caption>Qualitative comparison only. Amounts depend entirely on scope, so no figures are given here.</caption>
+          <caption>Qualitative; amounts depend on scope.</caption>
           <thead>
             <tr>
               <th scope="col">Factor</th>
-              <th scope="col">Off-the-shelf CRM</th>
-              <th scope="col">Off-the-shelf plus heavy customisation</th>
-              <th scope="col">Fully custom build</th>
+              <th scope="col">Off-the-shelf</th>
+              <th scope="col">Customised off-the-shelf</th>
+              <th scope="col">Fully custom</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Upfront cost profile</th>
-              <td>Lowest &mdash; a subscription and a few hours of setup.</td>
-              <td>Moderate &mdash; consulting or agency work on top of the licence.</td>
-              <td>Highest &mdash; you pay for the build before it earns anything.</td>
+              <th scope="row">Upfront cost</th>
+              <td>Lowest.</td>
+              <td>Moderate: agency fees on top.</td>
+              <td>Highest: paid upfront.</td>
             </tr>
             <tr>
-              <th scope="row">Ongoing cost profile</th>
-              <td>Predictable per-seat subscription that grows with headcount.</td>
-              <td>Subscription plus a retainer to keep customisations working through vendor updates.</td>
-              <td>Hosting plus a support arrangement, largely unlinked to headcount.</td>
+              <th scope="row">Ongoing cost</th>
+              <td>Per-seat, rising with headcount.</td>
+              <td>Per-seat plus a maintenance retainer.</td>
+              <td>Hosting plus support.</td>
             </tr>
             <tr>
               <th scope="row">Time to launch</th>
               <td>Days.</td>
               <td>Weeks to months.</td>
-              <td>Months, though a first useful version can ship far earlier.</td>
+              <td>Months.</td>
             </tr>
             <tr>
               <th scope="row">Fit to an unusual process</th>
-              <td>Poor &mdash; you adapt the process to the product.</td>
-              <td>Good, until the vendor changes something a customisation depends on.</td>
-              <td>Exact &mdash; the software is shaped to the process.</td>
+              <td>Poor.</td>
+              <td>Good, until a vendor update breaks it.</td>
+              <td>Exact.</td>
             </tr>
             <tr>
               <th scope="row">Who holds the data</th>
-              <td>The vendor&rsquo;s cloud, on the vendor&rsquo;s terms.</td>
-              <td>The vendor&rsquo;s cloud, on the vendor&rsquo;s terms.</td>
-              <td>Wherever you choose to host it, on terms you set.</td>
+              <td>Vendor&rsquo;s cloud.</td>
+              <td>Vendor&rsquo;s cloud.</td>
+              <td>Wherever you host it.</td>
             </tr>
             <tr>
-              <th scope="row">Cost of your tenth user</th>
-              <td>Another seat, every month, indefinitely.</td>
-              <td>Another seat, every month, indefinitely.</td>
-              <td>Usually a permissions change rather than a new line item.</td>
+              <th scope="row">Cost per extra user</th>
+              <td>Another seat, monthly.</td>
+              <td>Another seat, monthly.</td>
+              <td>A permissions change.</td>
             </tr>
             <tr>
               <th scope="row">Exit risk</th>
-              <td>Low &mdash; export the data and move to another product.</td>
-              <td>Higher &mdash; customisations rarely transfer anywhere.</td>
-              <td>You hold the code, so the risk shifts to who maintains it.</td>
+              <td>Low: export and move.</td>
+              <td>Higher: customisations rarely transfer.</td>
+              <td>You own it; the risk is maintenance.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <h2>Why does the exchange rate matter when you pay for a CRM?</h2>
-      <p><strong>An international CRM prices your software in a currency you do not earn.</strong> HubSpot&rsquo;s own <a href="https://legal.hubspot.com/hubspot-product-and-services-catalog" rel="nofollow noopener">product and services catalogue</a> lists its seat prices in US dollars. A South African business paying for those seats therefore carries an exchange-rate exposure on a fixed operating cost, month after month.</p>
-      <p>That means two independent variables move your software bill. One is headcount, which you control. The other is the rand-dollar rate, which you do not &mdash; the South African Reserve Bank publishes the <a href="https://www.resbank.co.za/en/home/what-we-do/statistics/key-statistics/current-market-rates" rel="nofollow noopener">ZAR/USD rate among its current market rates</a>, and it moves for reasons that have nothing to do with your sales team. When the Rand weakens, a seat you were already paying for simply costs more Rand to keep.</p>
-      <p>The same applies to the messaging layer. Meta charges for the WhatsApp Business Platform <a href="https://developers.facebook.com/docs/whatsapp/pricing" rel="nofollow noopener">on a per-message basis with rate cards published by country and currency</a>, so message volume and currency both feed into the bill.</p>
-      <p>A build quoted and invoiced in Rand removes the currency variable from the software line specifically. It does not remove it everywhere, and we would rather say so plainly: hosting and AI model usage are frequently priced in dollars too. The honest claim is narrower and still useful &mdash; the largest, most predictable part of the bill stops floating.</p>
+      <p><strong>An international CRM prices your software in a currency you do not earn.</strong> HubSpot&rsquo;s own <a href="https://legal.hubspot.com/hubspot-product-and-services-catalog" rel="nofollow noopener">product and services catalogue</a> lists its seat prices in US dollars, so a South African business paying for those seats carries an exchange-rate exposure on a fixed operating cost.</p>
+      <p>Two independent variables then move that bill. One is headcount, which you control. The other is the rand-dollar rate, which you do not &mdash; the South African Reserve Bank publishes the <a href="https://www.resbank.co.za/en/home/what-we-do/statistics/key-statistics/current-market-rates" rel="nofollow noopener">ZAR/USD rate among its current market rates</a>, and it moves for reasons unrelated to your sales team. When the Rand weakens, a seat you already had costs more to keep.</p>
+      <p>The messaging layer behaves the same way: Meta charges for the WhatsApp Business Platform <a href="https://developers.facebook.com/docs/whatsapp/pricing" rel="nofollow noopener">per message, with rate cards published by country and currency</a>. A build quoted and invoiced in Rand takes that variable out of the software line. It does not remove it everywhere, since hosting and AI usage are often dollar-priced, but the biggest part stops floating.</p>
 
       <h2>What about POPIA, and where does my customer data actually live?</h2>
       <p><strong>POPIA does not require your customer data to stay in South Africa.</strong> Section 72 of the <a href="https://www.gov.za/documents/protection-personal-information-act" rel="nofollow noopener">Protection of Personal Information Act 4 of 2013</a> permits <a href="https://popia.co.za/section-72-transfers-of-personal-information-outside-republic/" rel="nofollow noopener">transfers outside the Republic</a> when one of several conditions is met. What the Act requires is that you can identify which condition applies to you.</p>
-      <p>Those conditions include the recipient being bound by a law, binding corporate rules or a binding agreement providing an adequate level of protection, the data subject consenting, or the transfer being necessary to perform a contract with the data subject. So a US-hosted CRM is not automatically unlawful &mdash; but the obligation to demonstrate the basis sits with you, not the vendor.</p>
-      <p>That is the responsible party and operator distinction, and it matters more than data residency. You are the responsible party: you decide the purpose and the means, and you answer to the <a href="https://inforegulator.org.za/" rel="nofollow noopener">Information Regulator</a>, which also runs the portal where information officers must be registered. Your CRM vendor is an operator, processing on your instruction. Section 21 requires a written contract obliging the operator to maintain security safeguards and to notify you immediately of unauthorised access. The Regulator may impose an <a href="https://popia.co.za/section-109-administrative-fines/" rel="nofollow noopener">administrative fine of up to R10 million</a> under section 109.</p>
-      <p>A system you control makes those duties easier to discharge, because deletion, retention rules and access logging can be built in rather than requested from a vendor roadmap. We cover consent and opt-in specifically in our guide to <a href="whatsapp-ai-chatbot-popia-compliance.html">POPIA compliance for WhatsApp AI chatbots</a>.</p>
+      <p>Those conditions include the recipient being bound by a law, binding corporate rules or an agreement giving adequate protection, the data subject consenting, or the transfer being needed to perform a contract. A US-hosted CRM is not automatically unlawful, but the duty to show the basis is yours.</p>
+      <p>The responsible party and operator distinction matters more than residency. You are the responsible party: you set the purpose and the means, and you answer to the <a href="https://inforegulator.org.za/" rel="nofollow noopener">Information Regulator</a>, where information officers must register. Your CRM vendor is an operator, and section 21 requires a written contract obliging it to keep safeguards and report breaches immediately. Section 109 allows a <a href="https://popia.co.za/section-109-administrative-fines/" rel="nofollow noopener">fine of up to R10 million</a>.</p>
+      <p>A system you control makes those duties easier to discharge, because deletion, retention and access logging get built in rather than requested from a vendor roadmap. Consent is covered in our <a href="whatsapp-ai-chatbot-popia-compliance.html">POPIA guide for chatbots</a>.</p>
 
       <h2>What can a custom CRM automate that an off-the-shelf one cannot?</h2>
-      <p><strong>The gain is not new features, it is the removal of gaps between them.</strong> An off-the-shelf CRM automates inside its own model of a sale. A custom CRM automates across the whole job, so the quote, the acceptance, the booking, the invoice and the follow-up sit on one record and each step can trigger the next without an export or a person retyping anything.</p>
+      <p><strong>The gain is not new features, it is the removal of gaps between them.</strong> An off-the-shelf CRM automates inside its own model of a sale. A custom CRM automates across the whole job, so quote, booking, invoice and follow-up sit on one record and each step triggers the next.</p>
       <ul>
-        <li>Automated quoting assembles the quote from the job&rsquo;s own variables and sends it without anyone opening a template.</li>
-        <li>Automated invoicing raises the invoice the moment work is marked complete, against the same record the quote came from.</li>
-        <li>Booking automation writes a confirmed slot into the calendar and the customer record together, so the two cannot drift apart.</li>
-        <li>Inbox triage reads incoming email, files it against the right customer, and surfaces only what needs a human decision.</li>
-        <li>Follow-up sequences chase an unanswered quote on a schedule and stop the instant the customer replies.</li>
-        <li>An <a href="ai-receptionist-south-africa.html">AI receptionist</a> writes the call outcome straight into the record instead of leaving it in a notebook.</li>
-        <li>A <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbot</a> logs the conversation against the customer, so whoever speaks to them next can see it.</li>
+        <li>Automated quoting builds the quote from the job&rsquo;s own variables and sends it without a template.</li>
+        <li>Automated invoicing raises the invoice when work is marked complete, against the record the quote came from.</li>
+        <li>Booking automation writes a confirmed slot into the calendar and the record together, so neither can drift.</li>
+        <li>Inbox triage files incoming email against the right customer and surfaces only what needs a human.</li>
+        <li>Follow-up sequences chase an unanswered quote and stop the instant the customer replies.</li>
+        <li>An <a href="ai-receptionist-south-africa.html">AI receptionist</a> writes the call outcome into the record instead of a notebook.</li>
+        <li>A <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbot</a> logs the conversation against the customer who had it.</li>
       </ul>
-      <p>The distinction between a scripted bot and an agent that can actually write to a record is worth understanding before you scope any of this &mdash; we set it out in <a href="ai-agent-vs-chatbot-difference.html">AI agent versus chatbot</a>. For what this looks like in ordinary businesses, see our <a href="small-business-ai-workflow-automation-examples.html">small business workflow automation examples</a> and the broader <a href="workflow-automation-south-africa.html">workflow automation</a> service.</p>
+      <p>Whether a bot can write to a record is the real dividing line, set out in <a href="ai-agent-vs-chatbot-difference.html">AI agent versus chatbot</a>. For everyday cases, see our <a href="small-business-ai-workflow-automation-examples.html">workflow automation examples</a> and the wider <a href="workflow-automation-south-africa.html">workflow automation</a> service.</p>
 
       <h2>What if I already have a CRM and don&rsquo;t want to replace it?</h2>
-      <p><strong>Then keep it, and wire things into it.</strong> Much of the value businesses expect from a new CRM actually comes from the connections around it rather than the CRM itself. Cognexa integrates WhatsApp, the phone line, the website enquiry form and the shared inbox into the system a South African business already pays for, and builds the automation on top of that.</p>
-      <p>This is a separate piece of work from a custom build, and it is usually the sensible first step. It is faster, it costs less, and it answers the build-versus-buy question with evidence instead of opinion: once the enquiries, calls and messages are all landing in one place, you can see whether the remaining friction is a data problem your existing CRM can hold, or a shape problem it never will.</p>
-      <p>Typical integration work includes routing WhatsApp conversations to the right record, pushing AI voice agent call summaries into the activity log, syncing the calendar so bookings and availability agree, and connecting invoicing so finance is not rekeying what sales already captured. The four things we build sit together on the <a href="/">Cognexa homepage</a>, and the reasoning behind them runs through our <a href="blog.html">insights on AI automation in South Africa</a>.</p>
+      <p><strong>Then keep it, and wire things into it.</strong> Much of the value businesses expect from a new CRM actually comes from the connections around it. Cognexa integrates WhatsApp, the phone line, the website enquiry form and the shared inbox into the system a South African business already pays for.</p>
+      <p>This is separate work from a custom build, and usually the sensible first step. It is faster, cheaper, and it answers the build-versus-buy question with evidence: once enquiries, calls and messages land in one place, you can see whether the friction left is a data problem or a shape problem.</p>
+      <p>Typical work routes WhatsApp conversations to the right record, pushes voice agent call summaries into the activity log, syncs the calendar so bookings and availability agree, and connects invoicing so finance stops rekeying what sales captured. The four things we build sit on the <a href="/">Cognexa homepage</a>, with the reasoning in our <a href="blog.html">insights on AI automation</a>.</p>
 
       <h2>What does a custom CRM cost, and how long does it take?</h2>
-      <p><strong>Cognexa quotes one fixed monthly figure in Rand after a free scoping call, with no minimum contract.</strong> There is no honest list price for custom CRM development, because the same brief costs very different amounts depending on how many people use it, how many systems it must talk to, and how much old data has to come across intact.</p>
+      <p><strong>Cognexa quotes one fixed monthly figure in Rand after a free scoping call, with no minimum contract.</strong> There is no honest list price for custom CRM development, because the same brief costs very different amounts depending on how many people use it, how many systems it talks to, and how much data moves.</p>
       <ul>
-        <li>The number of distinct user roles drives cost, because each role needs its own screens, permissions and testing.</li>
-        <li>Every integration adds work, and an integration with a system that has no proper API adds considerably more.</li>
+        <li>The number of user roles drives cost, because each needs its own screens, permissions and testing.</li>
+        <li>Every integration adds work, and a system with no proper API adds considerably more.</li>
         <li>Data migration is routinely underestimated, because historical records are messier than anyone remembers.</li>
-        <li>Reporting depth moves the figure, since a live operational dashboard costs more than a monthly export.</li>
-        <li>AI agents writing into the record change the build, because anything an agent writes needs validation and an audit trail.</li>
-        <li>Field use changes the front end substantially, because a phone in a bakkie has different constraints to a desk.</li>
+        <li>Reporting depth moves the figure, since a live dashboard costs more than a monthly export.</li>
+        <li>AI agents writing into the record need validation and an audit trail, which lengthens the build.</li>
       </ul>
-      <p>Timeline follows the same logic. A build that ships the single worst workflow first, in front of real users, tells you more in a few weeks than a full specification tells you in a quarter. We explain how we phase that, and how we think about payback, in <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to set up and see a return</a>. Our approach to quoting is set out on our <a href="pricing.html">pricing page</a>, and for the voice side specifically there is a breakdown of <a href="ai-receptionist-cost-south-africa.html">AI receptionist costs in South Africa</a>.</p>
+      <p>Timeline follows the same logic: a build that ships the worst workflow first, in front of real users, teaches you more in weeks than a specification does in a quarter. We explain phasing and payback in <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes</a>, quoting sits on our <a href="pricing.html">pricing page</a>, and voice costs in <a href="ai-receptionist-cost-south-africa.html">AI receptionist cost in South Africa</a>.</p>
 
       <aside class="post-cta">
         <h2>Want to know whether a custom CRM is right for you?</h2>
-        <p>Cognexa builds custom CRMs and wires WhatsApp, calls, quoting and invoicing into the systems South African businesses already run. Scoping is free, you get one fixed monthly figure in Rand before you commit, and there is no minimum contract. If off-the-shelf is the better answer, we will tell you.</p>
+        <p>Tell us how your business quotes, books and invoices. Scoping is free, you get one fixed monthly figure in Rand, and there is no minimum contract. If off-the-shelf is the better answer, we say so.</p>
         <a class="btn btn-primary" href="/#contact">Start your build</a>
-        <a class="btn btn-ghost" href="pricing.html">See how we price work</a>
+        <a class="btn btn-ghost" href="pricing.html">How we price work</a>
         <p class="post-cta-contact">Or <a href="https://wa.me/27662412155" rel="nofollow noopener">message us on WhatsApp</a> or call <a href="tel:+27662412155">066 241 2155</a> &mdash; we reply within one business day.</p>
       </aside>
 
@@ -336,40 +315,34 @@
         <h2 id="faq-heading">Questions people ask</h2>
 
         <h3>Is it worth building your own CRM?</h3>
-        <p>For most businesses, no. An off-the-shelf CRM with custom fields and an automation builder covers an ordinary sales process at a fraction of the effort. Building is worth it when the process is unusual enough that the product forces daily workarounds, or when the CRM itself is a competitive advantage.</p>
+        <p>For most businesses, no. An off-the-shelf CRM with custom fields and an automation builder covers an ordinary sales process for far less effort. Building pays only when the product forces daily workarounds.</p>
 
         <h3>How much does it cost to build a custom CRM in South Africa?</h3>
-        <p>There is no meaningful list price, and any agency quoting one before seeing the process is guessing. The cost is driven by user roles, integrations, data migration and reporting depth. Cognexa runs a free scoping call and then quotes one fixed monthly figure in Rand, with no minimum contract.</p>
+        <p>There is no meaningful list price, and any agency quoting one before seeing your process is guessing. Cost is driven by user roles, integrations, data migration and reporting depth. Cognexa scopes for free.</p>
 
         <h3>How long does it take to build a custom CRM?</h3>
-        <p>Longer than buying a subscription and shorter than most people fear, because a first useful version rarely needs every feature. A sensible build ships the one workflow that hurts most, puts it in front of real users, and grows from there rather than launching everything at once.</p>
+        <p>Longer than buying a subscription, shorter than most people fear, because a first useful version rarely needs every feature. A sensible build ships the workflow that hurts most and grows from there.</p>
 
         <h3>Can I customise HubSpot or Zoho instead of building from scratch?</h3>
-        <p>Usually yes, and it is normally the right first move. Custom objects, custom fields, automation builders and open APIs cover a large share of what businesses ask for. The limit appears when a customisation depends on vendor behaviour that a platform update can change underneath you.</p>
+        <p>Usually yes, and it is normally the right first move. Custom objects, automation builders and open APIs cover a large share of what businesses ask for, until a vendor update changes the behaviour underneath.</p>
 
         <h3>Who owns the code and the data in a custom CRM?</h3>
-        <p>Settle this in writing before the first line is written. Cognexa hands over the source code and the database to the client, and the client chooses where the system is hosted. Ownership of the data matters most, because it is what makes leaving any supplier survivable.</p>
-
-        <h3>Is a custom CRM POPIA compliant by default?</h3>
-        <p>No system is compliant by default, custom or otherwise. POPIA compliance is about lawful purpose, security safeguards, retention limits and honouring data subject requests. A custom build makes those obligations easier to meet, because deletion, access logging and retention rules can be built in rather than worked around.</p>
+        <p>Settle this in writing before the first line is written. Ask any developer to put it in the contract: who holds the source code, who holds the database, and who chooses the hosting. Owning the data is what makes leaving any supplier survivable.</p>
 
         <h3>What happens if the developer disappears?</h3>
-        <p>This is the real risk of building, and it deserves a straight answer. Insist on your own source code repository, documented setup steps, standard technologies rather than exotic ones, and a database another developer can read. Those four things turn a disaster into an inconvenience.</p>
-
-        <h3>Can a custom CRM connect to WhatsApp?</h3>
-        <p>Yes. The WhatsApp Business Platform exposes an API that a custom system can send and receive messages through, so conversations land against the right customer record automatically. The same applies to a phone line answered by an AI voice agent and to a shared email inbox.</p>
+        <p>This is the real risk of building, and it deserves a straight answer. Insist on your own code repository, documented setup steps, ordinary technologies, and a database another developer can read.</p>
       </section>
 
       <section class="post-sources" aria-labelledby="sources-heading">
         <h2 id="sources-heading">Sources &amp; further reading</h2>
         <ol>
-          <li><a href="https://www.gov.za/documents/protection-personal-information-act" rel="nofollow noopener">Protection of Personal Information Act 4 of 2013 &mdash; South African Government</a></li>
-          <li><a href="https://popia.co.za/section-72-transfers-of-personal-information-outside-republic/" rel="nofollow noopener">POPIA Section 72 &mdash; Transfers of personal information outside Republic</a></li>
-          <li><a href="https://popia.co.za/section-109-administrative-fines/" rel="nofollow noopener">POPIA Section 109 &mdash; Administrative fines</a></li>
+          <li><a href="https://www.gov.za/documents/protection-personal-information-act" rel="nofollow noopener">POPIA &mdash; South African Government</a></li>
+          <li><a href="https://popia.co.za/section-72-transfers-of-personal-information-outside-republic/" rel="nofollow noopener">POPIA section 72 &mdash; transborder flows</a></li>
+          <li><a href="https://popia.co.za/section-109-administrative-fines/" rel="nofollow noopener">POPIA section 109 &mdash; administrative fines</a></li>
           <li><a href="https://inforegulator.org.za/" rel="nofollow noopener">Information Regulator (South Africa)</a></li>
-          <li><a href="https://legal.hubspot.com/hubspot-product-and-services-catalog" rel="nofollow noopener">HubSpot &mdash; Product and Services Catalog</a></li>
-          <li><a href="https://www.resbank.co.za/en/home/what-we-do/statistics/key-statistics/current-market-rates" rel="nofollow noopener">South African Reserve Bank &mdash; Current market rates</a></li>
-          <li><a href="https://developers.facebook.com/docs/whatsapp/pricing" rel="nofollow noopener">Meta for Developers &mdash; WhatsApp Business Platform pricing</a></li>
+          <li><a href="https://legal.hubspot.com/hubspot-product-and-services-catalog" rel="nofollow noopener">HubSpot product and services catalog</a></li>
+          <li><a href="https://www.resbank.co.za/en/home/what-we-do/statistics/key-statistics/current-market-rates" rel="nofollow noopener">SARB current market rates</a></li>
+          <li><a href="https://developers.facebook.com/docs/whatsapp/pricing" rel="nofollow noopener">Meta &mdash; WhatsApp Business Platform pricing</a></li>
         </ol>
       </section>
     </article>
@@ -388,10 +361,15 @@
       </div>
       <nav class="footer-nav" aria-label="Footer">
         <a href="/#services">Services</a>
-        <a href="/#process">Process</a>
-        <a href="/#work">Work</a>
+        <a href="ai-receptionist-south-africa.html">AI receptionists</a>
+        <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a>
+        <a href="workflow-automation-south-africa.html">Workflow automation</a>
+        <a href="custom-crm-development-south-africa.html">Custom CRMs</a>
+        <a href="pricing.html">Pricing</a>
         <a href="blog.html">Insights</a>
+        <a href="about.html">About</a>
         <a href="/#contact">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
       </nav>
     </div>
     <p class="footer-copy">&copy; <span class="footer-year">2026</span> Cognexa</p>

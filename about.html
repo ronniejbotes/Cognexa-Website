@@ -46,43 +46,23 @@
   <meta name="twitter:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <!-- Resource hints. The two latin subsets are what actually render this page —
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="stylesheet" href="css/styles.css?v=26">
 
   <!--
-    ==================================================================
-    ⚠️  TWO THINGS ONLY YOU CAN ADD — AND THEY MATTER MORE THAN ANY
-        OTHER SINGLE CHANGE ON THIS SITE
-    ==================================================================
-    Google's quality systems ask, in effect, "who is behind this?" Right
-    now this site answers: nobody. There is no named human anywhere, and
-    every blog post's schema author resolves to the company rather than a
-    person. For a services business with no brand recognition, that is
-    the cheapest E-E-A-T gap to close and the hardest one to fake.
-
-    1. THE FOUNDER SECTION
-       Search this file for "FOUNDER SECTION" below. Uncomment it and fill
-       in: your real name, a real photo, and 150–250 words on why you know
-       automation — what you did before, what you have actually built.
-       Specifics beat adjectives. "I spent six years wiring accounting
-       systems together for SA franchises" outperforms "passionate about AI".
-
-    2. THE Person SCHEMA + BYLINES
-       Uncomment the "Person" node in the JSON-LD below and fill it in.
-       Then, in all seven blog posts, change:
-           "author": { "@type": "Organization", ... }
-       to:
-           "author": { "@id": "https://cognexa.co.za/about.html#founder" }
-       and change the visible byline "By the Cognexa team" to your name,
-       linked to this page. That retroactively fixes authorship on every
-       article you have already published.
-
-    A NOTE ON TESTIMONIALS: plain HTML testimonials with a real name and
-    company are fine and encouraged. Do NOT add "review" or
-    "aggregateRating" markup — Google treats reviews an entity controls
-    about itself as self-serving, and it makes the whole domain ineligible
-    for star review features. Stars come from your Google Business Profile,
-    not from markup on your own site.
-    ==================================================================
+    Founder photo lives at assets/images/founders.jpg (Ronnie left, Keegan right).
+    Both founders carry a Person node in the @graph below and are listed as
+    "founder" on the Organization node in index.html — that is what lets Google
+    resolve "Cognexa" to this business rather than to one of the several other
+    companies using the name.
   -->
 
   <script type="application/ld+json">
@@ -101,6 +81,48 @@
       "dateModified": "2026-08-09"
     },
     {
+      "@type": "Person",
+      "@id": "https://cognexa.co.za/about.html#ronnie",
+      "name": "Ronnie James Botes",
+      "givenName": "Ronnie",
+      "familyName": "Botes",
+      "jobTitle": "Co-founder",
+      "worksFor": { "@id": "https://cognexa.co.za/#organization" },
+      "image": "https://cognexa.co.za/assets/images/founders.jpg",
+      "homeLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Centurion",
+          "addressRegion": "Gauteng",
+          "addressCountry": "ZA"
+        }
+      },
+      "description": "Co-founder of Cognexa. Working in SEO and web development since 2019; leads search visibility, site architecture and front-end work.",
+      "knowsAbout": ["search engine optimisation", "web development", "AI automation", "AI voice agents", "workflow automation", "site architecture"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://cognexa.co.za/about.html#keegan",
+      "name": "Keegan Shane Haumann",
+      "givenName": "Keegan",
+      "familyName": "Haumann",
+      "jobTitle": "Co-founder",
+      "worksFor": { "@id": "https://cognexa.co.za/#organization" },
+      "image": "https://cognexa.co.za/assets/images/founders.jpg",
+      "homeLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Centurion",
+          "addressRegion": "Gauteng",
+          "addressCountry": "ZA"
+        }
+      },
+      "description": "Co-founder of Cognexa. Full-stack developer of five years; leads integrations, data and the systems behind each automation build.",
+      "knowsAbout": ["full-stack development", "systems integration", "AI automation", "AI chatbots", "WhatsApp automation", "custom CRM development"]
+    },
+    {
       "@type": "BreadcrumbList",
       "@id": "https://cognexa.co.za/about.html#breadcrumb",
       "itemListElement": [
@@ -112,25 +134,6 @@
 }
   </script>
 
-  <!--
-    UNCOMMENT AND FILL IN once the founder section below is live. Add this
-    node to the @graph above (mind the comma), and add "founder":
-    { "@id": "https://cognexa.co.za/about.html#founder" } to the
-    ProfessionalService node in index.html.
-
-    {
-      "@type": "Person",
-      "@id": "https://cognexa.co.za/about.html#founder",
-      "name": "FULL NAME",
-      "jobTitle": "Founder",
-      "worksFor": { "@id": "https://cognexa.co.za/#organization" },
-      "image": "https://cognexa.co.za/assets/images/founder.jpg",
-      "description": "One sentence on what this person actually knows.",
-      "sameAs": [
-        "https://www.linkedin.com/in/YOUR-PROFILE/"
-      ]
-    }
-  -->
 </head>
 <body class="page-static">
   <script>/* Runs during parse, before first paint — see index.html for why. */document.body.classList.add('js-enabled');</script>
@@ -187,28 +190,25 @@
 
       <p>We also design immersive 3D websites &mdash; the one you are reading is one of them &mdash; but that is the smallest part of what we do, and it exists because a business that has automated its operations usually wants a front door that matches.</p>
 
-      <!--
-        ==============================================================
-        FOUNDER SECTION — uncomment, fill in, and add a real photo at
-        assets/images/founder.jpg (square, at least 400×400).
-        This is the single highest-value block on the page.
-        ==============================================================
-
       <h2>Who is behind Cognexa?</h2>
 
-      <img class="post-hero" src="assets/images/founder.jpg" width="400" height="400" alt="DESCRIBE THE PHOTO" loading="lazy" decoding="async">
+      <p><strong>Cognexa is run by two co-founders, Ronnie James Botes and Keegan Shane Haumann, from Centurion in Gauteng.</strong> There is no account manager layer and no offshore build team &mdash; the two people who scope your project are the two people who build it, and you deal with them directly from the first call to the day it goes live.</p>
 
-      <p><strong>Cognexa is run by FULL NAME, from Centurion.</strong> WRITE 150–250 WORDS
-      HERE. What did you do before this? What have you actually built, and for what kind
-      of business? What did you learn from it that a buyer would care about? Be specific
-      and concrete — named tools, real problems, actual years. Specifics are what a
-      reader (and Google's quality systems) treat as evidence; adjectives are not.</p>
+      <figure class="founders">
+        <img class="founders-photo" src="assets/images/founders.jpg" width="768" height="1376" alt="Cognexa co-founders Ronnie James Botes and Keegan Shane Haumann, photographed together in suits against a grey background" loading="lazy" decoding="async">
+        <figcaption>Ronnie James Botes (left) and Keegan Shane Haumann (right), co-founders of Cognexa.</figcaption>
+      </figure>
 
-      <p>Connect on <a href="https://www.linkedin.com/in/YOUR-PROFILE/">LinkedIn</a> or
-      email <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a>.</p>
+      <h3>Ronnie James Botes &mdash; Co-founder</h3>
+      <p>Ronnie has worked in SEO and web development since 2019. Most of that was spent at a company he is under NDA about, so the client names stay unsaid &mdash; but the work was the unglamorous half of the web: making sites load, making them findable, and making the two things stop fighting each other. At Cognexa he handles search visibility, site architecture and the front end of what you see.</p>
 
-        ==============================================================
-      -->
+      <h3>Keegan Shane Haumann &mdash; Co-founder</h3>
+      <p>Keegan is a full-stack developer with five years behind him, at the same company and under the same NDA. He works across the whole stack, which is what an automation build actually demands &mdash; a voice agent that books an appointment is only as good as the integration writing into the calendar behind it. At Cognexa he owns the systems side: integrations, data, and the parts nobody sees.</p>
+
+      <h3>Why automation, and not something else</h3>
+      <p><strong>We have been using AI in our own work since it became usable, long before it was a service we sold.</strong> Not as a novelty &mdash; as a way to get the repetitive parts of the job off our desks so the hours went to work that actually needed a person. Doing that for ourselves for years is what turned into Cognexa: we already knew which tasks a machine handles well, which ones it quietly gets wrong, and where handing something over costs more than it saves. That is the same judgement we bring to scoping your build, and it is why we will tell you when automating something is not worth it.</p>
+
+      <p>You can reach either of us on <a href="tel:+27662412155">066 241 2155</a>, on <a href="https://wa.me/27662412155">WhatsApp</a>, or at <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a>.</p>
 
       <h2>How does Cognexa work with clients?</h2>
 

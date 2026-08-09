@@ -50,6 +50,15 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
+  <!-- Resource hints. The two latin subsets are what actually render this page —
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="stylesheet" href="css/styles.css?v=26">
 
   <script type="application/ld+json">
@@ -63,7 +72,7 @@
       "description": "AI agent vs chatbot in plain English: what each actually does, what they cost, and which one your business should build first.",
       "image": "https://cognexa.co.za/assets/images/blog-agent-vs-chatbot.jpg",
       "datePublished": "2026-07-26",
-      "dateModified": "2026-07-26",
+      "dateModified": "2026-08-09",
       "author": {
         "@type": "Organization",
         "name": "Cognexa",
@@ -135,9 +144,9 @@
 
       <p class="post-eyebrow">AI chatbots</p>
       <h1>AI agent vs chatbot: what&rsquo;s the difference, and which does your business need?</h1>
-      <p class="post-meta">By the Cognexa team &middot; <time datetime="2026-07-26">26 July 2026</time></p>
+      <p class="post-meta">By <a href="about.html">the Cognexa team</a> &middot; <time datetime="2026-07-26">26 July 2026</time> &middot; Updated <time datetime="2026-08-09">9 August 2026</time></p>
 
-      <img class="post-hero" src="assets/images/blog-agent-vs-chatbot.jpg" width="1200" height="675" alt="A single glowing speech bubble beside a branching network of connected nodes" loading="eager" decoding="async">
+      <img class="post-hero" src="assets/images/blog-agent-vs-chatbot.jpg" width="1200" height="675" alt="A single glowing speech bubble beside a branching network of connected nodes" loading="eager" fetchpriority="high" decoding="async">
 
       <div class="post-answer">A chatbot answers; an AI agent acts. A chatbot replies to questions using information it has been given, and stops there. An AI agent takes a goal, plans the steps, and writes to your systems &mdash; checking the calendar, booking the slot, updating the CRM, sending the follow-up. Agents cost more to run per task, so most businesses in 2026 use both: a chatbot at the front door handling common questions, and agents behind it doing the work that used to land on someone&rsquo;s desk.</div>
 
@@ -157,6 +166,56 @@
       </ul>
       <p>That last one is why agents need more careful engineering than chatbots. A chatbot that gets something wrong gives a bad answer. An agent that gets something wrong books the wrong appointment, or emails the wrong customer. The blast radius is different, which is why every agent we build has explicit limits on what it may do without a human confirming.</p>
 
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison of an AI chatbot and an AI agent">
+        <table>
+          <caption>Chatbot vs AI agent &mdash; what changes once a system can write into yours.</caption>
+          <thead>
+            <tr>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">Chatbot</th>
+              <th scope="col">AI agent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">What it does</th>
+              <td>Answers a question from what it has been given, then stops</td>
+              <td>Takes a goal, plans the steps and finishes the task</td>
+            </tr>
+            <tr>
+              <th scope="row">Needs integrations</th>
+              <td>Often none &mdash; your own content is usually enough</td>
+              <td>Yes &mdash; authenticated access to every system it touches</td>
+            </tr>
+            <tr>
+              <th scope="row">Can take actions</th>
+              <td>No, read-only; at best it hands over a link</td>
+              <td>Yes, read-write; it changes records in live systems</td>
+            </tr>
+            <tr>
+              <th scope="row">Handles unscripted requests</th>
+              <td>In conversation yes, but only up to the point where work has to be done</td>
+              <td>Yes, including multi-step requests it has not seen before</td>
+            </tr>
+            <tr>
+              <th scope="row">Build effort</th>
+              <td>Content and conversation design</td>
+              <td>Higher &mdash; permissions, error handling and testing per system</td>
+            </tr>
+            <tr>
+              <th scope="row">Running cost per task</th>
+              <td>Lower, one lookup and one reply</td>
+              <td>Higher &mdash; more reasoning steps and multiple system calls</td>
+            </tr>
+            <tr>
+              <th scope="row">Typical use</th>
+              <td>Hours, pricing and product questions; qualifying an enquiry</td>
+              <td>Booking, rescheduling, quoting, invoicing, CRM updates, follow-ups</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <h2>Does an AI agent cost more than a chatbot?</h2>
       <p>Yes, on two fronts, and it&rsquo;s worth separating them.</p>
       <p><strong>Running cost.</strong> Industry write-ups in 2026 put an agent at roughly three to ten times a chatbot&rsquo;s cost per resolved task, because each agent run involves more reasoning steps, longer context and multiple system calls rather than a single lookup and reply. That multiple sounds alarming until you weigh it against the alternative: the comparison isn&rsquo;t agent-versus-chatbot, it&rsquo;s agent-versus-the-half-hour-of-admin it replaced.</p>
@@ -164,7 +223,7 @@
 
       <h2>Which does my business actually need first?</h2>
       <p>Start by looking at where the time actually goes. If your team&rsquo;s hours disappear into <em>answering the same questions</em>, a chatbot recovers most of that on its own. If the hours disappear into <em>doing the same admin</em> after the questions are answered, a chatbot will not touch the problem &mdash; you need something that can act.</p>
-      <p>A rough test: write down the last twenty enquiries your business handled. For each one, note whether the work ended when someone gave an answer, or continued into booking, quoting, invoicing, updating a record or chasing a follow-up. If most ended at the answer, build the chatbot first. If most continued, the answer was never the bottleneck.</p>
+      <p>A rough test: write down the last twenty enquiries your business handled. For each one, note whether the work ended when someone gave an answer, or continued into <a href="workflow-automation-south-africa.html">booking, quoting, invoicing, updating a record or chasing a follow-up</a>. If most ended at the answer, build the chatbot first. If most continued, the answer was never the bottleneck.</p>
       <p>In practice most South African small businesses we scope have a mix, and the highest-value automation sits in the second group &mdash; the quiet admin nobody bills for. Our guide to <a href="small-business-ai-workflow-automation-examples.html">12 workflows that pay off first</a> covers where that work usually hides.</p>
 
       <h2>Do I have to choose one or the other?</h2>
@@ -182,13 +241,21 @@
       <p>The same scepticism applies to timelines and payback claims &mdash; we cover realistic ones in <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to set up</a>.</p>
 
       <h2>How Cognexa approaches it</h2>
-      <p>We scope the work before naming the technology, because the label matters far less than what the thing is allowed to do. Most builds start with a <a href="/#station-chat">chatbot across your website and WhatsApp</a> to catch and qualify enquiries, then add <a href="/#station-workflow">agent-driven workflow automation</a> behind it once we can see exactly which admin is eating the hours. Every action an agent can take without a human is agreed with you upfront, in writing, before it goes live.</p>
+      <p>We scope the work before naming the technology, because the label matters far less than what the thing is allowed to do. Most builds start with a <a href="whatsapp-ai-chatbot-south-africa.html">chatbot across your website and WhatsApp</a> to catch and qualify enquiries, then add <a href="workflow-automation-south-africa.html">agent-driven workflow automation</a> behind it once we can see exactly which admin is eating the hours. Every action an agent can take without a human is agreed with you upfront, in writing, before it goes live.</p>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp and website AI chatbots for South African businesses</a> &mdash; what a chatbot at the front door actually handles.</li>
+        <li><a href="workflow-automation-south-africa.html">Workflow automation for quoting, invoicing, bookings and CRM hygiene</a> &mdash; the admin an agent takes off your team.</li>
+        <li><a href="small-business-ai-workflow-automation-examples.html">12 AI workflow automations that pay off first</a> &mdash; where the wasted hours usually hide.</li>
+        <li><a href="ai-receptionist-south-africa.html">AI receptionists for South African businesses</a> &mdash; the same agent logic, on your phone line.</li>
+      </ul>
 
       <aside class="post-cta">
         <h2>Put it to work in your business</h2>
         <p>Cognexa designs and builds AI chatbots, voice agents and automated workflows &mdash; tell us what eats your team&rsquo;s hours and we&rsquo;ll map the automation that gives them back.</p>
         <a class="btn btn-primary" href="/#contact">Start your build</a>
-        <p class="post-cta-contact">Or call <a href="tel:+27662412155">066 241 2155</a> &mdash; scoping is free and we reply within one business day.</p>
+        <p class="post-cta-contact">Or call <a href="tel:+27662412155">066 241 2155</a> &mdash; <a href="pricing.html">scoping is free</a> and we reply within one business day.</p>
       </aside>
 
       <section aria-labelledby="faq-heading">

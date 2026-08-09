@@ -66,6 +66,14 @@
         "email": "hello@cognexa.co.za",
         "telephone": "+27 66 241 2155",
         "priceRange": "$$",
+        "founder": [
+          { "@id": "https://cognexa.co.za/about.html#ronnie" },
+          { "@id": "https://cognexa.co.za/about.html#keegan" }
+        ],
+        "employee": [
+          { "@id": "https://cognexa.co.za/about.html#ronnie" },
+          { "@id": "https://cognexa.co.za/about.html#keegan" }
+        ],
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Centurion",
@@ -166,7 +174,7 @@
       "name": "Will an AI voice agent sound robotic \u2014 and when does a human take over?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Modern voice models handle everyday calls naturally, and we tune pacing, accent and vocabulary to your brand before launch. Just as important: the agent knows its limits. When a call needs judgement or empathy, it hands over warmly to your team with the full conversation context \u2014 mid-call if needed. For the honest three-way comparison, see AI voice agent vs IVR vs human receptionist."
+        "text": "Modern voice models handle everyday calls naturally, and we tune pacing, accent and vocabulary to your brand before launch. Just as important: the agent knows its limits. When a call needs judgement or empathy, it hands over warmly to your team with the full conversation context \u2014 mid-call if needed. For the honest three-way comparison, see AI receptionist vs human receptionist vs answering service."
       }
     },
     {
@@ -199,6 +207,15 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
+  <!-- Resource hints. The two latin subsets are what actually render this page —
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="stylesheet" href="css/styles.css?v=26">
 </head>
 <body>
@@ -472,7 +489,7 @@
 
         <article class="local-block">
           <h3>AI voice agents that answer like your best receptionist</h3>
-          <p>An AI receptionist picks up each inbound call &mdash; after hours, over weekends, during the rush your front desk dreads &mdash; books straight into your calendar and hands over warmly to a human whenever a call needs judgement. No menu mazes, no hold music. Weighing your options? Read our comparison of <a href="ai-receptionist-vs-human-receptionist.html">AI voice agents, IVR systems and human receptionists</a> before you decide.</p>
+          <p>An AI receptionist picks up each inbound call &mdash; after hours, over weekends, during the rush your front desk dreads &mdash; books straight into your calendar and hands over warmly to a human whenever a call needs judgement. No menu mazes, no hold music. Weighing your options? Read our comparison of <a href="ai-receptionist-vs-human-receptionist.html">AI receptionists, human receptionists and answering services</a> before you decide.</p>
         </article>
 
         <article class="local-block">
@@ -511,7 +528,7 @@
 
       <details class="faq-item">
         <summary>Will an AI voice agent sound robotic &mdash; and when does a human take over?</summary>
-        <p>Modern voice models handle everyday calls naturally, and we tune pacing, accent and vocabulary to your brand before launch. Just as important: the agent knows its limits. When a call needs judgement or empathy, it hands over warmly to your team with the full conversation context &mdash; mid-call if needed. For the honest three-way comparison, see <a href="ai-receptionist-vs-human-receptionist.html">AI voice agent vs IVR vs human receptionist</a>.</p>
+        <p>Modern voice models handle everyday calls naturally, and we tune pacing, accent and vocabulary to your brand before launch. Just as important: the agent knows its limits. When a call needs judgement or empathy, it hands over warmly to your team with the full conversation context &mdash; mid-call if needed. For the honest three-way comparison, see <a href="ai-receptionist-vs-human-receptionist.html">AI receptionist vs human receptionist vs answering service</a>.</p>
       </details>
 
       <details class="faq-item">
