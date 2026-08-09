@@ -29,6 +29,59 @@
   }
 
   /* ====================================================================
+   * Analytics — conversion events
+   *
+   * The only outcomes that matter on this site are: someone messages us on
+   * WhatsApp, calls, emails, or completes the intake questionnaire. None of
+   * those are page views, so without explicit events GA4 records a visit and
+   * nothing else — leaving no way to tell a useful search query from a
+   * useless one.
+   *
+   * gtag is defined inline in <head> and queues into dataLayer before the
+   * library loads, so calling it early is safe. It is still feature-detected
+   * because the analytics snippet is absent on 404.html.
+   * ================================================================== */
+  function track(name, params) {
+    if (typeof window.gtag !== 'function') return;
+    try {
+      window.gtag('event', name, params || {});
+    } catch (err) {
+      /* Analytics must never break the page. */
+    }
+  }
+
+  function initAnalytics() {
+    /* Delegated so links added later (new pages, injected CTAs) are covered
+       without re-binding. Capture phase: `tel:` and `mailto:` hand off to the
+       OS almost immediately, and a bubbling listener can lose the race. */
+    document.addEventListener(
+      'click',
+      function (event) {
+        var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+        if (!link) return;
+
+        var href = link.getAttribute('href') || '';
+        var where = link.closest('.site-nav')
+          ? 'nav'
+          : link.closest('.site-footer')
+            ? 'footer'
+            : link.closest('.intake')
+              ? 'intake'
+              : 'body';
+
+        if (href.indexOf('https://wa.me/') === 0) {
+          track('whatsapp_click', { link_location: where, page_path: location.pathname });
+        } else if (href.indexOf('tel:') === 0) {
+          track('phone_click', { link_location: where, page_path: location.pathname });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('email_click', { link_location: where, page_path: location.pathname });
+        }
+      },
+      true
+    );
+  }
+
+  /* ====================================================================
    * 3D boot gate
    * ================================================================== */
   var sceneActive = false;
@@ -739,6 +792,7 @@
     }
 
     function submitViaMailto() {
+      track('intake_submit', { method: 'mailto', page_path: location.pathname });
       var lines = [
         'Name: ' + fieldVal('name'),
         'Phone: ' + fieldVal('phone'),
@@ -805,6 +859,7 @@
         })
         .then(function (response) {
           if (!response.ok) throw new Error('HTTP ' + response.status);
+          track('intake_submit', { method: 'form', page_path: location.pathname });
           setSuccessCopy("We've got your answers — we reply within one business day.");
           showSuccess();
         })
@@ -843,6 +898,7 @@
         hideTimer = null;
       }
       overlay.hidden = false;
+      track('intake_open', { page_path: location.pathname });
       body.classList.add('intake-open');
       docEl.classList.add('intake-open'); /* scroll lock lives on <html> */
       void overlay.offsetWidth; /* flush so the backdrop transition runs */
@@ -1295,6 +1351,7 @@
    * Boot
    * ================================================================== */
   function init() {
+    initAnalytics();
     initNav();
     initCounters();
     initForm();

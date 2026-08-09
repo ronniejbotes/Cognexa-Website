@@ -1,8 +1,18 @@
+# ---------------------------------------------------------------
 # Search engines
+# ---------------------------------------------------------------
 User-agent: *
 Allow: /
 
-# AI answer engines — citation/search fetchers are welcome
+# ---------------------------------------------------------------
+# AI retrieval & citation fetchers.
+#
+# These are the crawlers that fetch a page at answer time in order to
+# cite it. Being readable to them is how the site shows up inside
+# ChatGPT, Claude, Perplexity, Copilot and Google's AI surfaces —
+# which, for a business whose buyers ask AI questions, matters at
+# least as much as the blue links.
+# ---------------------------------------------------------------
 User-agent: OAI-SearchBot
 Allow: /
 
@@ -18,7 +28,46 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
 User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+# ---------------------------------------------------------------
+# Training corpora.
+#
+# Deliberately allowed: brand knowledge baked into model weights is
+# how an assistant names Cognexa without having to search first.
+# ---------------------------------------------------------------
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://cognexa.co.za/sitemap.xml

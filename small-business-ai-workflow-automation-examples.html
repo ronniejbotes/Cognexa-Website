@@ -50,7 +50,7 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
-  <link rel="stylesheet" href="css/styles.css?v=25">
+  <link rel="stylesheet" href="css/styles.css?v=26">
 
   <script type="application/ld+json">
 {
@@ -105,7 +105,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-nav">
-    <a class="nav-brand" href="index.html">Cognexa</a>
+    <a class="nav-brand" href="/">Cognexa</a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
       <span class="sr-only">Menu</span>
@@ -117,17 +117,22 @@
     </button>
 
     <nav id="nav-menu" class="nav-menu" aria-label="Primary">
-      <a class="nav-link" href="index.html#services">Services</a>
-      <a class="nav-link" href="index.html#process">Process</a>
-      <a class="nav-link" href="index.html#work">Work</a>
+      <a class="nav-link" href="/#services">Services</a>
+      <a class="nav-link" href="/#process">Process</a>
+      <a class="nav-link" href="/#work">Work</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
       <a class="nav-link" href="blog.html">Insights</a>
-      <a class="nav-link" href="index.html#contact">Contact</a>
-      <a class="btn btn-primary" href="index.html#contact">Start your build</a>
+      <a class="nav-link" href="/#contact">Contact</a>
+      <a class="btn btn-primary" href="/#contact">Start your build</a>
     </nav>
   </header>
 
   <main id="main" tabindex="-1">
     <article class="post">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="blog.html">Insights</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">Workflow automation examples</span>
+      </nav>
+
       <p class="post-eyebrow">Workflow automation</p>
       <h1>What can you actually automate in a small business? 12 AI workflows that pay off first</h1>
       <p class="post-meta">By the Cognexa team &middot; <time datetime="2026-07-22">22 July 2026</time></p>
@@ -145,7 +150,7 @@
       <ol>
         <li><strong>First response on website chat and WhatsApp.</strong> Replaces a staff member checking messages between other jobs, or a contact form that sits unread until morning. Worth automating when enquiries regularly land after hours or get answered a day late.</li>
         <li><strong>Lead qualification and routing.</strong> Replaces someone manually reading every enquiry to work out if it's a real buyer or a tyre-kicker. Worth automating when your team spends real time on leads that were never going to convert.</li>
-        <li><strong>Inbound call answering.</strong> Replaces a receptionist, or nobody, picking up while you're on a job or on another call. A 2016 study by 411 Locals that tracked 85 small businesses across 58 industries for 30 days found only 37.8% of calls were answered live — the rest went to voicemail or nowhere at all. If that sounds familiar, a <a href="index.html#station-voice">voice agent</a> that answers every call is worth costing out against a <a href="ai-receptionist-cost-south-africa.html">receptionist's salary</a>.</li>
+        <li><strong>Inbound call answering.</strong> Replaces a receptionist, or nobody, picking up while you're on a job or on another call. A 2016 study by 411 Locals that tracked 85 small businesses across 58 industries for 30 days found only 37.8% of calls were answered live — the rest went to voicemail or nowhere at all. If that sounds familiar, a <a href="/#station-voice">voice agent</a> that answers every call is worth costing out against a <a href="ai-receptionist-cost-south-africa.html">receptionist's salary</a>.</li>
       </ol>
 
       <h2>Which admin workflows are worth automating?</h2>
@@ -180,7 +185,7 @@
         <li><strong>First contact on high-value, relationship-led deals.</strong> If the sale hinges on trust built face to face or voice to voice, automating the first touch can cost more than it saves.</li>
         <li><strong>Anything with a lot of exceptions.</strong> A process that's "usually X, but sometimes Y, unless Z" isn't ready. Automate the 80% that's predictable; keep a person on the 20% that isn't.</li>
       </ul>
-      <p>A well-built <a href="index.html#station-workflow">workflow automation</a> setup should make it obvious when a case needs a human, with full context handed over, not a dead end.</p>
+      <p>A well-built <a href="/#station-workflow">workflow automation</a> setup should make it obvious when a case needs a human, with full context handed over, not a dead end.</p>
 
       <h2>How do you pick your first workflow?</h2>
       <p>Don't start with the workflow that sounds most impressive. Start with the one that scores highest on three things: does it happen often, does it follow the same steps almost every time, and is it currently costing you time or money you can point to?</p>
@@ -193,7 +198,7 @@
       <aside class="post-cta">
         <h2>Put it to work in your business</h2>
         <p>Cognexa designs and builds AI chatbots, voice agents and automated workflows — tell us what eats your team&rsquo;s hours and we&rsquo;ll map the automation that gives them back.</p>
-        <a class="btn btn-primary" href="index.html#contact">Start your build</a>
+        <a class="btn btn-primary" href="/#contact">Start your build</a>
         <p>Prefer to talk it through? Call <a href="tel:+27662412155">066 241 2155</a> or email <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a>.</p>
       </aside>
 
@@ -234,18 +239,27 @@
         <p class="footer-brand">Cognexa</p>
         <p class="footer-tagline">AI business solutions, built in South Africa.</p>
         <p class="footer-contact"><a href="tel:+27662412155">066 241 2155</a> &middot; <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a></p>
+        <!-- Locality only, by choice: enough for the local-SEO signal (and it
+             matches the PostalAddress in the homepage schema) without publishing
+             a street address. Must stay byte-identical across every page. -->
+        <p class="footer-locality">Centurion, Gauteng, South Africa</p>
       </div>
       <nav class="footer-nav" aria-label="Footer">
-        <a href="index.html#services">Services</a>
-        <a href="index.html#process">Process</a>
-        <a href="index.html#work">Work</a>
+        <a href="/#services">Services</a>
+        <a href="ai-receptionist-south-africa.html">AI receptionists</a>
+        <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a>
+        <a href="workflow-automation-south-africa.html">Workflow automation</a>
+        <a href="custom-crm-development-south-africa.html">Custom CRMs</a>
+        <a href="pricing.html">Pricing</a>
         <a href="blog.html">Insights</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="about.html">About</a>
+        <a href="/#contact">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
       </nav>
     </div>
     <p class="footer-copy">&copy; <span class="footer-year">2026</span> Cognexa</p>
   </footer>
 
-  <script src="js/main.js?v=25"></script>
+  <script src="js/main.js?v=26"></script>
 </body>
 </html>

@@ -1435,7 +1435,17 @@ body.work-loops .work-card .work-media:not(.is-front) { opacity: 0; }
    so it is hidden once JS is running.
    ========================================================================== */
 
-body.js-enabled .contact { display: none; }
+/* Hide ONLY the no-JS fallback form — never the whole section.
+   Googlebot executes JS, so `body.js-enabled .contact` used to put the
+   entire <section id="contact"> (heading, intro copy, WhatsApp link and
+   tel: link) into the rendered DOM as display:none, which Google
+   explicitly discounts — while 44 sitewide links pointed into it. */
+body.js-enabled .contact-form { display: none; }
+
+/* Primary CTA shown in place of the fallback form once JS is running.
+   Hidden without JS, where the real form is already visible. */
+.contact-cta { margin-top: var(--space-lg, 2rem); }
+body:not(.js-enabled) .contact-cta { display: none; }
 
 /* Scroll lock lives on <html>: our `html { overflow-x: clip }` stops the
    body's overflow from propagating to the viewport, so body-only hidden
@@ -1924,6 +1934,59 @@ body.page-static main {
   padding: 40px 24px var(--section-pad);
 }
 
+/* Visible breadcrumb trail. Mirrors the BreadcrumbList JSON-LD on each page —
+   Google treats a visible trail and the markup as corroborating each other, and
+   it gives deep pages a real path back to the money pages. */
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.breadcrumb a:hover,
+.breadcrumb a:focus-visible { color: var(--accent-blue); }
+.breadcrumb [aria-current="page"] { color: var(--text-muted); }
+
+/* 404 page */
+.error-links {
+  list-style: none;
+  margin: 32px 0;
+  padding: 0;
+  text-align: left;
+  max-width: 640px;
+  margin-inline: auto;
+}
+.error-links li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+.error-links li:last-child { border-bottom: 0; }
+.error-links a {
+  color: var(--accent-blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.error-help {
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin-inline: auto;
+}
+.error-help a {
+  color: var(--accent-blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .post-eyebrow {
   display: block;
   font-size: 0.8rem;
@@ -2226,3 +2289,191 @@ body.page-static main {
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
+
+/* ==========================================================================
+   Article tables (service pages)
+
+   The service pages compare four options across six criteria, and nothing
+   sensible happens if that reflows at 360px — the cells shred into one word
+   per line. So the table keeps a usable minimum width and .table-scroll
+   absorbs the overflow instead of the page body, which must never scroll
+   sideways. The wrapper carries tabindex="0" + role="region" in the markup
+   so a keyboard user can actually reach the scroll, hence the focus ring.
+   ========================================================================== */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 0 24px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: rgba(34, 37, 51, 0.5);
+}
+.table-scroll:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.post table {
+  width: 100%;
+  min-width: 660px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.post table caption {
+  caption-side: top;
+  padding: 14px 16px 0;
+  text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.post th,
+.post td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+/* Column headers stay on one line: they are short labels, and wrapping them
+   is what pushes the natural table width past the point of readability. */
+.post thead th {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: rgba(74, 124, 255, 0.08);
+}
+.post tbody th {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.post tbody tr:last-child th,
+.post tbody tr:last-child td { border-bottom: 0; }
+
+/* Two-button CTA row. Adjacent .btn elements have no margin of their own, and
+   at 360px the pair must wrap rather than overflow. */
+.post-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+
+/* ==========================================================================
+   Article tables.
+   Real <table> markup, not a grid of divs — a div grid renders identically
+   but is not extractable as tabular data by search engines or answer engines,
+   and comparison tables are the single most-cited element on a commercial page.
+   The scroll wrapper is what holds the 360px floor: `html { overflow-x: clip }`
+   silently hides page-level overflow rather than showing a scrollbar, so a wide
+   table must scroll inside its own container or it breaks the layout invisibly.
+   ========================================================================== */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 28px 0;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+}
+
+.post table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.post table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 16px 18px 12px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.post table th,
+.post table td {
+  padding: 12px 18px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post table thead th {
+  color: var(--text-primary);
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--bg-secondary);
+}
+
+.post table tbody th[scope="row"] {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.post table td { color: var(--text-secondary); }
+
+.post table tbody tr:last-child th,
+.post table tbody tr:last-child td { border-bottom: 0; }
+
+/* ==========================================================================
+   Article comparison tables
+   ========================================================================== */
+
+/* The wrapper scrolls sideways, never <body>. At the 360px floor a four-column
+   comparison table is far wider than the viewport, and letting the page scroll
+   horizontally breaks the nav and every section below it. tabindex="0" is set
+   on the wrapper in the markup so keyboard users can reach the scroll region;
+   the focus ring below is what makes that reachability visible. */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 0 24px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: rgba(34, 37, 51, 0.55);
+}
+.table-scroll:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.post table {
+  width: 100%;
+  min-width: 580px;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+.post caption {
+  caption-side: top;
+  padding: 14px 16px 2px;
+  text-align: left;
+  font-size: 0.85rem;
+  /* --text-secondary, not --text-muted: muted fails AA for copy on this
+     background, same reasoning as .footer-locality. */
+  color: var(--text-secondary);
+}
+.post th,
+.post td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+.post thead th {
+  color: var(--text-primary);
+  font-weight: 600;
+  background: var(--bg-secondary);
+}
+.post tbody th[scope="row"] {
+  color: var(--text-primary);
+  font-weight: 600;
+  min-width: 150px;
+}
+.post tbody tr:last-child th,
+.post tbody tr:last-child td { border-bottom: 0; }

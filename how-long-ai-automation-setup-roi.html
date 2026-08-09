@@ -50,7 +50,7 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
-  <link rel="stylesheet" href="css/styles.css?v=25">
+  <link rel="stylesheet" href="css/styles.css?v=26">
 
   <script type="application/ld+json">
 {
@@ -105,7 +105,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-nav">
-    <a class="nav-brand" href="index.html">Cognexa</a>
+    <a class="nav-brand" href="/">Cognexa</a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
       <span class="sr-only">Menu</span>
@@ -117,17 +117,22 @@
     </button>
 
     <nav id="nav-menu" class="nav-menu" aria-label="Primary">
-      <a class="nav-link" href="index.html#services">Services</a>
-      <a class="nav-link" href="index.html#process">Process</a>
-      <a class="nav-link" href="index.html#work">Work</a>
+      <a class="nav-link" href="/#services">Services</a>
+      <a class="nav-link" href="/#process">Process</a>
+      <a class="nav-link" href="/#work">Work</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
       <a class="nav-link" href="blog.html">Insights</a>
-      <a class="nav-link" href="index.html#contact">Contact</a>
-      <a class="btn btn-primary" href="index.html#contact">Start your build</a>
+      <a class="nav-link" href="/#contact">Contact</a>
+      <a class="btn btn-primary" href="/#contact">Start your build</a>
     </nav>
   </header>
 
   <main id="main" tabindex="-1">
     <article class="post">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="blog.html">Insights</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">Setup time and ROI</span>
+      </nav>
+
       <p class="post-eyebrow">Workflow automation</p>
       <h1>How long does AI automation take to set up &mdash; and when does it pay for itself?</h1>
       <p class="post-meta">By the Cognexa team &middot; <time datetime="2026-07-26">26 July 2026</time></p>
@@ -180,7 +185,7 @@
       <aside class="post-cta">
         <h2>Put it to work in your business</h2>
         <p>Cognexa designs and builds AI chatbots, voice agents and automated workflows &mdash; tell us what eats your team&rsquo;s hours and we&rsquo;ll map the automation that gives them back.</p>
-        <a class="btn btn-primary" href="index.html#contact">Start your build</a>
+        <a class="btn btn-primary" href="/#contact">Start your build</a>
         <p class="post-cta-contact">Or call <a href="tel:+27662412155">066 241 2155</a> &mdash; scoping is free and we reply within one business day.</p>
       </aside>
 
@@ -223,18 +228,27 @@
         <p class="footer-brand">Cognexa</p>
         <p class="footer-tagline">AI business solutions, built in South Africa.</p>
         <p class="footer-contact"><a href="tel:+27662412155">066 241 2155</a> &middot; <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a></p>
+        <!-- Locality only, by choice: enough for the local-SEO signal (and it
+             matches the PostalAddress in the homepage schema) without publishing
+             a street address. Must stay byte-identical across every page. -->
+        <p class="footer-locality">Centurion, Gauteng, South Africa</p>
       </div>
       <nav class="footer-nav" aria-label="Footer">
-        <a href="index.html#services">Services</a>
-        <a href="index.html#process">Process</a>
-        <a href="index.html#work">Work</a>
+        <a href="/#services">Services</a>
+        <a href="ai-receptionist-south-africa.html">AI receptionists</a>
+        <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a>
+        <a href="workflow-automation-south-africa.html">Workflow automation</a>
+        <a href="custom-crm-development-south-africa.html">Custom CRMs</a>
+        <a href="pricing.html">Pricing</a>
         <a href="blog.html">Insights</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="about.html">About</a>
+        <a href="/#contact">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
       </nav>
     </div>
     <p class="footer-copy">&copy; <span class="footer-year">2026</span> Cognexa</p>
   </footer>
 
-  <script src="js/main.js?v=25"></script>
+  <script src="js/main.js?v=26"></script>
 </body>
 </html>

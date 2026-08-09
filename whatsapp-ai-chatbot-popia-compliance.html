@@ -50,7 +50,7 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
-  <link rel="stylesheet" href="css/styles.css?v=25">
+  <link rel="stylesheet" href="css/styles.css?v=26">
 
   <script type="application/ld+json">
 {
@@ -105,7 +105,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-nav">
-    <a class="nav-brand" href="index.html">Cognexa</a>
+    <a class="nav-brand" href="/">Cognexa</a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
       <span class="sr-only">Menu</span>
@@ -117,17 +117,22 @@
     </button>
 
     <nav id="nav-menu" class="nav-menu" aria-label="Primary">
-      <a class="nav-link" href="index.html#services">Services</a>
-      <a class="nav-link" href="index.html#process">Process</a>
-      <a class="nav-link" href="index.html#work">Work</a>
+      <a class="nav-link" href="/#services">Services</a>
+      <a class="nav-link" href="/#process">Process</a>
+      <a class="nav-link" href="/#work">Work</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
       <a class="nav-link" href="blog.html">Insights</a>
-      <a class="nav-link" href="index.html#contact">Contact</a>
-      <a class="btn btn-primary" href="index.html#contact">Start your build</a>
+      <a class="nav-link" href="/#contact">Contact</a>
+      <a class="btn btn-primary" href="/#contact">Start your build</a>
     </nav>
   </header>
 
   <main id="main" tabindex="-1">
     <article class="post">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="blog.html">Insights</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">WhatsApp chatbots and POPIA</span>
+      </nav>
+
       <p class="post-eyebrow">Conversational AI</p>
       <h1>Is a WhatsApp AI chatbot POPIA compliant? What SA businesses need to know</h1>
       <p class="post-meta">By the Cognexa team &middot; <time datetime="2026-07-22">22 July 2026</time></p>
@@ -145,7 +150,7 @@
         <li><strong>Security safeguards</strong> — the platform storing conversation data (your CRM, spreadsheet, or booking system) needs reasonable technical and organisational protection, not just the chat itself.</li>
         <li><strong>Data subject participation</strong> — a customer can ask what you hold on them and ask you to correct or delete it. Someone at the business needs to be able to action that request.</li>
       </ul>
-      <p>None of this requires exotic engineering. It requires a business owner to decide, deliberately, what the bot asks for and where that data goes — the same discipline you'd want from a <a href="index.html#station-chat">WhatsApp chatbot built to handle real conversations</a> rather than a script that hoovers up everything a customer types.</p>
+      <p>None of this requires exotic engineering. It requires a business owner to decide, deliberately, what the bot asks for and where that data goes — the same discipline you'd want from a <a href="/#station-chat">WhatsApp chatbot built to handle real conversations</a> rather than a script that hoovers up everything a customer types.</p>
       <h2>Do I need consent to message customers on WhatsApp?</h2>
       <p>It depends on what kind of message. POPIA draws a hard line between someone messaging your business first (inbound, customer-initiated) and your business messaging them first (outbound, business-initiated) — particularly for marketing.</p>
       <p>Section 69 of POPIA prohibits direct marketing by electronic communication — which includes WhatsApp — unless the data subject has consented, or is an existing customer of yours under the "soft opt-in" conditions: you got their details in the context of a sale, you're marketing your own similar products or services, and you gave them a reasonable, free way to object at collection and with every message. Where consent is required and you don't have it, POPIA lets you approach the person once to ask for it — not repeatedly.</p>
@@ -153,7 +158,7 @@
       <p>Layer WhatsApp's own opt-in policy on top of that. Meta requires businesses to get permission before messaging someone on the WhatsApp Business Platform, and that opt-in must clearly name your business and state that the person is agreeing to receive WhatsApp messages from you. It can be collected off-platform — on a website form, at checkout, over the phone — as long as those two things are disclosed. Meta and POPIA overlap here but aren't identical: satisfying one doesn't automatically satisfy the other, so check both.</p>
       <h2>Does a chatbot need the WhatsApp Business API?</h2>
       <p>For anything beyond a single person manually replying from the free WhatsApp Business app, yes. An AI chatbot that auto-responds, qualifies leads, or books appointments at scale needs to run on the WhatsApp Business Platform (what most people still call "the API"), accessed through a Meta-approved provider.</p>
-      <p>Two mechanics matter for compliance and cost. First, the 24-hour customer service window: once a customer messages you, you can reply freely for 24 hours. After that window closes, you can only reach them again using a pre-approved message template — free-form replies aren't allowed. Second, marketing-category templates sent to reopen a conversation are treated as direct marketing under POPIA if that's what they contain, which pulls Section 69 back into play. A workflow built around this — rather than bolted on afterwards — is where <a href="index.html#station-workflow">automating the booking and follow-up steps around the conversation</a> earns its keep, because the handoffs between "customer replied," "window closing," and "needs a human" are exactly where consent and data-handling mistakes happen.</p>
+      <p>Two mechanics matter for compliance and cost. First, the 24-hour customer service window: once a customer messages you, you can reply freely for 24 hours. After that window closes, you can only reach them again using a pre-approved message template — free-form replies aren't allowed. Second, marketing-category templates sent to reopen a conversation are treated as direct marketing under POPIA if that's what they contain, which pulls Section 69 back into play. A workflow built around this — rather than bolted on afterwards — is where <a href="/#station-workflow">automating the booking and follow-up steps around the conversation</a> earns its keep, because the handoffs between "customer replied," "window closing," and "needs a human" are exactly where consent and data-handling mistakes happen.</p>
       <h2>Who is responsible for data a chatbot collects?</h2>
       <p>You are — even if someone else built the bot. Under POPIA, your business is the "responsible party": the entity that determines why personal information is collected and how it's used. That accountability doesn't transfer to a chatbot vendor, a WhatsApp provider, or an AI platform just because they process the data on your infrastructure.</p>
       <p>The vendor or developer is typically an "operator" — someone processing personal information on your behalf, under your instruction. Sections 20 and 21 of POPIA govern that relationship, and Section 21 requires a written contract with any operator: what they may do with the data, how they must secure it, and how they must flag a breach. If you're using a third party to build or host a WhatsApp chatbot, that contract isn't optional paperwork — it's the mechanism that keeps your obligations enforceable against theirs.</p>
@@ -175,7 +180,7 @@
       <aside class="post-cta">
         <h2>Put it to work in your business</h2>
         <p>Cognexa designs and builds AI chatbots, voice agents and automated workflows — tell us what eats your team&rsquo;s hours and we&rsquo;ll map the automation that gives them back.</p>
-        <a class="btn btn-primary" href="index.html#contact">Start your build</a>
+        <a class="btn btn-primary" href="/#contact">Start your build</a>
         <p class="post-cta-contact">Prefer to talk? Call <a href="tel:+27662412155">066 241 2155</a> or email <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a>.</p>
       </aside>
 
@@ -219,18 +224,27 @@
         <p class="footer-brand">Cognexa</p>
         <p class="footer-tagline">AI business solutions, built in South Africa.</p>
         <p class="footer-contact"><a href="tel:+27662412155">066 241 2155</a> &middot; <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a></p>
+        <!-- Locality only, by choice: enough for the local-SEO signal (and it
+             matches the PostalAddress in the homepage schema) without publishing
+             a street address. Must stay byte-identical across every page. -->
+        <p class="footer-locality">Centurion, Gauteng, South Africa</p>
       </div>
       <nav class="footer-nav" aria-label="Footer">
-        <a href="index.html#services">Services</a>
-        <a href="index.html#process">Process</a>
-        <a href="index.html#work">Work</a>
+        <a href="/#services">Services</a>
+        <a href="ai-receptionist-south-africa.html">AI receptionists</a>
+        <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a>
+        <a href="workflow-automation-south-africa.html">Workflow automation</a>
+        <a href="custom-crm-development-south-africa.html">Custom CRMs</a>
+        <a href="pricing.html">Pricing</a>
         <a href="blog.html">Insights</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="about.html">About</a>
+        <a href="/#contact">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
       </nav>
     </div>
     <p class="footer-copy">&copy; <span class="footer-year">2026</span> Cognexa</p>
   </footer>
 
-  <script src="js/main.js?v=25"></script>
+  <script src="js/main.js?v=26"></script>
 </body>
 </html>

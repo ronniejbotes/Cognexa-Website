@@ -26,7 +26,28 @@
   RewriteCond %{HTTPS} !=on [OR]
   RewriteCond %{HTTP_HOST} ^www\. [NC]
   RewriteRule ^(.*)$ https://cognexa.co.za/$1 [R=301,L]
+
+  # ----------------------------------------------------------------
+  # 1b. Retired slugs.
+  #
+  # 2026-08-09: the IVR three-way comparison was retargeted to the
+  # comparison buyers actually search for (AI vs human receptionist).
+  # Google had never fetched the old URL, so this 301 costs nothing —
+  # it exists only so any external copy of the link still resolves.
+  # ----------------------------------------------------------------
+  RewriteRule ^ai-voice-agent-vs-ivr-vs-receptionist\.html$ /ai-receptionist-vs-human-receptionist.html [R=301,L]
 </IfModule>
+
+# ------------------------------------------------------------------
+# 1c. Branded error document.
+#
+# Without this, Hostinger serves its own generic 404 — no branding,
+# no navigation, and no links back into the site, so every crawler
+# and visitor that hits a bad URL is a dead end.
+# The status code stays 404; a 200 here would be a soft-404, which is
+# worse than the default page.
+# ------------------------------------------------------------------
+ErrorDocument 404 /404.html
 
 # ------------------------------------------------------------------
 # 2. Compression — gzip the text formats this static site serves.
