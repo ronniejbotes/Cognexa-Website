@@ -49,3 +49,13 @@ Key tokens (mirrored from the dashboard):
 - Mobile-first responsive CSS; the site must work down to 360px wide.
 - No inline styles or inline `onclick` handlers — styles in `css/`, behavior in `js/`.
 - Keep JavaScript progressive-enhancement only: every page must be readable with JS disabled.
+
+## SEO
+
+This site's SEO strategy, research and execution plan live in [`seo/`](seo/) — start with
+`seo/README.md`.
+
+The reusable process behind it is the `seo-engagement` skill (installed globally at
+`~/.claude/skills/seo-engagement/`). **Invoke it before adding pages or writing copy**, not
+after. Its non-negotiables — verify every number, no invented testimonials, no review markup
+on our own schema, no mass-generated location pages — apply to this repo without exception.
