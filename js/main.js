@@ -428,8 +428,8 @@
   var CONTACT_EMAIL = 'hello\u0040cognexa.co.za';
 
   /* Deliberately loose: an optional +, then 9–15 digits once spaces,
-     dashes, dots and brackets are stripped. Covers 066 241 2155,
-     +27 66 241 2155 and every other way people type one number. */
+     dashes, dots and brackets are stripped. Covers 082 123 4567,
+     +27 82 123 4567 and every other way people type one number. */
   var PHONE_PATTERN = /^\+?\d{9,15}$/;
 
   function isPhoneField(field) {
@@ -534,7 +534,7 @@
             addFieldError(field, requiredMessage(field));
           } else if (isPhoneField(field) && value && !isValidPhone(value)) {
             invalid.push(field);
-            addFieldError(field, 'Enter a number we can reach you on, like 066 241 2155.');
+            addFieldError(field, 'Enter a number we can reach you on, like 082 123 4567.');
           } else if (
             (type === 'email' || field.type === 'email') &&
             value &&
@@ -746,7 +746,7 @@
               addFieldError(field, requiredMessage(field));
               invalid = field;
             } else if (isPhoneField(field) && value && !isValidPhone(value)) {
-              addFieldError(field, 'Enter a number we can reach you on, like 066 241 2155.');
+              addFieldError(field, 'Enter a number we can reach you on, like 082 123 4567.');
               invalid = field;
             } else if (type === 'email' && value && !EMAIL_PATTERN.test(value)) {
               addFieldError(field, 'Enter a valid email address, like name\u0040company.com.');

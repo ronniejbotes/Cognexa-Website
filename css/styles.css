@@ -1718,6 +1718,35 @@ legend.intake-q + * { clear: both; }
   font-size: 2.2rem;
 }
 
+/* Direct-contact strip pinned below the questions. #intake-form takes
+   `margin: auto 0`, so its auto margins eat the free space in the flex column
+   and this settles at the foot of the shell on short steps, then simply flows
+   after the form on tall ones. */
+.intake-contact {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+.intake-contact-icon {
+  flex: none;
+  margin-top: 2px;
+  color: var(--text-muted);
+}
+.intake-contact-text { margin: 0; }
+.intake-contact a {
+  color: var(--accent-blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+.intake-contact a:hover { color: var(--text-primary); }
+
 /* ==========================================================================
    Footer
    ========================================================================== */

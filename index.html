@@ -216,7 +216,7 @@
   <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=26">
+  <link rel="stylesheet" href="css/styles.css?v=27">
 </head>
 <body>
   <script>/* Runs during parse, before first paint: without it the no-JS nav fallback renders as a ~179px static menu until end-of-body scripts execute (measured mobile CLS 0.24). js/main.js re-adds the class as a harmless no-op; with JS disabled this never runs and the fallback still applies. */document.body.classList.add('js-enabled');</script>
@@ -559,7 +559,7 @@
         </div>
         <div class="form-field">
           <label for="phone">Phone <abbr class="required" title="required">*</abbr></label>
-          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="066 241 2155" required>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="082 123 4567" required>
         </div>
         <div class="form-field">
           <label for="email">Email <abbr class="required" title="required">*</abbr></label>
@@ -654,7 +654,7 @@
           <p class="intake-num" aria-hidden="true">2 &rarr;</p>
           <label class="intake-q" for="iq-phone">What&rsquo;s your phone number?</label>
           <p class="intake-sub">For anything quicker than email &mdash; a call or a WhatsApp.</p>
-          <input id="iq-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="066 241 2155" required>
+          <input id="iq-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="082 123 4567" required>
           <div class="intake-actions">
             <button type="button" class="btn btn-primary intake-next">Next</button>
             <span class="intake-hint">press Enter &crarr;</span>
@@ -781,14 +781,29 @@
           </div>
         </section>
       </form>
+
+      <!-- Talk-to-a-human escape hatch. Sits outside <form> so the step
+           machinery in main.js (which walks .intake-step) never sees it, and
+           stays visible on every step for anyone who would rather not answer
+           eight questions. Links inside .intake are already tagged
+           link_location: 'intake' by the analytics delegate in main.js. -->
+      <aside class="intake-contact" aria-label="Contact us directly">
+        <svg class="intake-contact-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <p class="intake-contact-text">
+          Rather talk it through? Call <a href="tel:+27662412155">066&nbsp;241&nbsp;2155</a>
+          or <a href="https://wa.me/27662412155">message us on WhatsApp</a>.
+        </p>
+      </aside>
     </div>
   </div>
 
   <script src="assets/vendor/three-0.149.0.min.js"></script>
   <script src="assets/vendor/gsap-3.12.5.min.js"></script>
   <script src="assets/vendor/scrolltrigger-3.12.5.min.js"></script>
-  <script src="js/scene.js?v=26"></script>
-  <script src="js/scroll.js?v=26"></script>
-  <script src="js/main.js?v=26"></script>
+  <script src="js/scene.js?v=27"></script>
+  <script src="js/scroll.js?v=27"></script>
+  <script src="js/main.js?v=27"></script>
 </body>
 </html>
