@@ -1,12 +1,40 @@
 # .htaccess — Cognexa marketing site (Hostinger, Apache/LiteSpeed)
 #
-# Four concerns only:
+# Five concerns only:
+#   0. Never serve internal repo files (docs, SEO notes, scripts)
 #   1. One-hop canonical redirect to https://cognexa.co.za/
 #   2. Text compression (mod_deflate)
 #   3. Browser caching (mod_expires)
 #   4. Security headers (mod_headers) — HSTS
 #
 # Keep this file lean — it is read on every request.
+
+# ------------------------------------------------------------------
+# 0. Never serve internal repo files.
+#
+# Every tracked file in this repo reaches public_html, so without this
+# block the site served CLAUDE.md, README.md, DNS-EMAIL-SETUP.md, the
+# Apps Script, package.json and the whole seo/ strategy folder to anyone
+# (found with curl on 2026-09-15).
+#
+# RedirectMatch 404 answers with a real 404 and the branded page (1c),
+# not a 403 that confirms the file exists — the same rule Position Xero
+# already runs on Hostinger. The FilesMatch block is an untested second
+# layer (no probe has shown Hostinger enforcing it), so never remove the
+# RedirectMatch lines on the strength of it.
+#
+# Dot-paths (.git, .gitignore, .gitkeep, .claude, .env) are blocked;
+# /.well-known/ stays open because SSL certificate renewal uses it.
+# llms.txt, robots.txt and sitemap.xml match nothing here. A new public
+# file of a blocked type (e.g. a pricing.md) needs an explicit exception.
+# ------------------------------------------------------------------
+RedirectMatch 404 ^/seo(/|$)
+RedirectMatch 404 /\.(?!well-known(/|$))
+RedirectMatch 404 \.(md|gs|log|bak|sql|sh|ya?ml|lock)$
+RedirectMatch 404 ^/package(-lock)?\.json$
+<FilesMatch "\.(md|gs|log|bak|sql|sh|ya?ml|lock)$">
+  Require all denied
+</FilesMatch>
 
 # ------------------------------------------------------------------
 # 1. Canonical redirect — exactly ONE hop.
