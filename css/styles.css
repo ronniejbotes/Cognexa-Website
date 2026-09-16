@@ -1285,7 +1285,7 @@ body.work-loops .work-card .work-media:not(.is-front) { opacity: 0; }
    Metrics
    ========================================================================== */
 
-/* The four .metric tiles are direct children of the section — the section
+/* The .metric tiles are direct children of the section — the section
    itself is the grid. (sr-only h2 is absolutely positioned; no track.) */
 .metrics {
   display: grid;
@@ -1299,7 +1299,10 @@ body.work-loops .work-card .work-media:not(.is-front) { opacity: 0; }
 
 @media (min-width: 900px) {
   .metrics {
-    grid-template-columns: repeat(4, 1fr); /* 4-col desktop */
+    /* Two tiles, held at the 250px width they had in the old four-up row
+       and centred, rather than stretched across the full content width. */
+    grid-template-columns: repeat(2, minmax(0, 250px));
+    justify-content: center;
     gap: 24px;
   }
 }
