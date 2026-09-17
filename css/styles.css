@@ -1684,9 +1684,6 @@ legend.intake-q + * { clear: both; }
   gap: 14px;
   margin-top: 28px;
 }
-@media (max-width: 639.98px) {
-  .intake-options { grid-template-columns: 1fr; }
-}
 
 .intake-option {
   display: flex;
@@ -1716,6 +1713,24 @@ legend.intake-q + * { clear: both; }
 .intake-option:has(input:checked) {
   border-color: var(--accent-blue);
   box-shadow: var(--glow-blue);
+}
+
+/* Phones: one column, and a tighter rhythm than the desktop one. Step 6 offers
+   six options, and at 375x812 the sixth pushed the "Next" button to a top edge
+   of 812px in an 812px viewport — not one pixel of it on the first screen.
+   Trimming the row height and the gap, and giving back the 6vh of dead space
+   above the questions, brings that edge back to 721px with the whole button
+   on screen (measured 2026-09-17, both numbers, at 375x812).
+   48px keeps every option clear of the 44px minimum touch target.
+   This block sits AFTER the .intake-option rules on purpose: it has the same
+   specificity as them, so declared earlier it would lose and min-height would
+   silently stay at 56px. */
+@media (max-width: 639.98px) {
+  .intake-options { grid-template-columns: 1fr; gap: 10px; }
+  .intake-option { min-height: 48px; padding: 11px 16px; }
+  /* Short steps are centred by #intake-form's auto margins and barely move;
+     this only bites on the tall steps, which are the ones that need it. */
+  #intake-form { padding-top: 2vh; }
 }
 
 .intake-source { margin-top: 22px; }
