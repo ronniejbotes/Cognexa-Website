@@ -40,6 +40,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://cognexa.co.za/blog.html">
   <meta property="og:site_name" content="Cognexa">
+  <meta property="og:locale" content="en_ZA">
   <meta property="og:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cognexa Insights">
@@ -62,45 +63,61 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Cognexa Insights",
-  "url": "https://cognexa.co.za/blog.html",
-  "isPartOf": { "@type": "WebSite", "name": "Cognexa", "url": "https://cognexa.co.za/" },
-  "hasPart": [
+  "@graph": [
     {
-      "@type": "Article",
-      "headline": "What does an AI receptionist cost in South Africa? (2026 guide)",
-      "url": "https://cognexa.co.za/ai-receptionist-cost-south-africa.html"
+      "@type": "CollectionPage",
+      "@id": "https://cognexa.co.za/blog.html#webpage",
+      "name": "Cognexa Insights",
+      "url": "https://cognexa.co.za/blog.html",
+      "description": "Plain-English answers to the questions businesses actually ask about AI chatbots, AI receptionists, voice agents and workflow automation.",
+      "inLanguage": "en-ZA",
+      "isPartOf": { "@id": "https://cognexa.co.za/#website" },
+      "about": { "@id": "https://cognexa.co.za/#organization" },
+      "hasPart": [
+        {
+          "@type": "Article",
+          "headline": "What does an AI receptionist cost in South Africa? (2026 guide)",
+          "url": "https://cognexa.co.za/ai-receptionist-cost-south-africa.html"
+        },
+        {
+          "@type": "Article",
+          "headline": "AI receptionist vs human receptionist vs answering service",
+          "url": "https://cognexa.co.za/ai-receptionist-vs-human-receptionist.html"
+        },
+        {
+          "@type": "Article",
+          "headline": "Is a WhatsApp AI chatbot POPIA compliant? What SA businesses need to know",
+          "url": "https://cognexa.co.za/whatsapp-ai-chatbot-popia-compliance.html"
+        },
+        {
+          "@type": "Article",
+          "headline": "What can you actually automate in a small business? 12 AI workflows that pay off first",
+          "url": "https://cognexa.co.za/small-business-ai-workflow-automation-examples.html"
+        },
+        {
+          "@type": "Article",
+          "headline": "AI agent vs chatbot: what's the difference, and which does your business need?",
+          "url": "https://cognexa.co.za/ai-agent-vs-chatbot-difference.html"
+        },
+        {
+          "@type": "Article",
+          "headline": "How long does AI automation take to set up — and when does it pay for itself?",
+          "url": "https://cognexa.co.za/how-long-ai-automation-setup-roi.html"
+        },
+        {
+          "@type": "Article",
+          "headline": "Can an AI chatbot or voice agent speak Afrikaans, isiZulu and other South African languages?",
+          "url": "https://cognexa.co.za/ai-chatbot-south-african-languages.html"
+        }
+      ]
     },
     {
-      "@type": "Article",
-      "headline": "AI receptionist vs human receptionist vs answering service",
-      "url": "https://cognexa.co.za/ai-receptionist-vs-human-receptionist.html"
-    },
-    {
-      "@type": "Article",
-      "headline": "Is a WhatsApp AI chatbot POPIA compliant? What SA businesses need to know",
-      "url": "https://cognexa.co.za/whatsapp-ai-chatbot-popia-compliance.html"
-    },
-    {
-      "@type": "Article",
-      "headline": "What can you actually automate in a small business? 12 AI workflows that pay off first",
-      "url": "https://cognexa.co.za/small-business-ai-workflow-automation-examples.html"
-    },
-    {
-      "@type": "Article",
-      "headline": "AI agent vs chatbot: what's the difference, and which does your business need?",
-      "url": "https://cognexa.co.za/ai-agent-vs-chatbot-difference.html"
-    },
-    {
-      "@type": "Article",
-      "headline": "How long does AI automation take to set up — and when does it pay for itself?",
-      "url": "https://cognexa.co.za/how-long-ai-automation-setup-roi.html"
-    },
-    {
-      "@type": "Article",
-      "headline": "Can an AI chatbot or voice agent speak Afrikaans, isiZulu and other South African languages?",
-      "url": "https://cognexa.co.za/ai-chatbot-south-african-languages.html"
+      "@type": "BreadcrumbList",
+      "@id": "https://cognexa.co.za/blog.html#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cognexa.co.za/" },
+        { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://cognexa.co.za/blog.html" }
+      ]
     }
   ]
 }
@@ -136,6 +153,10 @@
 
   <main id="main" tabindex="-1">
     <section class="blog-index">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">Insights</span>
+      </nav>
+
       <h1>Insights</h1>
       <p class="section-sub">Plain answers to the questions businesses actually ask about AI agents, receptionists and automation.</p>
       <div class="blog-grid">
