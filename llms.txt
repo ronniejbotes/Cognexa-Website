@@ -28,6 +28,7 @@ Cognexa is based in Centurion, Gauteng, and replies to every enquiry within one 
 - [How to Automate Follow-Up After a Website Enquiry](https://cognexa.co.za/automate-follow-up-after-website-enquiry.html): Step by step: what to send the moment someone fills in your website form, which channel to use, when to stop chasing, and what POPIA expects.
 - [AI Receptionist for a Dental or Medical Practice](https://cognexa.co.za/ai-receptionist-medical-dental-practice.html): What an AI receptionist can and can't do for a dental or medical practice: bookings, reminders and after-hours calls, with anything clinical left to people.
 - [Spreadsheet vs CRM: When to Switch From Excel](https://cognexa.co.za/spreadsheet-vs-crm.html): When a spreadsheet is still enough, the signs your business has outgrown Excel, what a CRM adds, what POPIA expects, and how to move across without losing customers.
+- [How to Forward Calls to an AI Receptionist](https://cognexa.co.za/keep-your-number-ai-receptionist-call-forwarding.html): Keep the number your customers already know. How to forward calls to an AI receptionist from a cellphone, landline or VoIP line, who pays, and how to test it.
 
 ## Contact
 
