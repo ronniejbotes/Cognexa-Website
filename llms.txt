@@ -25,6 +25,7 @@ Cognexa is based in Centurion, Gauteng, and replies to every enquiry within one 
 - [Can an AI Chatbot Speak Afrikaans and isiZulu?](https://cognexa.co.za/ai-chatbot-south-african-languages.html): How well AI chatbots and voice agents handle South Africa's languages, why voice is harder than text, code-switching, and how to test quality before committing.
 - [How to Stop Missing Customer Calls](https://cognexa.co.za/how-to-stop-missing-customer-calls.html): How to stop missing customer calls: find out when you miss them, then fix routing, callbacks, online booking and after-hours cover, in that order.
 - [How to Choose an AI Voice Agent for Your Business](https://cognexa.co.za/how-to-choose-an-ai-voice-agent.html): What to ask before you choose an AI voice agent: handover to a person, your systems, languages and accents, recordings and POPIA, testing, and unknown answers.
+- [How to Automate Follow-Up After a Website Enquiry](https://cognexa.co.za/automate-follow-up-after-website-enquiry.html): Step by step: what to send the moment someone fills in your website form, which channel to use, when to stop chasing, and what POPIA expects.
 
 ## Contact
 
