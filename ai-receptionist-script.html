@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Receptionist Script: Greeting and Handover | Cognexa</title>
+  <meta name="description" content="How to write an AI receptionist script: the greeting, the questions it asks, what it must never answer, when to transfer a call, and after-hours wording.">
+  <meta name="theme-color" content="#0f1117">
+  <!-- Google Analytics 4: Measurement ID G-5VH5BBTCL7 (Cognexa web stream) -->
+  <!-- Deferred off the critical path (mobile PageSpeed): loads https://www.googletagmanager.com/gtag/js?id=G-5VH5BBTCL7 after window load or first interaction -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5VH5BBTCL7');
+    (function () {
+      var loaded = false;
+      function loadGtag() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5VH5BBTCL7';
+        document.head.appendChild(s);
+      }
+      if (document.readyState === 'complete') {
+        window.setTimeout(loadGtag, 1500);
+      } else {
+        window.addEventListener('load', function () { window.setTimeout(loadGtag, 1500); });
+      }
+      ['pointerdown', 'keydown', 'touchstart'].forEach(function (evt) {
+        window.addEventListener(evt, loadGtag, { once: true, passive: true });
+      });
+    })();
+  </script>
+  <link rel="canonical" href="https://cognexa.co.za/ai-receptionist-script.html">
+
+  <meta property="og:title" content="What should your AI receptionist script say, and when should it hand over?">
+  <meta property="og:description" content="How to write an AI receptionist script: the greeting, the questions it asks, what it must never answer, when to transfer a call, and after-hours wording.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://cognexa.co.za/ai-receptionist-script.html">
+  <meta property="og:site_name" content="Cognexa">
+  <meta property="og:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What should your AI receptionist script say, and when should it hand over?">
+  <meta name="twitter:description" content="How to write an AI receptionist script: the greeting, the questions it asks, what it must never answer, when to transfer a call, and after-hours wording.">
+  <meta name="twitter:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+  <!-- Resource hints. The two latin subsets are what actually render this page;
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="stylesheet" href="css/styles.css?v=27">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://cognexa.co.za/ai-receptionist-script.html#article",
+      "headline": "What should your AI receptionist script say, and when should it hand over?",
+      "description": "How to write an AI receptionist script: the greeting, the questions it asks, what it must never answer, when to transfer a call, and after-hours wording.",
+      "image": "https://cognexa.co.za/assets/images/og-image.jpg",
+      "datePublished": "2026-09-16",
+      "dateModified": "2026-09-16",
+      "author": {
+        "@type": "Organization",
+        "name": "Cognexa",
+        "url": "https://cognexa.co.za/"
+      },
+      "publisher": { "@type": "Organization", "@id": "https://cognexa.co.za/#organization", "name": "Cognexa", "alternateName": "Cognexa AI Business Solutions", "url": "https://cognexa.co.za/", "logo": "https://cognexa.co.za/assets/icons/favicon.svg", "telephone": "+27 66 241 2155" },
+      "mainEntityOfPage": "https://cognexa.co.za/ai-receptionist-script.html"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://cognexa.co.za/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://cognexa.co.za/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "What should your AI receptionist script say, and when should it hand over?",
+          "item": "https://cognexa.co.za/ai-receptionist-script.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="page-static">
+  <script>/* Runs during parse, before first paint: without it the no-JS nav fallback renders as a tall static menu until js/main.js executes (mobile CLS). js/main.js re-adds the class as a harmless no-op; with JS disabled this never runs and the fallback still applies. */document.body.classList.add('js-enabled');</script>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <a class="nav-brand" href="/">Cognexa</a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+      <span class="sr-only">Menu</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <line x1="4" y1="6" x2="20" y2="6"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="18" x2="20" y2="18"></line>
+      </svg>
+    </button>
+
+    <nav id="nav-menu" class="nav-menu" aria-label="Primary">
+      <a class="nav-link" href="/#services">Services</a>
+      <a class="nav-link" href="/#process">Process</a>
+      <a class="nav-link" href="/#work">Work</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
+      <a class="nav-link" href="blog.html">Insights</a>
+      <a class="nav-link" href="/#contact">Contact</a>
+      <a class="btn btn-primary" href="/#contact">Start your build</a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <article class="post">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="blog.html">Insights</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">AI receptionist script</span>
+      </nav>
+
+      <p class="post-eyebrow">AI voice agents</p>
+      <h1>What should your AI receptionist script say, and when should it hand over?</h1>
+      <p class="post-meta">By <a href="about.html">the Cognexa team</a> &middot; <time datetime="2026-09-16">16 September 2026</time></p>
+
+      <div class="post-answer">An AI receptionist script should open with your business name, tell callers plainly that they're speaking to an assistant, and mention recording if you record. After that it asks only what the job needs, one question at a time, and politely declines anything you haven't given it an approved answer for. It transfers to a person when the caller asks for one, is upset, has an emergency or needs a decision only you can make, and your written rules say who takes those calls at which hours.</div>
+
+      <p>The same voice agent can sound helpful or evasive depending on what it's told to say and where it's told to send a call it can't finish.</p>
+      <p>The sample lines here are written for a made-up plumbing business in Randburg. They show the shape, so swap in your own trade and your own way of talking.</p>
+
+      <h2>What should an AI receptionist say when it answers?</h2>
+      <p>A good greeting covers four things, in this order: your business name, the fact that the caller is talking to an assistant, a recording notice if you record, and an open question.</p>
+      <p>For the plumbing business, it might sound like this:</p>
+      <p>"Good morning, you've reached [business name]. I'm the virtual assistant, and calls are recorded so we can follow up properly. How can I help?"</p>
+      <p>The name comes first because someone who has dialled the wrong number wants to know before they start explaining. The assistant line comes next because a caller who works it out alone tends to stop trusting what they hear. Keep the whole thing short. Every extra clause is something the caller sits through before they can speak, and a long greeting starts to sound like a phone menu.</p>
+      <p>End on an open question, not a list of options. A voice agent can work out what "the geyser's leaking through the ceiling" means, so there's no need to make the caller choose from a menu.</p>
+
+      <h2>What questions should the assistant ask, and in what order?</h2>
+      <p>Find out what the call is about first, then ask only what that kind of call needs.</p>
+      <p>A booking and a complaint need different details, so the script should split early. For the plumber, the first question might be "Is this about a new job, or one we're already working on?" A new job then needs the suburb, what's happening and whether water is leaking right now. Only after that does the assistant ask for a name and confirm the best number to call back on.</p>
+      <p>Ask one question at a time, because two questions in one breath usually get one answer. Confirm the number the call came from rather than making the caller recite it. Ask for the spelling of surnames and street names. Then finish with a summary the caller can correct: "So that's a leaking geyser in Ferndale, and [name] will call you back on this number. Is that right?"</p>
+      <p>Don't collect what you don't need. POPIA's section 10 says personal information may only be processed if, given the purpose, it is adequate, relevant and not excessive. A plumber booking a visit has no reason to ask for an ID number. What the assistant does collect should land where your team already works, such as the job list or your <a href="custom-crm-development-south-africa.html">CRM</a>, not an inbox nobody checks.</p>
+
+      <h2>What should your AI receptionist refuse to answer?</h2>
+      <p>Anything you haven't given it an approved answer for. The refusal list is as much a part of the script as the greeting.</p>
+      <p>Write it in your own business's terms. For the plumber it might cover:</p>
+      <ul>
+        <li>prices and call-out fees, unless you've given it a price list to quote from</li>
+        <li>arrival times nobody can promise</li>
+        <li>what's wrong with a geyser nobody has looked at yet</li>
+        <li>whether insurance will pay for the damage</li>
+        <li>anything about another customer's job</li>
+      </ul>
+      <p>Add those to the calls our <a href="ai-receptionist-south-africa.html">receptionist service page</a> sends to a person in any trade. A practice adds clinical questions to that list, and our post on <a href="ai-receptionist-medical-dental-practice.html">AI receptionists for medical and dental practices</a> covers what the agent should do when a caller describes symptoms.</p>
+      <p>A refusal should still get the caller somewhere. A flat "I can't help with that" is a dead end. Compare this:</p>
+      <p>"I can't give you a price over the phone, but I can book someone to look at it and quote on site. Would tomorrow morning suit you?"</p>
+      <p>That's still a no, but it ends with an offer the caller can say yes to.</p>
+
+      <h2>When should an AI receptionist transfer a call to a person?</h2>
+      <p>When the call needs judgement, authority or a human voice: an emergency, a complaint, a caller who asks for a person, or a question the assistant has no approved answer to. We go through the general signs in <a href="ai-receptionist-vs-human-receptionist.html">AI receptionist vs human receptionist</a>. The script's job is to turn them into rules a machine can follow.</p>
+      <ol>
+        <li>Name the triggers in your own words. For the plumber, that could be water coming through a ceiling, a burst geyser, a blocked sewer, a complaint about finished work, or a caller asking for the owner by name. Anyone who asks for a person gets one, or a booked callback, without having to argue for it.</li>
+        <li>Say who takes each kind of call, and when. Emergencies might go to the plumber on call at any hour, complaints to the owner during trading hours, and everything else to the office.</li>
+        <li>Write the line the assistant says before it transfers, so the caller isn't left in silence: "I'm putting you through to [name] now. If they can't pick up, I'll book a callback for you."</li>
+        <li>Decide what happens when nobody answers. The assistant books a callback at a time the team will keep, or takes a message, and tells the caller which.</li>
+        <li>Pass on what the caller has already said. Nobody should have to give their name and address twice in one call.</li>
+      </ol>
+
+      <h2>What changes in the script after hours?</h2>
+      <p>The greeting changes first. It should say you're closed and when you reopen, taken from your trading hours. The assistant can still book visits and take details. What it mustn't do is promise a callback nobody will make. If the greeting says someone will call first thing tomorrow, that callback has to be on somebody's list before the greeting goes live.</p>
+      <p>For the plumber, the after-hours version might run:</p>
+      <p>"Thanks for calling [business name]. We're closed for the night and open again at [time] tomorrow. I'm the virtual assistant, and this call is recorded. I can book a visit or take your details, and if water is leaking right now, tell me and I'll put you through to the plumber on call."</p>
+      <p>If nobody is on call, the assistant should say so plainly rather than hint that a transfer is coming. Write the public holiday and long weekend wording in advance too, so nobody is rewriting the greeting on the Thursday before Easter.</p>
+      <p>If calls only reach the assistant after hours, the <a href="keep-your-number-ai-receptionist-call-forwarding.html">call forwarding on your line</a> and the after-hours script have to switch over together. A daytime greeting playing at midnight tells the caller nobody checked.</p>
+
+      <h2>How do you tell callers a call is being recorded?</h2>
+      <p>Say it in the greeting, before the assistant asks for anything personal. POPIA is the reason for that timing.</p>
+      <p><a href="https://www.justice.gov.za/legislation/acts/2013-004.pdf" rel="noopener">Section 18 of the Act</a> requires a business collecting personal information to take reasonably practicable steps to make sure the person is aware of, among other things, what is being collected, the business's name and address, the purpose, and whether giving the information is voluntary or mandatory. When the information comes straight from the caller, those steps come before it's collected, unless the caller already knows.</p>
+      <p>A spoken line can't carry the whole list, and it shouldn't try. Keep it short and say where the rest lives:</p>
+      <p>"This call is recorded and transcribed so we can book your job and follow up. Our privacy notice is on our website, and you can ask to speak to a person instead."</p>
+      <p>Decide in advance what the assistant does when a caller would rather not be recorded. Offering a callback from a person is one way to handle it. Telling callers they're speaking to an assistant is a separate point from the recording notice, and the greeting needs both.</p>
+      <p>Whether you may record at all is a different question, which our AI receptionist page <a href="ai-receptionist-south-africa.html">covers under RICA and POPIA</a>. A guide like this can't replace legal advice, so get someone qualified to check your privacy notice and the recording wording before the agent takes its first call.</p>
+
+      <h2>Who writes the script when Cognexa builds your AI receptionist?</h2>
+      <p>You supply the answers, and we turn them into the agent's configuration. What that covers is spelt out on the page for our <a href="ai-receptionist-south-africa.html">AI receptionist service</a>: how the agent greets a caller, what it may quote on, which questions it must never guess at and whose phone a transfer rings. That's the work, and it separates a useful agent from an irritating one.</p>
+      <p>We build its knowledge base from what you give us: your services, trading hours, the suburbs you cover and what you don't do. That stops it inventing an answer. The standard is the one that page sets: a well-built agent says so instead of guessing, then routes the question to a person.</p>
+      <p>We disclose by default, and the agent says plainly that it's an assistant when a caller asks. Every call is logged.</p>
+
+      <h2>Where do you start writing your AI receptionist script?</h2>
+      <p>On one page, before anyone builds anything. Put the greeting at the top. Under it, write the questions for the calls you get most often, the list of things the assistant must never answer, and who takes a transfer at which hours. The after-hours greeting and the recording line go at the bottom.</p>
+      <p>Then read it aloud. If a line needs a breath in the middle, it's too long for a phone call. Ring a colleague and have them play the caller who opens with a complaint, then the one who'll only speak to the owner. Wherever the script has no answer, you've found the next thing to write.</p>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="ai-receptionist-south-africa.html">AI receptionist and voice agent for South African businesses</a></li>
+        <li><a href="ai-receptionist-medical-dental-practice.html">What can an AI receptionist do for a dental or medical practice?</a></li>
+        <li><a href="keep-your-number-ai-receptionist-call-forwarding.html">How do you forward calls to an AI receptionist and keep your business number?</a></li>
+        <li><a href="ai-receptionist-vs-human-receptionist.html">AI receptionist vs human receptionist vs answering service</a></li>
+      </ul>
+
+      <aside class="post-cta">
+        <h2>Put it to work in your business</h2>
+        <p>Cognexa designs and builds AI chatbots, voice agents and automated workflows. Tell us what eats your team&rsquo;s hours and we&rsquo;ll map the automation that gives them back.</p>
+        <a class="btn btn-primary" href="/#contact">Start your build</a>
+        <p class="post-cta-contact">Prefer to talk it through? Call <a href="tel:+27662412155">066 241 2155</a> or email <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a>.</p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-about">
+        <p class="footer-brand">Cognexa</p>
+        <p class="footer-tagline">AI business solutions, built in South Africa.</p>
+        <p class="footer-contact"><a href="tel:+27662412155">066 241 2155</a> &middot; <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a></p>
+        <!-- Locality only, by choice: enough for the local-SEO signal (and it
+             matches the PostalAddress in the homepage schema) without publishing
+             a street address. Must stay byte-identical across every page. -->
+        <p class="footer-locality">Centurion, Gauteng, South Africa</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/#services">Services</a>
+        <a href="ai-receptionist-south-africa.html">AI receptionists</a>
+        <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a>
+        <a href="workflow-automation-south-africa.html">Workflow automation</a>
+        <a href="custom-crm-development-south-africa.html">Custom CRMs</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Insights</a>
+        <a href="about.html">About</a>
+        <a href="/#contact">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+      </nav>
+    </div>
+    <p class="footer-copy">&copy; <span class="footer-year">2026</span> Cognexa</p>
+  </footer>
+
+  <script src="js/main.js?v=27"></script>
+</body>
+</html>
