@@ -32,6 +32,7 @@ Cognexa is based in Centurion, Gauteng, and replies to every enquiry within one 
 - [Choosing a Custom CRM Developer in South Africa](https://cognexa.co.za/how-to-choose-a-custom-crm-developer.html): A buyer's checklist for hiring a CRM developer in South Africa: what to prepare, the questions to ask, who owns the code, and the warning signs.
 - [AI Receptionist Script: Greeting and Handover](https://cognexa.co.za/ai-receptionist-script.html): What an AI receptionist should say when it answers, what it must never answer, and the rules for passing a call to a person, with sample lines to adapt.
 - [Train an AI Chatbot on Your Business Information](https://cognexa.co.za/train-ai-chatbot-on-your-business.html): What to give a WhatsApp chatbot, how to write a knowledge base it can use, what to keep out under POPIA, and how to test and update it.
+- [AI Consultant vs AI Automation Agency](https://cognexa.co.za/ai-consultant-vs-ai-automation-agency.html): What an AI consultant hands over, what an AI automation agency builds, how each usually charges, which a small business needs first, and the red flags on both sides.
 
 ## Contact
 
