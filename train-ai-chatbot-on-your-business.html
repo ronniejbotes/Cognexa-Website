@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Train an AI Chatbot on Your Business Information | Cognexa</title>
+  <meta name="description" content="How to train a chatbot on your business information: what to give it, what to keep out under POPIA, how to test it and when it hands over to a person.">
+  <meta name="theme-color" content="#0f1117">
+  <!-- Google Analytics 4: Measurement ID G-5VH5BBTCL7 (Cognexa web stream) -->
+  <!-- Deferred off the critical path (mobile PageSpeed): loads https://www.googletagmanager.com/gtag/js?id=G-5VH5BBTCL7 after window load or first interaction -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5VH5BBTCL7');
+    (function () {
+      var loaded = false;
+      function loadGtag() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5VH5BBTCL7';
+        document.head.appendChild(s);
+      }
+      if (document.readyState === 'complete') {
+        window.setTimeout(loadGtag, 1500);
+      } else {
+        window.addEventListener('load', function () { window.setTimeout(loadGtag, 1500); });
+      }
+      ['pointerdown', 'keydown', 'touchstart'].forEach(function (evt) {
+        window.addEventListener(evt, loadGtag, { once: true, passive: true });
+      });
+    })();
+  </script>
+  <link rel="canonical" href="https://cognexa.co.za/train-ai-chatbot-on-your-business.html">
+
+  <meta property="og:title" content="How to train an AI chatbot on your business information">
+  <meta property="og:description" content="How to train a chatbot on your business information: what to give it, what to keep out under POPIA, how to test it and when it hands over to a person.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://cognexa.co.za/train-ai-chatbot-on-your-business.html">
+  <meta property="og:site_name" content="Cognexa">
+  <meta property="og:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to train an AI chatbot on your business information">
+  <meta name="twitter:description" content="How to train a chatbot on your business information: what to give it, what to keep out under POPIA, how to test it and when it hands over to a person.">
+  <meta name="twitter:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+  <!-- Resource hints. The two latin subsets are what actually render this page;
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="stylesheet" href="css/styles.css?v=27">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://cognexa.co.za/train-ai-chatbot-on-your-business.html#article",
+      "headline": "How to train an AI chatbot on your business information",
+      "description": "How to train a chatbot on your business information: what to give it, what to keep out under POPIA, how to test it and when it hands over to a person.",
+      "image": "https://cognexa.co.za/assets/images/og-image.jpg",
+      "datePublished": "2026-09-23",
+      "dateModified": "2026-09-23",
+      "author": {
+        "@type": "Organization",
+        "name": "Cognexa",
+        "url": "https://cognexa.co.za/"
+      },
+      "publisher": { "@type": "Organization", "@id": "https://cognexa.co.za/#organization", "name": "Cognexa", "alternateName": "Cognexa AI Business Solutions", "url": "https://cognexa.co.za/", "logo": "https://cognexa.co.za/assets/icons/favicon.svg", "telephone": "+27 66 241 2155" },
+      "mainEntityOfPage": "https://cognexa.co.za/train-ai-chatbot-on-your-business.html"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://cognexa.co.za/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://cognexa.co.za/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to train an AI chatbot on your business information",
+          "item": "https://cognexa.co.za/train-ai-chatbot-on-your-business.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="page-static">
+  <script>/* Runs during parse, before first paint: without it the no-JS nav fallback renders as a tall static menu until js/main.js executes (mobile CLS). js/main.js re-adds the class as a harmless no-op; with JS disabled this never runs and the fallback still applies. */document.body.classList.add('js-enabled');</script>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <a class="nav-brand" href="/">Cognexa</a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+      <span class="sr-only">Menu</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <line x1="4" y1="6" x2="20" y2="6"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="18" x2="20" y2="18"></line>
+      </svg>
+    </button>
+
+    <nav id="nav-menu" class="nav-menu" aria-label="Primary">
+      <a class="nav-link" href="/#services">Services</a>
+      <a class="nav-link" href="/#process">Process</a>
+      <a class="nav-link" href="/#work">Work</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
+      <a class="nav-link" href="blog.html">Insights</a>
+      <a class="nav-link" href="/#contact">Contact</a>
+      <a class="btn btn-primary" href="/#contact">Start your build</a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <article class="post">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="blog.html">Insights</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">Training an AI chatbot</span>
+      </nav>
+
+      <p class="post-eyebrow">AI chatbots</p>
+      <h1>How to train an AI chatbot on your business information</h1>
+      <p class="post-meta">By <a href="about.html">the Cognexa team</a> &middot; <time datetime="2026-09-23">23 September 2026</time></p>
+
+      <div class="post-answer">To train a chatbot on your business information, you don't retrain the AI. You write a knowledge base of the facts it may use: what you sell and what you don't, how you price, your hours, the areas you serve, your policies and the questions customers send you. You set rules for what goes to a person and test it on real messages before launch. Then you keep it current, because the bot is only as right as its last update.</div>
+
+      <p>This guide is for a South African business putting a <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbot</a> on its business number, though the same knowledge base can sit behind website chat or a voice agent. You won't need technical skill for any of it, only a clear picture of how your business answers customers.</p>
+
+      <h2>Do you need to train ChatGPT on your business?</h2>
+      <p>No, at least not in the way most people picture it. The model behind a chatbot already knows how to read and write. What it lacks is your information, such as what you charge for a service or how far you'll travel for one.</p>
+      <p>OpenAI's own <a href="https://developers.openai.com/api/docs/guides/optimizing-llm-accuracy" rel="noopener">guide to improving model accuracy</a> draws the same line. When a model needs proprietary or up-to-date information, the fix is context, such as retrieving the right passage from a knowledge base when a question comes in. Fine-tuning, which is further training, targets behaviour like tone and format. Your prices are a context problem. When they change, you edit the knowledge base and nothing is retrained.</p>
+      <p>So training a chatbot mostly means writing. You set down the facts it may use, how it should speak, what it must never do, and when it fetches a person.</p>
+
+      <h2>What information should you give a WhatsApp chatbot?</h2>
+      <p>Give it what a capable new employee would need to answer your WhatsApp line on day one, and nothing they'd need a password for:</p>
+      <ul>
+        <li>What you sell, and what you don't, so it has an answer when someone asks for a job you don't do.</li>
+        <li>How pricing works: what a quote depends on, what's included, what costs extra, and whether you quote on WhatsApp at all.</li>
+        <li>Trading hours, with the days you close written in as dates.</li>
+        <li>The areas you serve, by suburb or town, and what happens just outside them.</li>
+        <li>Booking rules, from lead times and deposits to cancellations.</li>
+        <li>The policies people ask about, such as payment methods, guarantees and returns.</li>
+        <li>Who takes over when the bot can't help, by role rather than by name.</li>
+      </ul>
+      <p>For the FAQ part, ignore your website's FAQ page and start with your chats. Scroll back through a few weeks of WhatsApp and note every question you answered more than once, in the customer's words. That's the FAQ your chatbot has to handle.</p>
+
+      <h2>How do you write a chatbot knowledge base?</h2>
+      <p>Write short, plain answers that each make sense on their own. A bot that works by retrieval pulls out the passage that best matches the question, so an answer that leans on the paragraph before it can come out half-finished.</p>
+      <p>Keep each fact in one place. If your service price lives in three documents and you update two, the bot has two answers and no way to choose.</p>
+      <p>Spell out the conditions. If you service and install aircons around Boksburg and Benoni, "We do services and installations" is half an answer. A useful entry says which units you work on, whether you'll fit a unit the customer bought, that installation prices follow a site visit, and that you don't do commercial cold rooms.</p>
+      <p>Use your customers' words: if they write "regas", don't file the answer under "refrigerant top-up". Date anything that changes. And tell the bot to say so when the answer isn't there, then hand over. A language model left to fill a gap tends to fill it with something plausible, which is harder to catch than an obvious mistake.</p>
+
+      <h2>What should you never put in a chatbot's knowledge base?</h2>
+      <p>Anything you wouldn't send a stranger on WhatsApp, because a chatbot can repeat whatever is in its knowledge base to whoever asks the right question. Keep out:</p>
+      <ul>
+        <li>customer names, numbers, addresses, balances and job histories, including that handy list of gate codes for the complexes you service</li>
+        <li>staff cellphone numbers and home details</li>
+        <li>margins, supplier prices and the discount you'd give a regular</li>
+        <li>logins, passwords and links into back-office systems</li>
+      </ul>
+      <p><a href="https://www.justice.gov.za/legislation/acts/2013-004.pdf" rel="noopener">POPIA</a> defines personal information widely in section 1, from identifying numbers, email and physical addresses and telephone numbers to private correspondence. Where it applies, it also covers juristic persons such as companies, not only people. Health information is special personal information under section 26, with stricter rules, so a practice's bot should talk about the practice, never a patient.</p>
+      <p>WhatsApp's <a href="https://whatsappbusiness.com/policy/" rel="noopener">Business Messaging Policy</a> agrees: don't share, or ask people to share, full card numbers, financial account numbers or ID numbers, and don't pass information from one customer's chat to another.</p>
+      <p>Use old chats to find the questions, then write the answers fresh. Raw chats hold customers' details, old prices and one-off favours you'd never want quoted as policy. POPIA expects any further use of personal information to be compatible with the purpose it was collected for (section 15). Where an AI provider is part of your setup, Meta's <a href="https://www.whatsapp.com/legal/business-solution-terms" rel="noopener">WhatsApp Business Solution Terms</a> also bar letting any data you get through the service be used to train or improve AI models. The one exception is fine-tuning a model for your exclusive use.</p>
+      <p>General guidance like this isn't legal advice, so if the business handles health or financial information, have the bot's setup checked by a lawyer before customers use it. What a bot may ask customers for, and when you need consent, is covered in our guide on <a href="whatsapp-ai-chatbot-popia-compliance.html">whether a WhatsApp chatbot is POPIA compliant</a>.</p>
+
+      <h2>Which messages should go to a person instead of the bot?</h2>
+      <p>The ones that need judgement or sympathy, plus any the bot can't answer and any from a customer who asks for a person. Write the cases down as rules:</p>
+      <ul>
+        <li>complaints, and messages that sound like one is coming</li>
+        <li>refunds, disputes, discounts and quotes outside your written pricing</li>
+        <li>anything that needs a technician's opinion, such as whether an old unit is worth repairing</li>
+        <li>emergencies, like a server-room unit that has stopped cooling</li>
+      </ul>
+      <p>WhatsApp's own policy makes the same demand. It allows automated replies during the customer service window that follows a customer's last message, but a business "must also have available prompt, clear, and direct escalation paths", such as an in-chat transfer to a person or a phone number. So pick handovers up quickly: once that window has closed, you can only write to the customer with a message template WhatsApp has approved.</p>
+      <p>Let customers ask for a person in their own words. "Can I speak to someone?" should work as well as any keyword or menu option.</p>
+
+      <h2>How do you know a chatbot is ready for customers?</h2>
+      <p>When it copes with the messages customers send you. Build the test set from your chats: the common questions, the badly typed ones, the ones that mix two languages and the ones that should end with a person. Then go looking for trouble. Ask about something the knowledge base doesn't cover, and you want an honest "I don't know" and a handover. Try to talk it into a discount, or a date you can't do.</p>
+      <p>Read every reply that mentions a price or a date against the knowledge base, word for word, and run one full handover to see whether the person receiving it gets the whole conversation. Keep the test set and rerun it after every change, because fixing one answer can disturb another.</p>
+      <p>Whoever wrote the knowledge base makes a poor tester, because they read what they meant into the replies. For customers who mix English with Afrikaans or isiZulu, our post on <a href="ai-chatbot-south-african-languages.html">AI chatbots and South African languages</a> covers what to check.</p>
+
+      <h2>How do you keep a chatbot's answers up to date?</h2>
+      <p>Give the knowledge base one owner, and change it before the business changes. A customer shouldn't be the one who finds the gap. Diarise what you can see coming: price increases, new services, staff leave, public holidays. If you close for Heritage Day, the bot should know before the first customer asks.</p>
+      <p>Then read the chats where the bot handed over or said it didn't know, because each one points at a missing answer. When an answer is wrong, correct it in the knowledge base as well, or the next customer gets the same mistake.</p>
+      <p>If you run more than one channel, keep one set of answers behind all of them. A website chat quoting one service price while your <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbot</a> quotes another leaves the customer wondering which you'll honour. The same goes for an <a href="ai-receptionist-south-africa.html">AI receptionist</a> on your phone line, although how it phrases things on a call is shaped by <a href="ai-receptionist-script.html">its receptionist script</a>.</p>
+
+      <h2>How does Cognexa train a chatbot on your business?</h2>
+      <p>Our process describes the build stage as your AI team being "trained on your business". Website chat and WhatsApp run on one brain, so the same answers serve both. Our <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a> take the repeat questions, such as opening hours, location, what you charge for and whether you deliver to a given suburb, so nobody on your team retypes the same paragraph.</p>
+      <p>The chatbot says what it is in its first message and tells the customer how to reach a person. When it hands over, a named person gets the conversation with the transcript attached, so the customer doesn't explain the problem twice. Payments go through a link from the gateway you already use, which keeps card details off WhatsApp.</p>
+
+      <h2>Can you start before you've chosen a chatbot platform?</h2>
+      <p>Yes, and that's the right order. Pull out the questions you answer again and again, and write a plain answer to each, dated wherever it can change. Mark the ones that must go to a person, and list what must never go in.</p>
+      <p>That document is the part of training a chatbot only you can do. Whichever platform or builder you choose, it's what the bot will answer from.</p>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbots for South African businesses</a></li>
+        <li><a href="ai-receptionist-script.html">What should your AI receptionist script say, and when should it hand over?</a></li>
+        <li><a href="ai-chatbot-south-african-languages.html">Can an AI chatbot or voice agent speak Afrikaans, isiZulu and other South African languages?</a></li>
+        <li><a href="whatsapp-ai-chatbot-popia-compliance.html">Is a WhatsApp AI chatbot POPIA compliant? What SA businesses need to know</a></li>
+      </ul>
+
+      <aside class="post-cta">
+        <h2>Put it to work in your business</h2>
+        <p>Cognexa designs and builds AI chatbots, voice agents and automated workflows. Tell us what eats your team&rsquo;s hours and we&rsquo;ll map the automation that gives them back.</p>
+        <a class="btn btn-primary" href="/#contact">Start your build</a>
+        <p class="post-cta-contact">Prefer to talk it through? Call <a href="tel:+27662412155">066 241 2155</a> or email <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a>.</p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-about">
+        <p class="footer-brand">Cognexa</p>
+        <p class="footer-tagline">AI business solutions, built in South Africa.</p>
+        <p class="footer-contact"><a href="tel:+27662412155">066 241 2155</a> &middot; <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a></p>
+        <!-- Locality only, by choice: enough for the local-SEO signal (and it
+             matches the PostalAddress in the homepage schema) without publishing
+             a street address. Must stay byte-identical across every page. -->
+        <p class="footer-locality">Centurion, Gauteng, South Africa</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/#services">Services</a>
+        <a href="ai-receptionist-south-africa.html">AI receptionists</a>
+        <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a>
+        <a href="workflow-automation-south-africa.html">Workflow automation</a>
+        <a href="custom-crm-development-south-africa.html">Custom CRMs</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Insights</a>
+        <a href="about.html">About</a>
+        <a href="/#contact">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+      </nav>
+    </div>
+    <p class="footer-copy">&copy; <span class="footer-year">2026</span> Cognexa</p>
+  </footer>
+
+  <script src="js/main.js?v=27"></script>
+</body>
+</html>
