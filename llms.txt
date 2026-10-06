@@ -23,6 +23,7 @@ Cognexa is based in Centurion, Gauteng, and replies to every enquiry within one 
 - [AI Agent vs Chatbot: What's the Difference?](https://cognexa.co.za/ai-agent-vs-chatbot-difference.html): A chatbot answers, an AI agent acts — what each can do, how build and running costs differ, and which one a business should start with.
 - [How Long Does AI Automation Take to Set Up?](https://cognexa.co.za/how-long-ai-automation-setup-roi.html): Realistic build timelines for chatbots, voice agents and workflow automation, why enterprise timelines mislead small businesses, and how to work out payback.
 - [Can an AI Chatbot Speak Afrikaans and isiZulu?](https://cognexa.co.za/ai-chatbot-south-african-languages.html): How well AI chatbots and voice agents handle South Africa's languages, why voice is harder than text, code-switching, and how to test quality before committing.
+- [How to Stop Missing Customer Calls](https://cognexa.co.za/how-to-stop-missing-customer-calls.html): How to stop missing customer calls: find out when you miss them, then fix routing, callbacks, online booking and after-hours cover, in that order.
 
 ## Contact
 
