@@ -61,6 +61,18 @@ function ensureHeaders(sheet) {
   return headers;
 }
 
+/* A wa.me link for the notification email, so a lead can be messaged in one
+   tap. South African numbers written 082 123 4567 become 27821234567;
+   numbers already in international form keep their country code. */
+function whatsappLink(phone) {
+  var digits = String(phone || '').replace(/[^\d+]/g, '');
+  if (!digits) return '';
+  if (digits.charAt(0) === '+') digits = digits.slice(1);
+  else if (digits.indexOf('00') === 0) digits = digits.slice(2);
+  else if (digits.charAt(0) === '0') digits = '27' + digits.slice(1);
+  return /^\d{9,15}$/.test(digits) ? 'https://wa.me/' + digits : '';
+}
+
 function doPost(e) {
   var lock = LockService.getScriptLock();
   lock.tryLock(10000);
@@ -96,6 +108,7 @@ function doPost(e) {
         'A new lead just came down the line.\n\n' +
         'Name: ' + (data.name || '—') + '\n' +
         'Phone: ' + (data.phone || '—') + '\n' +
+        (whatsappLink(data.phone) ? 'WhatsApp: ' + whatsappLink(data.phone) + '\n' : '') +
         'Email: ' + (data.email || '—') + '\n' +
         'Business: ' + (data.company || '—') + '\n' +
         'What they do: ' + (data.industry || '—') + '\n' +
