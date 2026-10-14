@@ -585,8 +585,11 @@ body.js-enabled #nav-menu {
   transition: opacity 250ms ease, transform 250ms ease, visibility 0s linear 250ms;
 }
 @supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px))) {
+  /* Opaque: #nav-menu sits inside .site-nav, which has its own
+     backdrop-filter, so this blur only sees the nav bar and never the page.
+     At 0.85 the page's headings showed through the open menu. */
   body.js-enabled #nav-menu {
-    background: rgba(15, 17, 23, 0.85);
+    background: var(--bg-primary);
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
   }
@@ -2409,6 +2412,14 @@ body.page-static main {
   border-collapse: collapse;
   font-size: 0.94rem;
   line-height: 1.6;
+}
+/* Tables of six or more columns (the AI receptionist comparisons) are ~70px
+   wider than the 710px text column at padding 16px, which hid the cost column
+   behind a sideways scroll on desktop. Side padding of 9px fits both. */
+.post table:has(thead th:nth-child(6)) th,
+.post table:has(thead th:nth-child(6)) td {
+  padding-left: 9px;
+  padding-right: 9px;
 }
 .post caption {
   caption-side: top;
