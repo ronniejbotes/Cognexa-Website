@@ -2035,6 +2035,15 @@ body.page-static main {
   color: var(--text-secondary);
   text-decoration: underline;
   text-underline-offset: 3px;
+  /* Phones first: a 44px-tall target without moving the text (15 October
+     2026 mobile review: "Home" was 22px tall). */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-block: -11px;
+}
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .breadcrumb a { display: inline; min-height: 0; margin-block: 0; }
 }
 .breadcrumb a:hover,
 .breadcrumb a:focus-visible { color: var(--accent-blue); }
@@ -2171,6 +2180,19 @@ body.page-static main {
   color: var(--text-muted);
   color: var(--text-secondary);
   margin-bottom: 6px;
+}
+/* Phones first: each source link is a 44px-tall target, so a thumb lands on
+   the one it meant; at 17px tall and 31px apart they were easy to mis-tap
+   (15 October 2026 mobile review). A mouse needs no extra height. */
+.post-sources li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.post-sources li { margin-bottom: 0; }
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .post-sources li a { display: inline; min-height: 0; }
+  .post-sources li { margin-bottom: 6px; }
 }
 
 /* ==========================================================================
@@ -2450,6 +2472,57 @@ body.page-static main {
 }
 .post tbody tr:last-child th,
 .post tbody tr:last-child td { border-bottom: 0; }
+
+/* Comparison tables on phones. Under 640px the three to seven columns could
+   only scroll sideways inside .table-scroll, so a phone showed the first two
+   or three and hid the rest, the cost column included (15 October 2026
+   mobile review). Each row becomes a card instead: its row header is the
+   title and every other cell sits under its column heading, which each cell
+   carries in data-label (written into the HTML, so it needs no JavaScript;
+   copy the <thead> text into data-label when adding a table). The markup stays
+   a real <table>. Scoped to phones because it retrofits a desktop component:
+   from 640px up every table renders exactly as before. */
+@media (max-width: 639.98px) {
+  .post .table-scroll { overflow: visible; }
+  .post .table-scroll table,
+  .post .table-scroll :is(tbody, tr, th, td, caption) {
+    display: block;
+    width: auto;
+    min-width: 0;
+  }
+  .post .table-scroll thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .post .table-scroll caption { padding: 14px 16px 10px; border-bottom: 1px solid var(--border-color); }
+  .post .table-scroll tr {
+    padding: 14px 16px 16px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .post .table-scroll tbody tr:last-child { border-bottom: 0; }
+  .post .table-scroll :is(th, td),
+  .post .table-scroll table:has(thead th:nth-child(6)) :is(th, td) {
+    padding: 0;
+    border: 0;
+    font-size: 1rem;
+  }
+  .post .table-scroll tr > :first-child { color: var(--text-primary); font-weight: 600; }
+  .post .table-scroll tr > :not(:first-child) { margin-top: 10px; }
+  .post .table-scroll [data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+}
 
 /* ==========================================================================
    Founder photo (about.html).

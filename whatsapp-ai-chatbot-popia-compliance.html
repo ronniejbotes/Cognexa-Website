@@ -60,7 +60,7 @@
   <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=30">
+  <link rel="stylesheet" href="css/styles.css?v=31">
 
   <script type="application/ld+json">
 {
@@ -180,33 +180,33 @@
           <tbody>
             <tr>
               <th scope="row">Consent to message</th>
-              <td>Section 69 prohibits direct marketing by electronic communication unless the person has consented, or is an existing customer approached about your own similar products or services under the soft opt-in conditions.</td>
-              <td>Marketing sends are gated behind a stored consent record. A reply inside a conversation the customer started is a service message and sits outside that gate.</td>
+              <td data-label="What POPIA requires">Section 69 prohibits direct marketing by electronic communication unless the person has consented, or is an existing customer approached about your own similar products or services under the soft opt-in conditions.</td>
+              <td data-label="What that looks like in a chatbot build">Marketing sends are gated behind a stored consent record. A reply inside a conversation the customer started is a service message and sits outside that gate.</td>
             </tr>
             <tr>
               <th scope="row">Opt-out</th>
-              <td>Section 69 requires a reasonable opportunity to object, free of charge, both when the details are collected and with every marketing communication, plus contact details for a request that communications cease.</td>
-              <td>A stop keyword the bot honours immediately, written back to the customer record so no later template can reach them, and the sending business named in the message itself.</td>
+              <td data-label="What POPIA requires">Section 69 requires a reasonable opportunity to object, free of charge, both when the details are collected and with every marketing communication, plus contact details for a request that communications cease.</td>
+              <td data-label="What that looks like in a chatbot build">A stop keyword the bot honours immediately, written back to the customer record so no later template can reach them, and the sending business named in the message itself.</td>
             </tr>
             <tr>
               <th scope="row">Data minimality</th>
-              <td>Section 10 allows processing only where the information is adequate, relevant and not excessive, given the purpose it is processed for.</td>
-              <td>The conversation asks for the fields the job needs and then stops. No identity or banking details collected &ldquo;in case we need them later&rdquo;.</td>
+              <td data-label="What POPIA requires">Section 10 allows processing only where the information is adequate, relevant and not excessive, given the purpose it is processed for.</td>
+              <td data-label="What that looks like in a chatbot build">The conversation asks for the fields the job needs and then stops. No identity or banking details collected &ldquo;in case we need them later&rdquo;.</td>
             </tr>
             <tr>
               <th scope="row">Retention</th>
-              <td>Section 14 says records must not be kept longer than necessary for the purpose, unless a law, a contract or the data subject&rsquo;s consent requires it, and must then be destroyed or de-identified.</td>
-              <td>A stated retention period per data type, with deletion or de-identification actually scheduled &mdash; rather than a chat archive that grows forever because nobody owns the decision.</td>
+              <td data-label="What POPIA requires">Section 14 says records must not be kept longer than necessary for the purpose, unless a law, a contract or the data subject&rsquo;s consent requires it, and must then be destroyed or de-identified.</td>
+              <td data-label="What that looks like in a chatbot build">A stated retention period per data type, with deletion or de-identification actually scheduled &mdash; rather than a chat archive that grows forever because nobody owns the decision.</td>
             </tr>
             <tr>
               <th scope="row">Operator agreements</th>
-              <td>Sections 20 and 21 govern anyone processing on your behalf and require a written contract covering permitted use, security measures and breach notification.</td>
-              <td>A signed agreement with whoever builds or hosts the bot, naming where conversation data is stored, who may access it, and how quickly a breach reaches you.</td>
+              <td data-label="What POPIA requires">Sections 20 and 21 govern anyone processing on your behalf and require a written contract covering permitted use, security measures and breach notification.</td>
+              <td data-label="What that looks like in a chatbot build">A signed agreement with whoever builds or hosts the bot, naming where conversation data is stored, who may access it, and how quickly a breach reaches you.</td>
             </tr>
             <tr>
               <th scope="row">Automated decision-making</th>
-              <td>Section 71 says a person may not be subject to a decision carrying legal consequences, or affecting them to a substantial degree, based solely on automated processing intended to profile them &mdash; subject to the exceptions in section 71(2), where the safeguards include a chance to make representations and information about the underlying logic.</td>
-              <td>The bot gathers, answers and routes. Anything that decides about a person &mdash; declining an application, setting a price tier, blocking an account &mdash; goes to someone who can review it and explain the reasoning.</td>
+              <td data-label="What POPIA requires">Section 71 says a person may not be subject to a decision carrying legal consequences, or affecting them to a substantial degree, based solely on automated processing intended to profile them &mdash; subject to the exceptions in section 71(2), where the safeguards include a chance to make representations and information about the underlying logic.</td>
+              <td data-label="What that looks like in a chatbot build">The bot gathers, answers and routes. Anything that decides about a person &mdash; declining an application, setting a price tier, blocking an account &mdash; goes to someone who can review it and explain the reasoning.</td>
             </tr>
           </tbody>
         </table>
