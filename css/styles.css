@@ -197,6 +197,11 @@
   /* Accents */
   --accent-blue: #4a7cff;
   --accent-blue-hover: #3a6aee;
+  /* Small link text on the translucent cards (blog cards, article CTA and
+     FAQ cards). The brand blue is 4.3:1 there; this lighter step of the same
+     blue is 4.7:1 on the card and stays above 4.5:1 over the page's colour
+     glows. */
+  --accent-blue-on-card: #5584ff;
   --accent-green: #34d399;
   --accent-orange: #fb923c;
   --accent-red: #f87171;
@@ -1914,6 +1919,8 @@ legend.intake-q + * { clear: both; }
   max-width: none;
 }
 .faq-item a { font-weight: 600; }
+/* On article pages the answers' links take the card blue (4.7:1, not 4.3:1). */
+.post .faq-item a { color: var(--accent-blue-on-card); }
 
 /* ==========================================================================
    Static subpages (blog) — no 3D scene, gradient backdrop, light and fast
@@ -1996,7 +2003,7 @@ body.page-static main {
   padding-top: 8px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--accent-blue);
+  color: var(--accent-blue-on-card);
 }
 
 /* Article hero. Sits between the meta line and the answer block; decorative
@@ -2047,7 +2054,9 @@ body.page-static main {
 }
 .breadcrumb a:hover,
 .breadcrumb a:focus-visible { color: var(--accent-blue); }
-.breadcrumb [aria-current="page"] { color: var(--text-muted); }
+/* The current page is plain text, not underlined like the links. It was
+   --text-muted (2.95:1); --text-secondary reads at 5.9:1. */
+.breadcrumb [aria-current="page"] { color: var(--text-secondary); }
 
 /* 404 page */
 .error-links {
@@ -2157,6 +2166,9 @@ body.page-static main {
 }
 .post-cta h2 { margin: 0 0 8px; font-size: 1.35rem; }
 .post-cta p { margin-bottom: 18px; }
+/* Inline links in the card's text (phone, email, WhatsApp) take the card
+   blue, 4.7:1 here where the brand blue is 4.3:1. Buttons are untouched. */
+.post-cta p a { color: var(--accent-blue-on-card); }
 
 .post-sources {
   margin-top: 56px;
@@ -2472,6 +2484,18 @@ body.page-static main {
 }
 .post tbody tr:last-child th,
 .post tbody tr:last-child td { border-bottom: 0; }
+
+/* A comparison table too wide for the 712px text column (the seven-column
+   table on the AI receptionist page wrapped its cells to three and four
+   lines at desktop widths). On a desktop-width screen its box widens to
+   1072px, centred on the column, leaving at least 48px each side of the
+   viewport; the text column itself does not change. Phones keep the card
+   layout below and tablets keep the table as it was. */
+@media (min-width: 1024px) {
+  .post .table-scroll--wide {
+    margin-inline: calc((100% - min(1072px, 100vw - 96px)) / 2);
+  }
+}
 
 /* Comparison tables on phones. Under 640px the three to seven columns could
    only scroll sideways inside .table-scroll, so a phone showed the first two
