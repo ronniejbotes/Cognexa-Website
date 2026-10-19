@@ -64,6 +64,13 @@ RedirectMatch 404 ^/package(-lock)?\.json$
   # it exists only so any external copy of the link still resolves.
   # ----------------------------------------------------------------
   RewriteRule ^ai-voice-agent-vs-ivr-vs-receptionist\.html$ /ai-receptionist-vs-human-receptionist.html [R=301,L]
+
+  # Extensionless addresses, e.g. /ai-receptionist-south-africa -> /ai-receptionist-south-africa.html
+  # (2026-10-19, plan T-69). No dot is allowed, so it cannot reach the internal files in section 0.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([a-z0-9-]+)/?$ https://cognexa.co.za/$1.html [R=301,L]
 </IfModule>
 
 # ------------------------------------------------------------------
