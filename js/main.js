@@ -808,9 +808,9 @@
       if (message) lines.push('', 'Notes:', message);
       var mailto =
         'mailto:' + CONTACT_EMAIL +
-        '?subject=' + encodeURIComponent('Build enquiry — ' + (fieldVal('company') || fieldVal('name'))) +
+        '?subject=' + encodeURIComponent('Build enquiry: ' + (fieldVal('company') || fieldVal('name'))) +
         '&body=' + encodeURIComponent(lines.join('\r\n'));
-      setSuccessCopy('Your answers are in your mail app, ready to send — we reply within one business day.');
+      setSuccessCopy('Your answers are in your mail app, ready to send. We reply within one business day.');
       showSuccess();
       window.location.href = mailto;
     }
@@ -860,7 +860,7 @@
         .then(function (response) {
           if (!response.ok) throw new Error('HTTP ' + response.status);
           track('intake_submit', { method: 'form', page_path: location.pathname });
-          setSuccessCopy("We've got your answers — we reply within one business day.");
+          setSuccessCopy("We've got your answers, and we reply within one business day.");
           showSuccess();
         })
         .catch(function () {

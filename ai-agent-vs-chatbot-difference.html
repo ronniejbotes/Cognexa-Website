@@ -149,27 +149,27 @@
 
       <img class="post-hero" src="assets/images/blog-agent-vs-chatbot.jpg" width="1200" height="675" alt="A single glowing speech bubble beside a branching network of connected nodes" loading="eager" fetchpriority="high" decoding="async">
 
-      <div class="post-answer">A chatbot answers; an AI agent acts. A chatbot replies to questions using information it has been given, and stops there. An AI agent takes a goal, plans the steps, and writes to your systems &mdash; checking the calendar, booking the slot, updating the CRM, sending the follow-up. Agents cost more to run per task, so most businesses in 2026 use both: a chatbot at the front door handling common questions, and agents behind it doing the work that used to land on someone&rsquo;s desk.</div>
+      <div class="post-answer">A chatbot answers; an AI agent acts. A chatbot replies to questions using information it has been given, and stops there. An AI agent takes a goal, plans the steps, and writes to your systems: checking the calendar, booking the slot, updating the CRM, sending the follow-up. Agents cost more to run per task, so most businesses in 2026 use both: a chatbot at the front door handling common questions, and agents behind it doing the work that used to land on someone&rsquo;s desk.</div>
 
       <h2>What is the difference between an AI chatbot and an AI agent?</h2>
-      <p>The distinction that matters isn&rsquo;t how clever the language sounds &mdash; both use the same underlying models, and both can hold a natural conversation. The difference is what happens after the conversation.</p>
-      <p>A chatbot is <strong>reactive and read-only</strong>. It waits for a question, finds the answer in what it knows &mdash; your FAQs, your pricing page, your product catalogue &mdash; and replies. Ask it when you&rsquo;re open and it tells you. Ask it to book you in and, at best, it hands you a link.</p>
-      <p>An AI agent is <strong>proactive and read-write</strong>. You give it a goal rather than a question, and it works out the steps needed to reach it, taking actions in real systems along the way. Ask an agent to book you in and it checks live availability, holds the slot, writes the appointment to the calendar, creates the customer record, and sends the confirmation &mdash; then tells you it&rsquo;s done.</p>
+      <p>The distinction that matters isn&rsquo;t how clever the language sounds. Both use the same underlying models, and both can hold a natural conversation. The difference is what happens after the conversation.</p>
+      <p>A chatbot is <strong>reactive and read-only</strong>. It waits for a question, finds the answer in what it knows (your FAQs, your pricing page, your product catalogue) and replies. Ask it when you&rsquo;re open and it tells you. Ask it to book you in and, at best, it hands you a link.</p>
+      <p>An AI agent is <strong>proactive and read-write</strong>. You give it a goal rather than a question, and it works out the steps needed to reach it, taking actions in real systems along the way. Ask an agent to book you in and it checks live availability, holds the slot, writes the appointment to the calendar, creates the customer record, and sends the confirmation. Then it tells you it&rsquo;s done.</p>
       <p>Put simply: if it can only tell you things, it&rsquo;s a chatbot. If it can change things, it&rsquo;s an agent.</p>
 
       <h2>What can an AI agent do that a chatbot can&rsquo;t?</h2>
       <p>Four capabilities separate the two, and they&rsquo;re worth knowing by name because vendors use them loosely:</p>
       <ul>
         <li><strong>Planning.</strong> An agent breaks a goal into steps and decides their order. &ldquo;Reschedule this customer&rdquo; becomes: find the booking, check alternatives, confirm the choice, cancel the old slot, write the new one, notify the technician.</li>
-        <li><strong>Tool use.</strong> An agent calls other systems &mdash; your calendar, CRM, invoicing tool, job board &mdash; through their APIs. This is the capability that turns conversation into work, and it&rsquo;s the one that takes real integration effort to build.</li>
+        <li><strong>Tool use.</strong> An agent calls other systems (your calendar, CRM, invoicing tool, job board) through their APIs. This is the capability that turns conversation into work, and it&rsquo;s the one that takes real integration effort to build.</li>
         <li><strong>Memory.</strong> An agent carries context across a whole task, and often across separate conversations, so a customer who messaged on Tuesday isn&rsquo;t starting from scratch on Thursday.</li>
-        <li><strong>Self-correction.</strong> When a step fails &mdash; the slot got taken, the API timed out &mdash; a well-built agent notices and adjusts rather than confidently reporting success.</li>
+        <li><strong>Self-correction.</strong> When a step fails (the slot got taken, the API timed out), a well-built agent notices and adjusts rather than confidently reporting success.</li>
       </ul>
       <p>That last one is why agents need more careful engineering than chatbots. A chatbot that gets something wrong gives a bad answer. An agent that gets something wrong books the wrong appointment, or emails the wrong customer. The blast radius is different, which is why every agent we build has explicit limits on what it may do without a human confirming.</p>
 
       <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison of an AI chatbot and an AI agent">
         <table>
-          <caption>Chatbot vs AI agent &mdash; what changes once a system can write into yours.</caption>
+          <caption>Chatbot vs AI agent: what changes once a system can write into yours.</caption>
           <thead>
             <tr>
               <th scope="col">&nbsp;</th>
@@ -185,8 +185,8 @@
             </tr>
             <tr>
               <th scope="row">Needs integrations</th>
-              <td data-label="Chatbot">Often none &mdash; your own content is usually enough</td>
-              <td data-label="AI agent">Yes &mdash; authenticated access to every system it touches</td>
+              <td data-label="Chatbot">Often none, because your own content is usually enough</td>
+              <td data-label="AI agent">Yes, authenticated access to every system it touches</td>
             </tr>
             <tr>
               <th scope="row">Can take actions</th>
@@ -201,12 +201,12 @@
             <tr>
               <th scope="row">Build effort</th>
               <td data-label="Chatbot">Content and conversation design</td>
-              <td data-label="AI agent">Higher &mdash; permissions, error handling and testing per system</td>
+              <td data-label="AI agent">Higher: permissions, error handling and testing per system</td>
             </tr>
             <tr>
               <th scope="row">Running cost per task</th>
               <td data-label="Chatbot">Lower, one lookup and one reply</td>
-              <td data-label="AI agent">Higher &mdash; more reasoning steps and multiple system calls</td>
+              <td data-label="AI agent">Higher: more reasoning steps and multiple system calls</td>
             </tr>
             <tr>
               <th scope="row">Typical use</th>
@@ -220,58 +220,58 @@
       <h2>Does an AI agent cost more than a chatbot?</h2>
       <p>Yes, on two fronts, and it&rsquo;s worth separating them.</p>
       <p><strong>Running cost.</strong> Industry write-ups in 2026 put an agent at roughly three to ten times a chatbot&rsquo;s cost per resolved task, because each agent run involves more reasoning steps, longer context and multiple system calls rather than a single lookup and reply. That multiple sounds alarming until you weigh it against the alternative: the comparison isn&rsquo;t agent-versus-chatbot, it&rsquo;s agent-versus-the-half-hour-of-admin it replaced.</p>
-      <p><strong>Build cost.</strong> This is usually the bigger gap. A chatbot needs your content and a good conversation design. An agent needs authenticated access to every system it touches, permission rules, error handling and testing against real edge cases before it goes anywhere near a customer. That integration work &mdash; not the AI itself &mdash; is what moves a quote. We break down what drives the numbers in <a href="ai-receptionist-cost-south-africa.html">what an AI receptionist costs in South Africa</a>.</p>
+      <p><strong>Build cost.</strong> This is usually the bigger gap. A chatbot needs your content and a good conversation design. An agent needs authenticated access to every system it touches, permission rules, error handling and testing against real edge cases before it goes anywhere near a customer. That integration work, rather than the AI itself, is what moves a quote. We break down what drives the numbers in <a href="ai-receptionist-cost-south-africa.html">what an AI receptionist costs in South Africa</a>.</p>
 
       <h2>Which does my business actually need first?</h2>
-      <p>Start by looking at where the time actually goes. If your team&rsquo;s hours disappear into <em>answering the same questions</em>, a chatbot recovers most of that on its own. If the hours disappear into <em>doing the same admin</em> after the questions are answered, a chatbot will not touch the problem &mdash; you need something that can act.</p>
+      <p>Start by looking at where the time actually goes. If your team&rsquo;s hours disappear into <em>answering the same questions</em>, a chatbot recovers most of that on its own. If the hours disappear into <em>doing the same admin</em> after the questions are answered, a chatbot will not touch the problem. You need something that can act.</p>
       <p>A rough test: write down the last twenty enquiries your business handled. For each one, note whether the work ended when someone gave an answer, or continued into <a href="workflow-automation-south-africa.html">booking, quoting, invoicing, updating a record or chasing a follow-up</a>. If most ended at the answer, build the chatbot first. If most continued, the answer was never the bottleneck.</p>
-      <p>In practice most South African small businesses we scope have a mix, and the highest-value automation sits in the second group &mdash; the quiet admin nobody bills for. Our guide to <a href="small-business-ai-workflow-automation-examples.html">12 workflows that pay off first</a> covers where that work usually hides.</p>
+      <p>In practice most South African small businesses we scope have a mix, and the highest-value automation sits in the second group: the quiet admin nobody bills for. Our guide to <a href="small-business-ai-workflow-automation-examples.html">12 workflows that pay off first</a> covers where that work usually hides.</p>
 
       <h2>Do I have to choose one or the other?</h2>
-      <p>No &mdash; and in 2026 the common production pattern is explicitly hybrid. A chatbot greets the customer, works out what they want, and either answers it outright or hands the request to an agent that can complete it. The customer experiences one conversation; behind it, cheap fast replies handle the routine and the expensive capable machinery only spins up when there&rsquo;s actual work to do.</p>
+      <p>No. In 2026 the common production pattern is explicitly hybrid. A chatbot greets the customer, works out what they want, and either answers it outright or hands the request to an agent that can complete it. The customer experiences one conversation; behind it, cheap fast replies handle the routine and the expensive capable machinery only spins up when there&rsquo;s actual work to do.</p>
       <p>That layering is also how you keep costs sane. Running every &ldquo;what time do you close?&rdquo; through a full agent is like sending a technician to answer the phone.</p>
 
       <h2>How do I tell what a vendor is actually selling me?</h2>
       <p>&ldquo;AI agent&rdquo; has become a marketing term, and plenty of products described as agents are chatbots with a longer prompt. Four questions cut through it quickly:</p>
       <ul>
         <li><strong>What can it write to?</strong> Ask for the specific list of systems it can change, not just read. Vague answers here usually mean the answer is &ldquo;nothing.&rdquo;</li>
-        <li><strong>Show me a multi-step task end to end.</strong> Not a demo conversation &mdash; a task that finishes with a record changed in a real system.</li>
+        <li><strong>Show me a multi-step task end to end.</strong> Not a demo conversation, but a task that finishes with a record changed in a real system.</li>
         <li><strong>What happens when a step fails?</strong> A credible answer describes retries, fallbacks and escalation. A vague one means failures will surface as confidently wrong outcomes.</li>
         <li><strong>What can it do without asking a human?</strong> Every serious deployment has a boundary. If a vendor hasn&rsquo;t thought about where theirs is, they haven&rsquo;t run this in production.</li>
       </ul>
-      <p>The same scepticism applies to timelines and payback claims &mdash; we cover realistic ones in <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to set up</a>.</p>
+      <p>The same scepticism applies to timelines and payback claims. We cover realistic ones in <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to set up</a>.</p>
 
       <h2>How Cognexa approaches it</h2>
       <p>We scope the work before naming the technology, because the label matters far less than what the thing is allowed to do. Most builds start with a <a href="whatsapp-ai-chatbot-south-africa.html">chatbot across your website and WhatsApp</a> to catch and qualify enquiries, then add <a href="workflow-automation-south-africa.html">agent-driven workflow automation</a> behind it once we can see exactly which admin is eating the hours. Every action an agent can take without a human is agreed with you upfront, in writing, before it goes live.</p>
 
       <h2>Related reading</h2>
       <ul>
-        <li><a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp and website AI chatbots for South African businesses</a> &mdash; what a chatbot at the front door actually handles.</li>
-        <li><a href="workflow-automation-south-africa.html">Workflow automation for quoting, invoicing, bookings and CRM hygiene</a> &mdash; the admin an agent takes off your team.</li>
-        <li><a href="small-business-ai-workflow-automation-examples.html">12 AI workflow automations that pay off first</a> &mdash; where the wasted hours usually hide.</li>
-        <li><a href="ai-receptionist-south-africa.html">AI receptionists for South African businesses</a> &mdash; the same agent logic, on your phone line.</li>
+        <li><a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp and website AI chatbots for South African businesses</a>: what a chatbot at the front door actually handles.</li>
+        <li><a href="workflow-automation-south-africa.html">Workflow automation for quoting, invoicing, bookings and CRM hygiene</a>: the admin an agent takes off your team.</li>
+        <li><a href="small-business-ai-workflow-automation-examples.html">12 AI workflow automations that pay off first</a>: where the wasted hours usually hide.</li>
+        <li><a href="ai-receptionist-south-africa.html">AI receptionists for South African businesses</a>: the same agent logic, on your phone line.</li>
       </ul>
 
       <aside class="post-cta">
         <h2>Put it to work in your business</h2>
-        <p>Cognexa designs and builds AI chatbots, voice agents and automated workflows &mdash; tell us what eats your team&rsquo;s hours and we&rsquo;ll map the automation that gives them back.</p>
+        <p>Cognexa designs and builds AI chatbots, voice agents and automated workflows. Tell us what eats your team&rsquo;s hours and we&rsquo;ll map the automation that gives them back.</p>
         <a class="btn btn-primary" href="/#contact">Start your build</a>
-        <p class="post-cta-contact">Or call <a href="tel:+27662412155">066 241 2155</a> &mdash; <a href="pricing.html">scoping is free</a> and we reply within one business day.</p>
+        <p class="post-cta-contact">Or call <a href="tel:+27662412155">066 241 2155</a>. <a href="pricing.html">Scoping is free</a> and we reply within one business day.</p>
       </aside>
 
       <section aria-labelledby="faq-heading">
         <h2 id="faq-heading">Quick answers</h2>
         <details class="faq-item">
           <summary>Is an AI agent the same as &ldquo;agentic AI&rdquo;?</summary>
-          <p>Broadly yes &mdash; &ldquo;agentic AI&rdquo; is the umbrella term for systems that pursue goals and take actions rather than just generating replies. &ldquo;AI agent&rdquo; usually refers to one specific deployed instance of that: the thing handling your bookings, or your lead follow-up. Treat them as the same category when you&rsquo;re comparing vendors.</p>
+          <p>Broadly, yes. &ldquo;Agentic AI&rdquo; is the umbrella term for systems that pursue goals and take actions rather than just generating replies. &ldquo;AI agent&rdquo; usually refers to one specific deployed instance of that: the thing handling your bookings, or your lead follow-up. Treat them as the same category when you&rsquo;re comparing vendors.</p>
         </details>
         <details class="faq-item">
           <summary>Can an AI agent work over WhatsApp, or only on a website?</summary>
-          <p>Both. The agent is the logic; WhatsApp, web chat, email or phone are just channels it speaks through. On WhatsApp specifically you need the official WhatsApp Business Platform rather than the free app, and consent rules apply &mdash; see our guide to <a href="whatsapp-ai-chatbot-popia-compliance.html">POPIA-compliant WhatsApp chatbots</a>.</p>
+          <p>Both. The agent is the logic; WhatsApp, web chat, email or phone are just channels it speaks through. On WhatsApp specifically you need the official WhatsApp Business Platform rather than the free app, and consent rules apply. See our guide to <a href="whatsapp-ai-chatbot-popia-compliance.html">POPIA-compliant WhatsApp chatbots</a>.</p>
         </details>
         <details class="faq-item">
           <summary>Do AI agents replace staff?</summary>
-          <p>In small businesses, the pattern we see is redistribution rather than replacement: the agent absorbs the repetitive admin and after-hours load, and the people spend their time on the work that actually needs judgement. The honest caveat is that this only holds if you redeploy the recovered hours deliberately &mdash; otherwise the time just quietly refills with other admin.</p>
+          <p>In small businesses, the pattern we see is redistribution rather than replacement: the agent absorbs the repetitive admin and after-hours load, and the people spend their time on the work that actually needs judgement. The honest caveat is that this only holds if you redeploy the recovered hours deliberately. Otherwise the time just quietly refills with other admin.</p>
         </details>
         <details class="faq-item">
           <summary>Why do so many AI agent projects fail?</summary>
@@ -282,11 +282,11 @@
       <section class="post-sources" aria-labelledby="sources-heading">
         <h2 id="sources-heading">Sources &amp; further reading</h2>
         <ol>
-          <li><a href="https://www.nutshell.com/blog/ai-agents-vs-chatbots" rel="noopener">Nutshell &mdash; AI Agent vs. Chatbot: What Your Business Needs in 2026</a></li>
-          <li><a href="https://devrev.ai/blog/ai-agent-vs-chatbot" rel="noopener">DevRev &mdash; AI agent vs chatbot: the differences that matter in 2026</a></li>
-          <li><a href="https://www.lindy.ai/blog/ai-agent-vs-chatbot" rel="noopener">Lindy &mdash; AI Agents vs. Chatbots in 2026: What&rsquo;s the Difference?</a></li>
-          <li><a href="https://joget.com/ai-agent-adoption-in-2026-what-the-analysts-data-shows/" rel="noopener">Joget &mdash; AI Agent Adoption 2026: What the Analysts&rsquo; Data Shows</a></li>
-          <li><a href="https://www.digitalapplied.com/blog/ai-agent-adoption-2026-enterprise-data-points" rel="noopener">Digital Applied &mdash; AI Agent Adoption 2026: Enterprise Data Points</a></li>
+          <li><a href="https://www.nutshell.com/blog/ai-agents-vs-chatbots" rel="noopener">Nutshell: AI Agent vs. Chatbot: What Your Business Needs in 2026</a></li>
+          <li><a href="https://devrev.ai/blog/ai-agent-vs-chatbot" rel="noopener">DevRev: AI agent vs chatbot: the differences that matter in 2026</a></li>
+          <li><a href="https://www.lindy.ai/blog/ai-agent-vs-chatbot" rel="noopener">Lindy: AI Agents vs. Chatbots in 2026: What&rsquo;s the Difference?</a></li>
+          <li><a href="https://joget.com/ai-agent-adoption-in-2026-what-the-analysts-data-shows/" rel="noopener">Joget: AI Agent Adoption 2026: What the Analysts&rsquo; Data Shows</a></li>
+          <li><a href="https://www.digitalapplied.com/blog/ai-agent-adoption-2026-enterprise-data-points" rel="noopener">Digital Applied: AI Agent Adoption 2026: Enterprise Data Points</a></li>
         </ol>
       </section>
     </article>
