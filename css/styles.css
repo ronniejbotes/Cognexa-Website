@@ -398,6 +398,22 @@ main, .site-footer {
     0 0 10px rgba(15, 17, 23, 0.85);
 }
 
+/* The same halo for body-size copy over the canvas, with a tight inner ring
+   first: a heading's thick strokes carry the wide blur on their own, thin
+   body strokes need the 3px ring to keep particles off the letter edges.
+   Added 28 October 2026: on phones the hero copy, the work note and the
+   contact links sit on the densest part of the particle sphere. */
+.hero .eyebrow,
+.hero-sub,
+.hero-trust,
+.work-note,
+.contact-alt {
+  text-shadow:
+    0 0 3px rgba(15, 17, 23, 0.95),
+    0 0 8px rgba(15, 17, 23, 0.9),
+    0 2px 24px rgba(15, 17, 23, 0.95);
+}
+
 /* Glass panel — used only where text sits over busy canvas areas.
    Solid fallback first; translucent + blur where supported. */
 .glass,
@@ -623,10 +639,33 @@ body.js-enabled #nav-menu .btn {
   margin-top: 16px;
 }
 
-/* Nav CTA living outside the menu is hidden on small screens (menu carries one) */
-@media (max-width: 639.98px) {
-  .site-nav .container > .btn,
-  .site-nav > .btn { display: none; }
+/* Header CTA beside the burger, under 900px. There the menu, and the
+   "Start your build" inside it, is folded away behind the burger, so an inner
+   page's first phone screen had no way to enquire: at 390px the first CTA on
+   ai-receptionist-south-africa sat about 13 screens down (28 October 2026
+   mobile check). This copy carries the same label and link as the menu's.
+   margin-left: auto parks it beside the burger and leaves the logo the left
+   edge; the compact padding and size keep a clear gap to the logo at 360px.
+   Two classes so it outranks .btn, which is declared further down.
+   From 900px the menu, with its own CTA, is inline again, so this copy goes;
+   without JS the menu renders as a static row that already carries the CTA. */
+.site-nav .nav-cta {
+  margin-left: auto;
+  padding: 0 14px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+body:not(.js-enabled) .site-nav .nav-cta { display: none; }
+/* The open menu ends in the same button; one at a time. visibility, not
+   display, so the burger does not jump while it is the close button. */
+body.nav-open .site-nav .nav-cta { visibility: hidden; }
+/* Below the 360px floor (320px phones) a slightly smaller button keeps the
+   burger inside the header's 24px side padding. */
+@media (max-width: 359.98px) {
+  .site-nav .nav-cta { padding: 0 10px; font-size: 0.8125rem; }
+}
+@media (min-width: 900px) {
+  .site-nav .nav-cta { display: none; }
 }
 
 /* --- Desktop (≥900px) ---------------------------------------------------- */
@@ -769,8 +808,12 @@ body.js-enabled #nav-menu .btn {
   .hero-accent { background: none; color: var(--accent-blue); }
 }
 
+/* A fifth of the way from secondary to primary text: still reads as the
+   quieter line under the headline, but holds up over the particle sphere.
+   Browsers without color-mix() keep the plain secondary colour. */
 .hero-sub {
   color: var(--text-secondary);
+  color: color-mix(in srgb, var(--text-secondary) 80%, var(--text-primary));
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   /* 34.066em == 54ch in loaded Inter (ch = 0.63086em), but em does not change
      when the web font swaps in. With 54ch the fallback-font ch (~0.595em) made
@@ -778,6 +821,14 @@ body.js-enabled #nav-menu .btn {
      desktop CLS source. Same rendered width, no swap reflow. */
   max-width: 34.066em;
   margin: 0 auto 36px;
+}
+/* Phones and tablets: the paragraph lands on the sphere's densest band, so it
+   gets a faint scrim as well. closest-side fades it out before the box edge,
+   so there is no visible panel; the sphere still shows through. */
+@media (max-width: 899.98px) {
+  .hero-sub {
+    background: radial-gradient(closest-side, rgba(15, 17, 23, 0.6), rgba(15, 17, 23, 0));
+  }
 }
 
 .hero-actions {
@@ -793,7 +844,18 @@ body.js-enabled #nav-menu .btn {
   margin-top: 20px;
   font-size: 0.85rem;
   color: var(--text-secondary);
+  color: color-mix(in srgb, var(--text-secondary) 80%, var(--text-primary));
   letter-spacing: 0.02em;
+}
+
+/* The global p { max-width: 62ch } makes these two narrower than the hero
+   column on desktop, and without auto margins they hugged its left edge:
+   at 1440 both sat about 140px left of the centred headline. On phones the
+   column is narrower than 62ch, so the auto margins resolve to 0. */
+.hero .eyebrow,
+.hero-trust {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .scroll-cue {
@@ -1280,11 +1342,13 @@ body.work-loops .work-card .work-media:not(.is-front) { opacity: 0; }
   background: rgba(15, 17, 23, 0.92);
 }
 
+/* Halo comes from the body-copy halo rule near the top of the file; the
+   colour is lifted a touch like .hero-sub's. */
 .work-note {
   margin-top: 28px;
   color: var(--text-secondary);
+  color: color-mix(in srgb, var(--text-secondary) 80%, var(--text-primary));
   font-size: 0.9rem;
-  text-shadow: 0 1px 12px rgba(15, 17, 23, 0.9);
 }
 
 .work-card figcaption {
@@ -1464,6 +1528,7 @@ body.work-loops .work-card .work-media:not(.is-front) { opacity: 0; }
 .contact-alt {
   margin-top: 32px;
   color: var(--text-secondary);
+  color: color-mix(in srgb, var(--text-secondary) 80%, var(--text-primary));
 }
 .contact-alt a {
   color: var(--accent-current);
@@ -1610,10 +1675,13 @@ fieldset.intake-step {
   min-width: 0;
 }
 
+/* min-height holds the row at the Back button's 44px on step 1, which has no
+   Back button, so the question sits at the same height on every step. */
 .intake-meta {
   display: flex;
   align-items: center;
   gap: 20px;
+  min-height: 44px;
   margin-bottom: 30px;
   color: var(--text-secondary);
   font-size: 0.9rem;
@@ -1630,7 +1698,9 @@ fieldset.intake-step {
   font-weight: 500;
 }
 .intake-back:hover { color: var(--text-primary); }
-.intake-step[data-step="1"] .intake-back { visibility: hidden; }
+/* display, not visibility: a hidden Back button still took up its 53px and
+   pushed "1 of 8" right of the question's left edge. */
+.intake-step[data-step="1"] .intake-back { display: none; }
 
 .intake-num {
   font-family: var(--font-display);
@@ -1772,6 +1842,11 @@ legend.intake-q + * { clear: both; }
 .intake-hint {
   color: var(--text-secondary);
   font-size: 0.85rem;
+}
+/* The hints point at a hardware Enter key. Phones and touch screens use the
+   on-screen keyboard's own Go/Next key, so there the hint is only noise. */
+@media (max-width: 639.98px), (hover: none) and (pointer: coarse) {
+  .intake-hint { display: none; }
 }
 
 .intake-success .intake-num {
@@ -2236,6 +2311,7 @@ body.page-static main {
 @media print {
   #scene-canvas,
   .nav-toggle,
+  .nav-cta,
   .nav-progress,
   .scroll-cue,
   .skip-link,
