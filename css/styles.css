@@ -2661,7 +2661,7 @@ body.page-static main {
   font-size: 1rem;
   color: var(--text-secondary);
 }
-.post-cta .post-cta-contact a { display: inline-block; white-space: nowrap; padding-block: 12px; margin-block: -12px; }
+.post-cta .post-cta-contact a { display: inline-block; white-space: nowrap; padding-block: 8px; }
 
 /* ==========================================================================
    Footer credit: "Website by Position Xero" at the end of the copyright line
