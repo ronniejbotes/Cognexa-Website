@@ -35,6 +35,7 @@ Cognexa is based in Centurion, Gauteng, and replies to every enquiry within one 
 - [AI Consultant vs AI Automation Agency](https://cognexa.co.za/ai-consultant-vs-ai-automation-agency.html): What an AI consultant hands over, what an AI automation agency builds, how each usually charges, which a small business needs first, and the red flags on both sides.
 - [How Do You Keep Answering Calls in a Power Outage?](https://cognexa.co.za/answer-business-calls-during-power-outage.html): Load shedding or an outage: what stops when the office power goes, where call forwarding should live, and how an AI receptionist keeps booking work.
 - [AI Receptionist for Plumbers and Electricians](https://cognexa.co.za/ai-receptionist-for-trades.html): Missing calls on site? What an AI receptionist should ask about a job, which calls should ring your phone, and how a quote request lands in your diary.
+- [How to Follow Up on a Quote Without Chasing It](https://cognexa.co.za/follow-up-on-a-quote.html): What to ask when a quote goes quiet, which channel to use, the WhatsApp and POPIA rules that apply, when to stop, and how to automate the follow-up.
 
 ## Contact
 
