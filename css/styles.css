@@ -2687,3 +2687,10 @@ body.page-static main {
   .footer-copy__sep { display: none; }
   .footer-copy__credit { display: block; margin-top: 4px; }
 }
+
+/* ==========================================================================
+   Preferred source badge: Google's own "Add as a preferred source" badge under
+   the copyright line (owner, 5 November 2026). Centred with the footer; width
+   and height are on the img, so nothing shifts.
+   ========================================================================== */
+.pref-source { display: inline-block; line-height: 0; margin-top: 16px; }
