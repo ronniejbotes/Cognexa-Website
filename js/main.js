@@ -144,41 +144,44 @@
     });
   }
 
-  function boot3D() {
-    var canvas = document.getElementById('scene-canvas');
+  function canRun3D() {
     var scene = window.CognexaScene;
     /* The scroll choreography is part of the same enhancement bundle as the
        scene: CSS clips the process conveyor whenever body lacks .no-3d, so
        running the scene without ScrollTrigger would strand content. All or
        nothing. */
-    var canRun =
+    return (
       !prefersReducedMotion() &&
       !!window.THREE &&
-      !!canvas &&
+      !!document.getElementById('scene-canvas') &&
       !!scene &&
       typeof scene.init === 'function' &&
       !!window.gsap &&
       !!window.ScrollTrigger &&
       !!window.CognexaScroll &&
-      typeof window.CognexaScroll.init === 'function';
+      typeof window.CognexaScroll.init === 'function'
+    );
+  }
 
-    var ok = false;
-    if (canRun) {
-      try {
-        /* scene.js supplies its own particleCount defaults
-           (6000 desktop / 3000 under 768px). */
-        ok = scene.init(canvas, {}) !== false;
-      } catch (err) {
-        ok = false;
-      }
+  function startScene() {
+    if (!canRun3D()) return false;
+    try {
+      /* scene.js supplies its own particleCount defaults
+         (6000 desktop / 3000 under 768px). */
+      return (
+        window.CognexaScene.init(document.getElementById('scene-canvas'), {}) !== false
+      );
+    } catch (err) {
+      return false;
     }
+  }
 
-    if (!ok) {
-      sceneActive = false;
-      body.classList.add('no-3d');
-      return;
-    }
+  function fallBackTo2D() {
+    sceneActive = false;
+    body.classList.add('no-3d');
+  }
 
+  function startChoreography() {
     sceneActive = true;
     body.classList.remove('no-3d');
     bindPointer();
@@ -191,6 +194,82 @@
          than leaving a scene without working scroll (clipped conveyor). */
       teardown3D();
     }
+  }
+
+  function boot3D() {
+    if (startScene()) {
+      startChoreography();
+    } else {
+      fallBackTo2D();
+    }
+  }
+
+  /* Calls fn once the browser has painted the page, straight away if it
+     already has. Creating a WebGL context can block the main thread until the
+     graphics process is ready, and that wait used to come first. The timer
+     covers a background tab, which never paints. A browser without paint
+     timing goes straight on, as it always did. */
+  function afterFirstPaint(fn) {
+    var called = false;
+    function go() {
+      if (called) return;
+      called = true;
+      fn();
+    }
+    var observerType = window.PerformanceObserver;
+    if (
+      !observerType ||
+      !observerType.supportedEntryTypes ||
+      observerType.supportedEntryTypes.indexOf('paint') === -1
+    ) {
+      go();
+      return;
+    }
+    window.setTimeout(go, 1500);
+    try {
+      new observerType(function (list, observer) {
+        observer.disconnect();
+        go();
+      }).observe({ type: 'paint', buffered: true });
+    } catch (err) {
+      go();
+    }
+  }
+
+  /* First boot, split across browser tasks so a phone is never blocked for
+     the whole start-up in one go: first paint, formations, then the WebGL
+     scene, then the scroll choreography. The order and the end state are
+     boot3D's. Pages and visitors that can't run the scene take the fallback
+     straight away, before first paint, as they always have. */
+  function boot3DInSteps() {
+    if (!canRun3D()) {
+      boot3D();
+      markBooted();
+      return;
+    }
+    var prepare = window.CognexaScene.prepare;
+    afterFirstPaint(function () {
+      (typeof prepare === 'function' ? prepare : function (done) { done(); })(function () {
+        window.setTimeout(function () {
+          if (!startScene()) {
+            fallBackTo2D();
+            markBooted();
+            return;
+          }
+          window.setTimeout(function () {
+            /* Reduced motion switched on in the gap: the teardown it triggered
+               saw no active scene, so clear this one the same way. */
+            if (prefersReducedMotion()) {
+              sceneActive = true;
+              teardown3D();
+            } else {
+              startChoreography();
+            }
+            markBooted();
+          }, 0);
+        }, 0);
+      });
+    });
   }
 
   /* Tear the motion experience down (used when prefers-reduced-motion is
@@ -262,8 +341,22 @@
      spacers, so by the time the page settles the target sits ~1800px
      further down than where the browser left us. Re-aim once ScrollTrigger's
      own load refresh has run (its load listener registers before this one;
-     the double rAF lets that layout land first). */
+     the double rAF lets that layout land first). The boot now runs across a
+     few tasks and can finish after load, so whichever comes last re-aims. */
+  var booted = false;
+  var loaded = false;
+
+  function markBooted() {
+    booted = true;
+    if (loaded) reAimAtHash();
+  }
+
   window.addEventListener('load', function () {
+    loaded = true;
+    if (booted) reAimAtHash();
+  });
+
+  function reAimAtHash() {
     if (!location.hash || location.hash.length < 2) return;
     var target = null;
     try {
@@ -277,7 +370,7 @@
         target.scrollIntoView({ block: 'start' });
       });
     });
-  });
+  }
 
   /* bfcache restore (Insights → Back, etc.): the page is served from the
      back/forward cache with the WebGL scene, GSAP ticker and ScrollTrigger
@@ -1358,7 +1451,7 @@
     initIntake();
     initWorkVideos();
     initYear();
-    boot3D();
+    boot3DInSteps();
   }
 
   if (document.readyState === 'loading') {

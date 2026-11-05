@@ -5,6 +5,7 @@
    Requires the global THREE (UMD build r149) to be loaded first.
 
    Public API (see build contract):
+     prepare(done)     optional: builds the formations ahead of init()
      init(canvasEl, opts) -> bool
      setFormation(f)   float 0..4, continuous
      setProgress(p)    0..1 page progress -> camera drift + hue temperature
@@ -519,6 +520,47 @@
    * Public API
    * ------------------------------------------------------------------ */
 
+  /* Formations built ahead of init() by prepare(), so init() has less to do
+     in one go. Used once, and only if the particle count still matches. */
+  var prepared = null;
+
+  function formationBuilders(count, isMobile) {
+    return [
+      function () { return buildSphere(count); },
+      function () { return buildBubble(count); },
+      function () { return buildWaveform(count, isMobile); },
+      function () { return buildNetwork(count); },
+      function () { return buildGlobe(count); }
+    ];
+  }
+
+  /* Builds one formation per browser task, then calls done(). Together they
+     are a long block of main-thread work on a phone; apart, the page can
+     respond between them. Never throws: on any failure init() simply builds
+     the formations itself and reports its own result. */
+  function prepare(done) {
+    var isMobile = window.innerWidth < 768;
+    var count = isMobile ? 3000 : 6000;
+    var builders = formationBuilders(count, isMobile);
+    var built = [];
+    function step() {
+      try {
+        built.push(builders[built.length]());
+      } catch (err) {
+        prepared = null;
+        done();
+        return;
+      }
+      if (built.length < builders.length) {
+        window.setTimeout(step, 0);
+        return;
+      }
+      prepared = { count: count, isMobile: isMobile, formations: built };
+      done();
+    }
+    window.setTimeout(step, 0);
+  }
+
   function init(canvasEl, opts) {
     opts = opts || {};
     if (state) destroy();
@@ -552,13 +594,15 @@
     camera.position.set(0, 0, 7);
 
     // ---- formations -------------------------------------------------
-    var formations = [
-      buildSphere(count),
-      buildBubble(count),
-      buildWaveform(count, isMobile),
-      buildNetwork(count),
-      buildGlobe(count)
-    ];
+    var formations;
+    if (prepared && prepared.count === count && prepared.isMobile === isMobile) {
+      formations = prepared.formations;
+    } else {
+      formations = formationBuilders(count, isMobile).map(function (build) {
+        return build();
+      });
+    }
+    prepared = null;
 
     // How far each formation reaches sideways, in world units — setLateral
     // uses these to park a formation in the strip its station panel leaves
@@ -815,6 +859,7 @@
   }
 
   window.CognexaScene = {
+    prepare: prepare,
     init: init,
     setFormation: setFormation,
     getFormation: getFormation,
