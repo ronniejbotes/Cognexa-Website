@@ -2211,6 +2211,9 @@ body.page-static main {
   padding-left: 24px;
 }
 .post li { margin-bottom: 8px; }
+/* Related reading: each link is its own 44px tap on phones (final check, 8 Nov 2026) */
+.post ul:has(+ .post-cta) li { margin-bottom: 0; }
+.post ul:has(+ .post-cta) a { display: block; padding-block: 8px; }
 
 .post strong { color: var(--text-primary); }
 
