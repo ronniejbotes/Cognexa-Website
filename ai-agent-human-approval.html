@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What Should an AI Agent Do Without Human Approval? | Cognexa</title>
+  <meta name="description" content="Where to draw the line for an AI agent: what it can do alone, what it should draft for a person to approve, and what it hands straight to your team.">
+  <meta name="theme-color" content="#0f1117">
+  <!-- Google Analytics 4: Measurement ID G-5VH5BBTCL7 (Cognexa web stream) -->
+  <!-- Deferred off the critical path (mobile PageSpeed): loads https://www.googletagmanager.com/gtag/js?id=G-5VH5BBTCL7 after window load or first interaction -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5VH5BBTCL7');
+    (function () {
+      var loaded = false;
+      function loadGtag() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5VH5BBTCL7';
+        document.head.appendChild(s);
+      }
+      if (document.readyState === 'complete') {
+        window.setTimeout(loadGtag, 1500);
+      } else {
+        window.addEventListener('load', function () { window.setTimeout(loadGtag, 1500); });
+      }
+      ['pointerdown', 'keydown', 'touchstart'].forEach(function (evt) {
+        window.addEventListener(evt, loadGtag, { once: true, passive: true });
+      });
+    })();
+  </script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "yxic53icwe");</script>
+  <link rel="canonical" href="https://cognexa.co.za/ai-agent-human-approval.html">
+
+  <meta property="og:title" content="What should an AI agent do without asking a person?">
+  <meta property="og:description" content="Where to draw the line for an AI agent: what it can do alone, what it should draft for a person to approve, and what it hands straight to your team.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://cognexa.co.za/ai-agent-human-approval.html">
+  <meta property="og:site_name" content="Cognexa">
+  <meta property="og:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What should an AI agent do without asking a person?">
+  <meta name="twitter:description" content="Where to draw the line for an AI agent: what it can do alone, what it should draft for a person to approve, and what it hands straight to your team.">
+  <meta name="twitter:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+  <!-- Resource hints. The two latin subsets are what actually render this page;
+       the -ext subsets only load for accented characters. Preloading them removes
+       a round-trip from the critical path; `crossorigin` is required on font
+       preloads even same-origin, or the browser fetches the file twice.
+       googletagmanager is preconnected rather than preloaded: the tag itself is
+       deliberately deferred, so we only want the TLS handshake warmed. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="stylesheet" href="css/styles.css?v=38">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://cognexa.co.za/ai-agent-human-approval.html#article",
+      "headline": "What should an AI agent do without asking a person?",
+      "description": "Where to draw the line for an AI agent: what it can do alone, what it should draft for a person to approve, and what it hands straight to your team.",
+      "image": "https://cognexa.co.za/assets/images/og-image.jpg",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "author": {
+        "@type": "Organization",
+        "name": "Cognexa",
+        "url": "https://cognexa.co.za/"
+      },
+      "publisher": { "@type": "Organization", "@id": "https://cognexa.co.za/#organization", "name": "Cognexa", "alternateName": "Cognexa AI Business Solutions", "url": "https://cognexa.co.za/", "logo": "https://cognexa.co.za/assets/icons/favicon.svg", "telephone": "+27 66 241 2155" },
+      "mainEntityOfPage": "https://cognexa.co.za/ai-agent-human-approval.html"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://cognexa.co.za/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://cognexa.co.za/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "What should an AI agent do without asking a person?",
+          "item": "https://cognexa.co.za/ai-agent-human-approval.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="page-static">
+  <script>/* Runs during parse, before first paint: without it the no-JS nav fallback renders as a tall static menu until js/main.js executes (mobile CLS). js/main.js re-adds the class as a harmless no-op; with JS disabled this never runs and the fallback still applies. */document.body.classList.add('js-enabled');</script>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <a class="nav-brand" href="/">Cognexa</a>
+
+    <a class="btn btn-primary nav-cta" href="/#contact">Start your build</a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+      <span class="sr-only">Menu</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <line x1="4" y1="6" x2="20" y2="6"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="18" x2="20" y2="18"></line>
+      </svg>
+    </button>
+
+    <nav id="nav-menu" class="nav-menu" aria-label="Primary">
+      <a class="nav-link" href="/#services">Services</a>
+      <a class="nav-link" href="/#process">Process</a>
+      <a class="nav-link" href="/#work">Work</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
+      <a class="nav-link" href="blog.html">Insights</a>
+      <a class="nav-link" href="/#contact">Contact</a>
+      <a class="btn btn-primary" href="/#contact">Start your build</a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <article class="post">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="blog.html">Insights</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">What an AI agent may do alone</span>
+      </nav>
+
+      <p class="post-eyebrow">AI agents</p>
+      <h1>What should an AI agent do without asking a person?</h1>
+      <p class="post-meta">By <a href="about.html">the Cognexa team</a> &middot; <time datetime="2026-11-11">11 November 2026</time></p>
+
+      <div class="post-answer">Let it act alone where the rule is already written down and a mistake is easy to put right: answering from information you've approved, reading a record, booking a slot that's open. Have it draft, and a person approve, anything that costs you money, commits you to something new or needs a judgement call. Have it hand straight over anything emotional or outside what you've told it. Then write that boundary down before the agent speaks to a customer.</div>
+
+      <h2>Why an agent needs a boundary that a chatbot doesn't</h2>
+      <p>A chatbot answers questions. An agent writes into your systems: it books the slot, updates the customer record, sends the follow-up. We set out the difference in our guide to <a href="ai-agent-vs-chatbot-difference.html">AI agents and chatbots</a>. That changes what a mistake looks like. A chatbot gets something wrong and gives a bad answer. An agent gets something wrong and books the wrong appointment, or emails the wrong customer.</p>
+      <p>The OWASP security project has a name for an agent with too much room: <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" rel="noopener">excessive agency</a>, where an AI system can be led into "damaging actions" by output that's unexpected, ambiguous or manipulated. The root causes it lists are excessive functionality, excessive permissions and excessive autonomy. Drawing the boundary is how you decide how much of each the agent gets.</p>
+      <h2>The jobs an agent can finish on its own</h2>
+      <p>Look for jobs that pass these tests:</p>
+      <ul>
+        <li>The rule is already written down: your trading hours, your services, the open slots in your calendar.</li>
+        <li>The customer asked for it in this conversation.</li>
+        <li>If it goes wrong, you'll see it on the record and can put it right before any harm is done.</li>
+      </ul>
+      <p>That covers answering questions from your approved information, taking a customer's name, number and reason for getting in touch, and booking, rescheduling or cancelling in your calendar. Our <a href="ai-receptionist-south-africa.html">AI receptionist page</a> lists those among the jobs a receptionist handles well. Logging the conversation on the customer record and sending the confirmation they're expecting belong here too.</p>
+      <p>Even inside those jobs, some calls are yours. Booking an open slot is routine. Deciding who gets the last emergency slot isn't, and our <a href="workflow-automation-south-africa.html">workflow automation page</a> keeps emergency slots, deliberate overbooking and who gets priority with a person.</p>
+      <h2>Anything involving money or a new promise: the agent drafts, you approve</h2>
+      <p>Some actions are worth automating right up to the last click. The agent does the legwork, fills in the document or writes the reply, and a person reads it and presses send.</p>
+      <p>That's where anything touching money or a commitment you haven't made before belongs: money off a quote, a price outside your rate card, a write-off, a payment arrangement, a disputed line on an invoice. Replies to a complaint or a contested message go here as well. Those are the decisions our workflow page leaves with a human, and its inbox automation drafts a reply for a human to approve.</p>
+      <p>OWASP's guidance points the same way. Among its ways to prevent excessive agency is to "require a human to approve high-impact actions before they are taken", and among the fixes in its worked example, the user reviews and presses send on every email the assistant drafts.</p>
+      <h2>Conversations that go straight to a person</h2>
+      <p>Some conversations shouldn't sit in an approval queue at all. An angry complaint needs somebody who can apologise and decide on the spot. A bereavement, an emergency or a distressed customer needs a human voice. Anything that turns on medical, legal or financial judgement belongs with the professional, and so does any request where a wrong answer causes real harm. Each of those is on the hand-over list on our <a href="ai-receptionist-south-africa.html">AI receptionist page</a>. The agent is the same logic whichever channel it speaks through, as our agent guide puts it, so it's worth applying the same list on WhatsApp and email.</p>
+      <p>A request the agent has no instructions for goes to a person too. Guessing is the failure you're trying to prevent. A hand-over with the details already taken is the fallback. Our guide to <a href="ai-receptionist-script.html">what an AI receptionist script should say</a> covers how that hand-over sounds on a phone call.</p>
+      <h2>Decisions about a person need a closer look</h2>
+      <p>Some decisions reach further than a booking. POPIA's <a href="https://popia.co.za/section-71-automated-decision-making/" rel="noopener">section on automated decision-making</a> says a person may not be subject to a decision that has legal consequences for them, or affects them to a substantial degree, where it rests solely on automated processing meant to build a profile of them, such as their creditworthiness, reliability or conduct.</p>
+      <p>The section has exceptions. It doesn't apply to a decision taken in connection with a contract, where the person's request under that contract has been met or appropriate measures protect their legitimate interests, or to a decision governed by a law or code of conduct that specifies such measures. In the contract case, those measures have to give the person a chance to make representations about the decision, and enough information about the logic behind it to do so.</p>
+      <p>So an agent that decides by itself whether a customer qualifies for credit terms is the kind of build to take to your information officer or an attorney before it goes live. Our workflow page says Cognexa builds so a person reviews any materially affecting decision.</p>
+      <h2>Limit what it can reach, as well as what it's told</h2>
+      <p>An instruction not to issue refunds is weaker protection than giving the agent no way to issue a refund. OWASP recommends keeping the tools an agent can call, what those tools can do and the permissions they carry to the minimum necessary. It also recommends enforcing authorisation in the systems the agent connects to, so the AI isn't the thing deciding whether an action is allowed.</p>
+      <p>In plain terms: an agent that only quotes from your price list gets read access to the price list. An agent that books gets your calendar, and no write access to your accounting package. Keep a log of what it does as well. Logging and monitoring won't prevent excessive agency, OWASP says, but they can limit the damage.</p>
+      <h2>How to widen the boundary later</h2>
+      <p>Start narrow. Our guide to <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to set up</a> makes the case for starting with a narrow first build.</p>
+      <p>After the agent goes live, the approval queue starts telling you things. If a kind of draft keeps going out without a word changed, it's a candidate to move across to "act alone". Move it, write the change down, and keep reading the log. If a kind of draft keeps coming back with corrections, it stays with a person, or the rule behind it needs writing more clearly.</p>
+      <h2>How Cognexa draws the line with you</h2>
+      <p>We scope the work before naming the technology, because what the agent is allowed to do matters far more than what it's called. Every action an agent can take without a human is agreed with you upfront, in writing, before it goes live, and every agent we build has explicit limits on what it may do without a human confirming. For quoting, invoicing, bookings, inbox triage and CRM updates, our workflow page sets out what the software does and what a person still decides.</p>
+      <p>Tell us which jobs eat your team's week, and we'll map which ones an agent can finish alone, which ones it drafts for you to approve, and which stay with your team. <a href="workflow-automation-south-africa.html">Map your automation with Cognexa</a>.</p>
+
+      <aside class="post-cta">
+        <h2>Put it to work in your business</h2>
+        <p>Cognexa designs and builds AI chatbots, voice agents and automated workflows. Tell us what eats your team&rsquo;s hours and we&rsquo;ll map the automation that gives them back.</p>
+        <a class="btn btn-primary" href="/#contact">Start your build</a>
+        <p class="post-cta-contact">Prefer to talk it through? Call <a href="tel:+27662412155">066 241 2155</a> or email <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a>.</p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-about">
+        <p class="footer-brand">Cognexa</p>
+        <p class="footer-tagline">AI business solutions, built in South Africa.</p>
+        <p class="footer-contact"><a href="tel:+27662412155">066 241 2155</a> &middot; <a href="mailto:hello&#64;cognexa&#46;co&#46;za">hello&#64;cognexa&#46;co&#46;za</a></p>
+        <!-- Locality only, by choice: enough for the local-SEO signal (and it
+             matches the PostalAddress in the homepage schema) without publishing
+             a street address. Must stay byte-identical across every page. -->
+        <p class="footer-locality">Centurion, Gauteng, South Africa</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/#services">Services</a>
+        <a href="ai-receptionist-south-africa.html">AI receptionists</a>
+        <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a>
+        <a href="workflow-automation-south-africa.html">Workflow automation</a>
+        <a href="custom-crm-development-south-africa.html">Custom CRMs</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Insights</a>
+        <a href="about.html">About</a>
+        <a href="/#contact">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+      </nav>
+    </div>
+    <p class="footer-copy">&copy; <span class="footer-year">2026</span> Cognexa<span class="footer-copy__sep" aria-hidden="true"> &middot; </span><span class="footer-copy__credit">Website by <a href="https://www.positionxero.com/">Position Xero</a></span></p>
+    <a class="pref-source" href="https://www.google.com/preferences/source?q=cognexa.co.za" target="_blank" rel="noopener" aria-label="Add Cognexa as a preferred source on Google">
+      <img src="/assets/images/google-preferred-source-light.png" width="190" height="60" alt="Add as a preferred source on Google" loading="lazy" decoding="async">
+    </a>
+  </footer>
+
+  <script src="js/main.js?v=28"></script>
+</body>
+</html>
