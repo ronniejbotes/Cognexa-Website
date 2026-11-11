@@ -5,7 +5,7 @@
 #   1. One-hop canonical redirect to https://cognexa.co.za/
 #   2. Text compression (mod_deflate)
 #   3. Browser caching (mod_expires)
-#   4. Security headers (mod_headers) — HSTS
+#   4. Security headers (mod_headers) — HSTS, nosniff, framing, referrer, permissions
 #
 # Keep this file lean — it is read on every request.
 
@@ -148,7 +148,16 @@ ErrorDocument 404 /404.html
 #   subdomains) for one year. Only meaningful on HTTPS responses;
 #   browsers ignore the header over plain HTTP, so setting it
 #   unconditionally is safe.
+#   The other four (12 Nov 2026) are the same lines as positionxero.com's
+#   on this host. They change nothing a visitor sees: no sniffing of file
+#   types, no framing by other sites, only the domain (not the full
+#   address) sent to other sites as the referrer, and no camera,
+#   microphone or location access.
 # ------------------------------------------------------------------
 <IfModule mod_headers.c>
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
