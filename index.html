@@ -629,6 +629,14 @@
       <form id="intake-form">
         <h2 id="intake-heading" class="sr-only">Start your build: a few quick questions</h2>
 
+        <!-- Honeypot (12 Nov 2026): hidden from people and screen readers and
+             never focused. A bot that fills it gets the thank-you screen and
+             nothing is sent (main.js, submitIntake). -->
+        <div class="sr-only" aria-hidden="true">
+          <label for="iq-extra">Leave this field empty</label>
+          <input id="iq-extra" name="extra" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
         <section class="intake-step" data-step="1">
           <div class="intake-meta">
             <button type="button" class="intake-back">&larr; Back</button>
@@ -802,6 +810,6 @@
   <script src="assets/vendor/scrolltrigger-3.12.5.min.js"></script>
   <script src="js/scene.js?v=28"></script>
   <script src="js/scroll.js?v=27"></script>
-  <script src="js/main.js?v=28"></script>
+  <script src="js/main.js?v=29"></script>
 </body>
 </html>

@@ -911,6 +911,13 @@
     function submitIntake() {
       if (!validateStep(steps[current])) return;
 
+      /* Honeypot (12 Nov 2026): people never see #iq-extra. A bot that
+         fills it is shown the thank-you screen and nothing is sent. */
+      if (fieldVal('extra')) {
+        showSuccess();
+        return;
+      }
+
       if (!INTAKE_ENDPOINT || typeof window.fetch !== 'function') {
         submitViaMailto();
         return;
