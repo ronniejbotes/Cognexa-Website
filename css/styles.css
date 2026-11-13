@@ -2697,3 +2697,17 @@ body.page-static main {
    and height are on the img, so nothing shifts.
    ========================================================================== */
 .pref-source { display: inline-block; line-height: 0; margin-top: 16px; }
+
+/* In-article pictures and diagrams (13 Nov 2026). Unlike .post-hero these
+   carry information, so they keep their own shape and full alt text. */
+.post-figure {
+  margin: 28px 0;
+}
+.post-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+}

@@ -60,7 +60,7 @@
   <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=38">
+  <link rel="stylesheet" href="css/styles.css?v=39">
 
   <script type="application/ld+json">
 {
@@ -167,7 +167,7 @@
         <li><strong>Memory.</strong> An agent carries context across a whole task, and often across separate conversations, so a customer who messaged on Tuesday isn&rsquo;t starting from scratch on Thursday.</li>
         <li><strong>Self-correction.</strong> When a step fails (the slot got taken, the API timed out), a well-built agent notices and adjusts rather than confidently reporting success.</li>
       </ul>
-      <p>That last one is why agents need more careful engineering than chatbots. A chatbot that gets something wrong gives a bad answer. An agent that gets something wrong books the wrong appointment, or emails the wrong customer. The blast radius is different, which is why every agent we build has explicit limits on what it may do without a human confirming.</p>
+      <p>That last one is why agents need more careful engineering than chatbots. A chatbot that gets something wrong gives a bad answer. An agent that gets something wrong books the wrong appointment, or emails the wrong customer. The damage a mistake can do is different, which is why every agent we build has explicit limits on what it may do without a human confirming.</p>
 
       <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison of an AI chatbot and an AI agent">
         <table>
@@ -221,16 +221,16 @@
 
       <h2>Does an AI agent cost more than a chatbot?</h2>
       <p>Yes, on two fronts, and it&rsquo;s worth separating them.</p>
-      <p><strong>Running cost.</strong> Industry write-ups in 2026 put an agent at roughly three to ten times a chatbot&rsquo;s cost per resolved task, because each agent run involves more reasoning steps, longer context and multiple system calls rather than a single lookup and reply. That multiple sounds alarming until you weigh it against the alternative: the comparison isn&rsquo;t agent-versus-chatbot, it&rsquo;s agent-versus-the-half-hour-of-admin it replaced.</p>
+      <p><strong>Running cost.</strong> Industry write-ups in 2026 put an agent at roughly three to ten times a chatbot&rsquo;s cost per resolved task, because each agent run involves more reasoning steps, longer context and multiple system calls rather than a single lookup and reply. That multiple sounds alarming until you weigh it against the alternative: the fair comparison is the agent against the half-hour of admin it replaced, not against a chatbot.</p>
       <p><strong>Build cost.</strong> This is usually the bigger gap. A chatbot needs your content and a good conversation design. An agent needs authenticated access to every system it touches, permission rules, error handling and testing against real edge cases before it goes anywhere near a customer. That integration work, rather than the AI itself, is what moves a quote. We break down what drives the numbers in <a href="ai-receptionist-cost-south-africa.html">what an AI receptionist costs in South Africa</a>.</p>
 
-      <h2>Which does my business actually need first?</h2>
+      <h2>Which does my business need first?</h2>
       <p>Start by looking at where the time actually goes. If your team&rsquo;s hours disappear into <em>answering the same questions</em>, a chatbot recovers most of that on its own. If the hours disappear into <em>doing the same admin</em> after the questions are answered, a chatbot will not touch the problem. You need something that can act.</p>
       <p>A rough test: write down the last twenty enquiries your business handled. For each one, note whether the work ended when someone gave an answer, or continued into <a href="workflow-automation-south-africa.html">booking, quoting, invoicing, updating a record or chasing a follow-up</a>. If most ended at the answer, build the chatbot first. If most continued, the answer was never the bottleneck.</p>
       <p>In practice most South African small businesses we scope have a mix, and the highest-value automation sits in the second group: the quiet admin nobody bills for. Our guide to <a href="small-business-ai-workflow-automation-examples.html">12 workflows that pay off first</a> covers where that work usually hides.</p>
 
       <h2>Do I have to choose one or the other?</h2>
-      <p>No. In 2026 the common production pattern is explicitly hybrid. A chatbot greets the customer, works out what they want, and either answers it outright or hands the request to an agent that can complete it. The customer experiences one conversation; behind it, cheap fast replies handle the routine and the expensive capable machinery only spins up when there&rsquo;s actual work to do.</p>
+      <p>No. In 2026 the common real-world setup uses both, on purpose. A chatbot greets the customer, works out what they want, and either answers it outright or hands the request to an agent that can complete it. The customer experiences one conversation; behind it, cheap fast replies handle the routine and the expensive, capable agent only steps in when there's real work to do.</p>
       <p>That layering is also how you keep costs sane. Running every &ldquo;what time do you close?&rdquo; through a full agent is like sending a technician to answer the phone.</p>
 
       <h2>How do I tell what a vendor is actually selling me?</h2>

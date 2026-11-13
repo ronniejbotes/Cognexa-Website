@@ -41,13 +41,13 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://cognexa.co.za/ai-agent-human-approval.html">
   <meta property="og:site_name" content="Cognexa">
-  <meta property="og:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
+  <meta property="og:image" content="https://cognexa.co.za/assets/images/blog/phone-showing-green-tick.webp">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:height" content="674">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="What should an AI agent do without asking a person?">
   <meta name="twitter:description" content="Where to draw the line for an AI agent: what it can do alone, what it should draft for a person to approve, and what it hands straight to your team.">
-  <meta name="twitter:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
+  <meta name="twitter:image" content="https://cognexa.co.za/assets/images/blog/phone-showing-green-tick.webp">
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
@@ -60,7 +60,7 @@
   <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=38">
+  <link rel="stylesheet" href="css/styles.css?v=39">
 
   <script type="application/ld+json">
 {
@@ -71,7 +71,7 @@
       "@id": "https://cognexa.co.za/ai-agent-human-approval.html#article",
       "headline": "What should an AI agent do without asking a person?",
       "description": "Where to draw the line for an AI agent: what it can do alone, what it should draft for a person to approve, and what it hands straight to your team.",
-      "image": "https://cognexa.co.za/assets/images/og-image.jpg",
+      "image": "https://cognexa.co.za/assets/images/blog/phone-showing-green-tick.webp",
       "datePublished": "2026-11-11",
       "dateModified": "2026-11-11",
       "author": {
@@ -149,11 +149,17 @@
       <h1>What should an AI agent do without asking a person?</h1>
       <p class="post-meta">By <a href="about.html">the Cognexa team</a> &middot; <time datetime="2026-11-11">11 November 2026</time></p>
 
+      <img class="post-hero" src="assets/images/blog/phone-showing-green-tick.webp" width="1200" height="674" alt="A hand holding a phone that shows a large green tick." loading="eager" fetchpriority="high" decoding="async">
+
       <div class="post-answer">Let it act alone where the rule is already written down and a mistake is easy to put right: answering from information you've approved, reading a record, booking a slot that's open. Have it draft, and a person approve, anything that costs you money, commits you to something new or needs a judgement call. Have it hand straight over anything emotional or outside what you've told it. Then write that boundary down before the agent speaks to a customer.</div>
 
       <h2>Why an agent needs a boundary that a chatbot doesn't</h2>
       <p>A chatbot answers questions. An agent writes into your systems: it books the slot, updates the customer record, sends the follow-up. We set out the difference in our guide to <a href="ai-agent-vs-chatbot-difference.html">AI agents and chatbots</a>. That changes what a mistake looks like. A chatbot gets something wrong and gives a bad answer. An agent gets something wrong and books the wrong appointment, or emails the wrong customer.</p>
-      <p>The OWASP security project has a name for an agent with too much room: <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" rel="noopener">excessive agency</a>, where an AI system can be led into "damaging actions" by output that's unexpected, ambiguous or manipulated. The root causes it lists are excessive functionality, excessive permissions and excessive autonomy. Drawing the boundary is how you decide how much of each the agent gets.</p>
+      <p>The OWASP security project has a name for an agent with too much room: <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" rel="noopener">excessive agency</a>, where an AI system can be led into "damaging actions" by output that's unexpected, ambiguous or manipulated. It lists three root causes: excessive functionality (too many tools), excessive permissions (too much access) and excessive autonomy (too little checking). Drawing the boundary is how you decide how much of each the agent gets.</p>
+      <figure class="post-figure">
+        <img src="assets/images/blog/ai-agent-approval-lanes-diagram.webp" width="1200" height="1788" alt="Three lanes. The agent finishes on its own: answering from approved information, taking contact details, booking and rescheduling, logging and confirming. The agent drafts and you approve: money off a quote, prices outside the rate card, write-offs, payment arrangements, disputed invoice lines, replies to complaints. Straight to a person: angry complaints, bereavement, emergencies, distressed customers, medical, legal or financial judgement, and anything the agent has no instructions for." loading="lazy" decoding="async">
+      </figure>
+
       <h2>The jobs an agent can finish on its own</h2>
       <p>Look for jobs that pass these tests:</p>
       <ul>
@@ -168,17 +174,17 @@
       <p>That's where anything touching money or a commitment you haven't made before belongs: money off a quote, a price outside your rate card, a write-off, a payment arrangement, a disputed line on an invoice. Replies to a complaint or a contested message go here as well. Those are the decisions our workflow page leaves with a human, and its inbox automation drafts a reply for a human to approve.</p>
       <p>OWASP's guidance points the same way. Among its ways to prevent excessive agency is to "require a human to approve high-impact actions before they are taken", and among the fixes in its worked example, the user reviews and presses send on every email the assistant drafts.</p>
       <h2>Conversations that go straight to a person</h2>
-      <p>Some conversations shouldn't sit in an approval queue at all. An angry complaint needs somebody who can apologise and decide on the spot. A bereavement, an emergency or a distressed customer needs a human voice. Anything that turns on medical, legal or financial judgement belongs with the professional, and so does any request where a wrong answer causes real harm. Each of those is on the hand-over list on our <a href="ai-receptionist-south-africa.html">AI receptionist page</a>. The agent is the same logic whichever channel it speaks through, as our agent guide puts it, so it's worth applying the same list on WhatsApp and email.</p>
+      <p>Some conversations shouldn't sit in an approval queue at all. An angry complaint needs somebody who can apologise and decide on the spot. A bereavement, an emergency or a distressed customer needs a human voice. Anything that turns on medical, legal or financial judgement belongs with the professional, and so does any request where a wrong answer causes real harm. Each of those is on the hand-over list on our <a href="ai-receptionist-south-africa.html">AI receptionist page</a>. The agent runs on the same logic whichever channel it speaks through (our agent guide explains this), so it's worth applying the same list on WhatsApp and email.</p>
       <p>A request the agent has no instructions for goes to a person too. Guessing is the failure you're trying to prevent. A hand-over with the details already taken is the fallback. Our guide to <a href="ai-receptionist-script.html">what an AI receptionist script should say</a> covers how that hand-over sounds on a phone call.</p>
-      <h2>Decisions about a person need a closer look</h2>
+      <h2>Credit checks and other decisions about a person need a closer look</h2>
       <p>Some decisions reach further than a booking. POPIA's <a href="https://popia.co.za/section-71-automated-decision-making/" rel="noopener">section on automated decision-making</a> says a person may not be subject to a decision that has legal consequences for them, or affects them to a substantial degree, where it rests solely on automated processing meant to build a profile of them, such as their creditworthiness, reliability or conduct.</p>
       <p>The section has exceptions. It doesn't apply to a decision taken in connection with a contract, where the person's request under that contract has been met or appropriate measures protect their legitimate interests, or to a decision governed by a law or code of conduct that specifies such measures. In the contract case, those measures have to give the person a chance to make representations about the decision, and enough information about the logic behind it to do so.</p>
-      <p>So an agent that decides by itself whether a customer qualifies for credit terms is the kind of build to take to your information officer or an attorney before it goes live. Our workflow page says Cognexa builds so a person reviews any materially affecting decision.</p>
+      <p>So an agent that decides by itself whether a customer qualifies for credit terms is the kind of build to take to your information officer or an attorney before it goes live. Cognexa builds so a person reviews any materially affecting decision, as our workflow page sets out.</p>
       <h2>Limit what it can reach, as well as what it's told</h2>
       <p>An instruction not to issue refunds is weaker protection than giving the agent no way to issue a refund. OWASP recommends keeping the tools an agent can call, what those tools can do and the permissions they carry to the minimum necessary. It also recommends enforcing authorisation in the systems the agent connects to, so the AI isn't the thing deciding whether an action is allowed.</p>
       <p>In plain terms: an agent that only quotes from your price list gets read access to the price list. An agent that books gets your calendar, and no write access to your accounting package. Keep a log of what it does as well. Logging and monitoring won't prevent excessive agency, OWASP says, but they can limit the damage.</p>
       <h2>How to widen the boundary later</h2>
-      <p>Start narrow. Our guide to <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to set up</a> makes the case for starting with a narrow first build.</p>
+      <p>Start narrow. Our guide to <a href="how-long-ai-automation-setup-roi.html">how long AI automation takes to set up</a> explains why.</p>
       <p>After the agent goes live, the approval queue starts telling you things. If a kind of draft keeps going out without a word changed, it's a candidate to move across to "act alone". Move it, write the change down, and keep reading the log. If a kind of draft keeps coming back with corrections, it stays with a person, or the rule behind it needs writing more clearly.</p>
       <h2>How Cognexa draws the line with you</h2>
       <p>We scope the work before naming the technology, because what the agent is allowed to do matters far more than what it's called. Every action an agent can take without a human is agreed with you upfront, in writing, before it goes live, and every agent we build has explicit limits on what it may do without a human confirming. For quoting, invoicing, bookings, inbox triage and CRM updates, our workflow page sets out what the software does and what a person still decides.</p>

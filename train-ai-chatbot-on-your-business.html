@@ -41,13 +41,13 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://cognexa.co.za/train-ai-chatbot-on-your-business.html">
   <meta property="og:site_name" content="Cognexa">
-  <meta property="og:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
+  <meta property="og:image" content="https://cognexa.co.za/assets/images/blog/chat-open-on-a-smartphone.webp">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:height" content="674">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="How to train an AI chatbot on your business information">
   <meta name="twitter:description" content="How to train a chatbot on your business information: what to give it, what to keep out under POPIA, how to test it and when it hands over to a person.">
-  <meta name="twitter:image" content="https://cognexa.co.za/assets/images/og-image.jpg">
+  <meta name="twitter:image" content="https://cognexa.co.za/assets/images/blog/chat-open-on-a-smartphone.webp">
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
@@ -60,7 +60,7 @@
   <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=38">
+  <link rel="stylesheet" href="css/styles.css?v=39">
 
   <script type="application/ld+json">
 {
@@ -71,7 +71,7 @@
       "@id": "https://cognexa.co.za/train-ai-chatbot-on-your-business.html#article",
       "headline": "How to train an AI chatbot on your business information",
       "description": "How to train a chatbot on your business information: what to give it, what to keep out under POPIA, how to test it and when it hands over to a person.",
-      "image": "https://cognexa.co.za/assets/images/og-image.jpg",
+      "image": "https://cognexa.co.za/assets/images/blog/chat-open-on-a-smartphone.webp",
       "datePublished": "2026-10-07",
       "dateModified": "2026-10-07",
       "author": {
@@ -149,13 +149,15 @@
       <h1>How to train an AI chatbot on your business information</h1>
       <p class="post-meta">By <a href="about.html">the Cognexa team</a> &middot; <time datetime="2026-10-07">7 October 2026</time></p>
 
+      <img class="post-hero" src="assets/images/blog/chat-open-on-a-smartphone.webp" width="1200" height="674" alt="A hand holding a smartphone with an empty WhatsApp chat open." loading="eager" fetchpriority="high" decoding="async">
+
       <div class="post-answer">To train a chatbot on your business information, you don't retrain the AI. You write a knowledge base of the facts it may use: what you sell and what you don't, how you price, your hours, the areas you serve, your policies and the questions customers send you. You set rules for what goes to a person and test it on real messages before launch. Then you keep it current, because the bot is only as right as its last update.</div>
 
       <p>This guide is for a South African business putting a <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp AI chatbot</a> on its business number, though the same knowledge base can sit behind website chat or a voice agent. You won't need technical skill for any of it, only a clear picture of how your business answers customers.</p>
 
       <h2>Do you need to train ChatGPT on your business?</h2>
       <p>No, at least not in the way most people picture it. The model behind a chatbot already knows how to read and write. What it lacks is your information, such as what you charge for a service or how far you'll travel for one.</p>
-      <p>OpenAI's own <a href="https://developers.openai.com/api/docs/guides/optimizing-llm-accuracy" rel="noopener">guide to improving model accuracy</a> draws the same line. When a model needs proprietary or up-to-date information, the fix is context, such as retrieving the right passage from a knowledge base when a question comes in. Fine-tuning, which is further training, targets behaviour like tone and format. Your prices are a context problem. When they change, you edit the knowledge base and nothing is retrained.</p>
+      <p>OpenAI's own <a href="https://developers.openai.com/api/docs/guides/optimizing-llm-accuracy" rel="noopener">guide to improving model accuracy</a> draws the same line. When a model needs proprietary or up-to-date information, the fix is context, such as retrieving the right passage from a knowledge base when a question comes in. Fine-tuning, which is further training, targets behaviour like tone and format. Your prices are a context problem, not a training one. When they change, you edit the knowledge base and nothing is retrained.</p>
       <p>So training a chatbot mostly means writing. You set down the facts it may use, how it should speak, what it must never do, and when it fetches a person.</p>
 
       <h2>What information should you give a WhatsApp chatbot?</h2>
@@ -204,7 +206,7 @@
       <h2>How do you know a chatbot is ready for customers?</h2>
       <p>When it copes with the messages customers send you. Build the test set from your chats: the common questions, the badly typed ones, the ones that mix two languages and the ones that should end with a person. Then go looking for trouble. Ask about something the knowledge base doesn't cover, and you want an honest "I don't know" and a handover. Try to talk it into a discount, or a date you can't do.</p>
       <p>Read every reply that mentions a price or a date against the knowledge base, word for word, and run one full handover to see whether the person receiving it gets the whole conversation. Keep the test set and rerun it after every change, because fixing one answer can disturb another.</p>
-      <p>Whoever wrote the knowledge base makes a poor tester, because they read what they meant into the replies. For customers who mix English with Afrikaans or isiZulu, our post on <a href="ai-chatbot-south-african-languages.html">AI chatbots and South African languages</a> covers what to check.</p>
+      <p>Whoever wrote the knowledge base makes a poor tester, because they read what they meant into the replies. If your customers mix English with Afrikaans or isiZulu, our post on <a href="ai-chatbot-south-african-languages.html">AI chatbots and South African languages</a> covers what to check in your tests.</p>
 
       <h2>How do you keep a chatbot's answers up to date?</h2>
       <p>Give the knowledge base one owner, and change it before the business changes. A customer shouldn't be the one who finds the gap. Diarise what you can see coming: price increases, new services, staff leave, public holidays. If you close for Heritage Day, the bot should know before the first customer asks.</p>
@@ -212,7 +214,7 @@
       <p>If you run more than one channel, keep one set of answers behind all of them. A website chat quoting one service price while your <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbot</a> quotes another leaves the customer wondering which you'll honour. The same goes for an <a href="ai-receptionist-south-africa.html">AI receptionist</a> on your phone line, although how it phrases things on a call is shaped by <a href="ai-receptionist-script.html">its receptionist script</a>.</p>
 
       <h2>How does Cognexa train a chatbot on your business?</h2>
-      <p>Our process describes the build stage as your AI team being "trained on your business". Website chat and WhatsApp run on one brain, so the same answers serve both. Our <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a> take the repeat questions, such as opening hours, location, what you charge for and whether you deliver to a given suburb, so nobody on your team retypes the same paragraph.</p>
+      <p>In our build stage, your AI team is trained on your business. Website chat and WhatsApp run on one brain, so the same answers serve both. Our <a href="whatsapp-ai-chatbot-south-africa.html">WhatsApp chatbots</a> take the repeat questions, such as opening hours, location, what you charge for and whether you deliver to a given suburb, so nobody on your team retypes the same paragraph.</p>
       <p>The chatbot says what it is in its first message and tells the customer how to reach a person. When it hands over, a named person gets the conversation with the transcript attached, so the customer doesn't explain the problem twice. Payments go through a link from the gateway you already use, which keeps card details off WhatsApp.</p>
 
       <h2>Can you start before you've chosen a chatbot platform?</h2>
