@@ -80,14 +80,6 @@
           "addressRegion": "Gauteng",
           "addressCountry": "ZA"
         },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "17:00"
-          }
-        ],
         "contactPoint": [
           {
             "@type": "ContactPoint",
@@ -116,19 +108,13 @@
           "custom CRM development",
           "POPIA compliance for automated messaging",
           "3D web development"
-        ],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "AI automation services",
-          "itemListElement": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://cognexa.co.za/#service-receptionist", "name": "AI receptionists and voice agents", "serviceType": "AI receptionist", "provider": { "@id": "https://cognexa.co.za/#organization" }, "areaServed": { "@type": "Country", "name": "South Africa" }, "description": "Natural-sounding AI voice agents that answer every inbound call, qualify the caller, book into your calendar and hand over to a human when a call needs judgement." } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://cognexa.co.za/#service-chat", "name": "AI chatbots and WhatsApp automation", "serviceType": "AI chatbot development", "provider": { "@id": "https://cognexa.co.za/#organization" }, "areaServed": { "@type": "Country", "name": "South Africa" }, "description": "Website chat and WhatsApp Business API automation that answers instantly, qualifies leads and books meetings around the clock." } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://cognexa.co.za/#service-workflow", "name": "Workflow automation", "serviceType": "Business process automation", "provider": { "@id": "https://cognexa.co.za/#organization" }, "areaServed": { "@type": "Country", "name": "South Africa" }, "description": "Automated quoting, invoicing, appointment booking and reminders, inbox triage and CRM data hygiene, wired into the tools you already use." } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://cognexa.co.za/#service-crm", "name": "Custom CRM development", "serviceType": "Custom CRM development", "provider": { "@id": "https://cognexa.co.za/#organization" }, "areaServed": { "@type": "Country", "name": "South Africa" }, "description": "Bespoke CRMs built around how your business actually sells, plus integration and automation of the CRM you already run." } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://cognexa.co.za/#service-web", "name": "3D web experiences", "serviceType": "Web development", "provider": { "@id": "https://cognexa.co.za/#organization" }, "areaServed": { "@type": "Country", "name": "South Africa" }, "description": "Immersive, scroll-driven 3D websites designed and built for performance and conversion." } }
-          ]
-        }
+        ]
       },
+      { "@type": "Service", "@id": "https://cognexa.co.za/#service-receptionist", "name": "AI receptionists and voice agents", "serviceType": "AI receptionist", "provider": { "@id": "https://cognexa.co.za/#organization" }, "areaServed": { "@type": "Country", "name": "South Africa" }, "description": "Natural-sounding AI voice agents that answer every inbound call, qualify the caller, book into your calendar and hand over to a human when a call needs judgement." },
+      { "@type": "Service", "@id": "https://cognexa.co.za/#service-chat", "name": "AI chatbots and WhatsApp automation", "serviceType": "AI chatbot development", "provider": { "@id": "https://cognexa.co.za/#organization" }, "areaServed": { "@type": "Country", "name": "South Africa" }, "description": "Website chat and WhatsApp Business API automation that answers instantly, qualifies leads and books meetings around the clock." },
+      { "@type": "Service", "@id": "https://cognexa.co.za/#service-workflow", "name": "Workflow automation", "serviceType": "Business process automation", "provider": { "@id": "https://cognexa.co.za/#organization" }, "areaServed": { "@type": "Country", "name": "South Africa" }, "description": "Automated quoting, invoicing, appointment booking and reminders, inbox triage and CRM data hygiene, wired into the tools you already use." },
+      { "@type": "Service", "@id": "https://cognexa.co.za/#service-crm", "name": "Custom CRM development", "serviceType": "Custom CRM development", "provider": { "@id": "https://cognexa.co.za/#organization" }, "areaServed": { "@type": "Country", "name": "South Africa" }, "description": "Bespoke CRMs built around how your business actually sells, plus integration and automation of the CRM you already run." },
+      { "@type": "Service", "@id": "https://cognexa.co.za/#service-web", "name": "3D web experiences", "serviceType": "Web development", "provider": { "@id": "https://cognexa.co.za/#organization" }, "areaServed": { "@type": "Country", "name": "South Africa" }, "description": "Immersive, scroll-driven 3D websites designed and built for performance and conversion." },
       {
         "@type": "WebSite",
         "@id": "https://cognexa.co.za/#website",
@@ -150,7 +136,7 @@
       "name": "How much does an AI receptionist or chatbot cost in South Africa?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Each build is scoped to your business, so pricing depends on the channels you need (web, WhatsApp, voice), your call and chat volumes, and the systems we integrate with. Scoping is free, you get a fixed monthly quote in Rand before committing, and you are never locked in. For the full breakdown of what drives the numbers, read our guide to AI receptionist costs in South Africa."
+        "text": "Each build is scoped to your business, so pricing depends on the channels you need (web, WhatsApp, voice), your call and chat volumes, and the systems we integrate with. We price each build after a free discovery meeting, before you commit to anything. For the full breakdown of what drives the numbers, read our guide to AI receptionist costs in South Africa."
       }
     },
     {
@@ -195,10 +181,10 @@
     },
     {
       "@type": "Question",
-      "name": "What does it cost to get started, and is there a minimum contract?",
+      "name": "What does it cost to get started?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Getting started costs nothing: tell us what eats your team\u2019s hours and we\u2019ll reply within one business day with an automation plan and a fixed quote. You are never locked in, and you commit only once you\u2019ve seen exactly what you\u2019ll get. Not sure where to begin? Start with our 12 workflows that pay off first."
+        "text": "Getting started costs nothing: tell us what eats your team\u2019s hours and we\u2019ll set up a free discovery meeting. We scope and price the work after it, and you commit only once you\u2019ve seen exactly what you\u2019ll get. Not sure where to begin? Start with our 12 workflows that pay off first."
       }
     }
   ]
@@ -264,7 +250,7 @@
           <a class="btn btn-primary" href="#contact">Start your build</a>
           <a class="btn btn-ghost" href="#services">See the line in motion</a>
         </div>
-        <p class="hero-trust">Free scoping &middot; Month-to-month &middot; Reply within one business day</p>
+        <p class="hero-trust">Free discovery meeting &middot; Priced to your project &middot; POPIA-aware builds</p>
       </div>
 
       <a class="scroll-cue" href="#services">
@@ -452,7 +438,7 @@
           </a>
         </figure>
       </div>
-      <p class="work-note">These four are our own studio demos, not client work. Client builds stay private. Tell us about your project and we’ll walk you through the live versions.</p>
+      <p class="work-note">These four are our own studio demos, not client work.</p>
     </section>
 
     <!-- ============================= METRICS ============================ -->
@@ -497,7 +483,7 @@
         </article>
       </div>
 
-      <p class="local-outro">Local matters when machines talk to your customers. With Cognexa you get a fixed quote in Rand, POPIA-aware builds as standard, and a team that understands how South African businesses operate, even though we also work with clients worldwide. Starting costs nothing. Scoping is free, the quote is fixed before you commit (here&rsquo;s what drives <a href="ai-receptionist-cost-south-africa.html">AI receptionist cost in South Africa</a>), and you are never locked in. We reply within one business day. <a href="#contact">Tell us what eats your team&rsquo;s hours</a>.</p>
+      <p class="local-outro">Local matters when machines talk to your customers. With Cognexa you get POPIA-aware builds as standard and a team that understands how South African businesses operate, even though we also work with clients worldwide. Starting costs nothing: every project is priced after a free discovery meeting (here&rsquo;s what drives <a href="ai-receptionist-cost-south-africa.html">AI receptionist cost in South Africa</a>). <a href="#contact">Tell us what eats your team&rsquo;s hours</a>.</p>
     </section>
 
     <!-- =============================== FAQ ============================== -->
@@ -507,7 +493,7 @@
 
       <details class="faq-item">
         <summary>How much does an AI receptionist or chatbot cost in South Africa?</summary>
-        <p>Each build is scoped to your business, so pricing depends on the channels you need (web, WhatsApp, voice), your call and chat volumes, and the systems we integrate with. Scoping is free, you get a fixed monthly quote in Rand before committing, and you are never locked in. For the full breakdown of what drives the numbers, read our <a href="ai-receptionist-cost-south-africa.html">guide to AI receptionist costs in South Africa</a>.</p>
+        <p>Each build is scoped to your business, so pricing depends on the channels you need (web, WhatsApp, voice), your call and chat volumes, and the systems we integrate with. We price each build after a free discovery meeting, before you commit to anything. For the full breakdown of what drives the numbers, read our <a href="ai-receptionist-cost-south-africa.html">guide to AI receptionist costs in South Africa</a>.</p>
       </details>
 
       <details class="faq-item">
@@ -536,8 +522,8 @@
       </details>
 
       <details class="faq-item">
-        <summary>What does it cost to get started, and is there a minimum contract?</summary>
-        <p>Getting started costs nothing: tell us what eats your team&rsquo;s hours and we&rsquo;ll reply within one business day with an automation plan and a fixed quote. You are never locked in, and you commit only once you&rsquo;ve seen exactly what you&rsquo;ll get. Not sure where to begin? Start with our <a href="small-business-ai-workflow-automation-examples.html">12 workflows that pay off first</a>.</p>
+        <summary>What does it cost to get started?</summary>
+        <p>Getting started costs nothing: tell us what eats your team&rsquo;s hours and we&rsquo;ll set up a free discovery meeting. We scope and price the work after it, and you commit only once you&rsquo;ve seen exactly what you&rsquo;ll get. Not sure where to begin? Start with our <a href="small-business-ai-workflow-automation-examples.html">12 workflows that pay off first</a>.</p>
       </details>
     </section>
 
@@ -781,7 +767,7 @@
         <section class="intake-step intake-success" data-step="done">
           <p class="intake-num" aria-hidden="true">&#10003;</p>
           <p class="intake-q">You&rsquo;re on the line.</p>
-          <p class="intake-sub">We&rsquo;ve got your answers, and we reply within one business day.</p>
+          <p class="intake-sub">We&rsquo;ve got your answers. Thanks for getting in touch.</p>
           <div class="intake-actions">
             <button type="button" class="btn btn-primary intake-close-done">Back to the site</button>
           </div>

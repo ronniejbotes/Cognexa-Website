@@ -1,8 +1,8 @@
 # Cognexa
 
-> Cognexa is a South African AI business solutions agency that designs and builds AI chatbots and WhatsApp automation, AI voice agents, workflow automation and immersive 3D websites. Scoping is free, quotes are fixed, and there is no minimum contract; built in South Africa, Cognexa works with clients worldwide and delivers POPIA-aware builds.
+> Cognexa is a South African AI business solutions agency that designs and builds AI chatbots and WhatsApp automation, AI voice agents, workflow automation and immersive 3D websites. Every project is scoped and priced after a free discovery meeting; built in South Africa, Cognexa works with clients worldwide and delivers POPIA-aware builds.
 
-Cognexa is based in Centurion, Gauteng, and replies to every enquiry within one business day. Core offerings include AI receptionists, WhatsApp and website chatbots, automated quoting and invoicing, appointment booking and reminders, email triage, CRM automation and custom CRM development. Plain-English articles on AI chatbots, AI receptionists, voice agents and workflow automation are published at https://cognexa.co.za/blog.html.
+Cognexa is based in Centurion, Gauteng. Core offerings include AI receptionists, WhatsApp and website chatbots, automated quoting and invoicing, appointment booking and reminders, email triage, CRM automation and custom CRM development. Plain-English articles on AI chatbots, AI receptionists, voice agents and workflow automation are published at https://cognexa.co.za/blog.html.
 
 ## Services
 
@@ -10,13 +10,13 @@ Cognexa is based in Centurion, Gauteng, and replies to every enquiry within one 
 - [AI chatbots & WhatsApp automation](https://cognexa.co.za/whatsapp-ai-chatbot-south-africa.html): Website chat and WhatsApp Business Platform automation that answers instantly, qualifies leads and books the meeting, then hands off with full context.
 - [Workflow automation](https://cognexa.co.za/workflow-automation-south-africa.html): Automated quoting, invoicing, appointment booking and reminders, inbox triage and CRM data hygiene, wired into the tools you already run.
 - [Custom CRM development](https://cognexa.co.za/custom-crm-development-south-africa.html): Bespoke CRMs built around how your business actually sells, plus integration and automation of the CRM you already have.
-- [Pricing](https://cognexa.co.za/pricing.html): What drives the cost of an AI automation project in South Africa. Free scoping, fixed monthly quote in Rand, no minimum contract.
-- [About Cognexa](https://cognexa.co.za/about.html): Who builds Cognexa, how projects run, and why the work is quoted in Rand.
+- [Pricing](https://cognexa.co.za/pricing.html): What drives the cost of an AI automation project in South Africa. Every project is priced after a free discovery meeting; no price list is published.
+- [About Cognexa](https://cognexa.co.za/about.html): Who builds Cognexa, how projects run, and why every project is priced after a free discovery meeting.
 - [3D web experiences](https://cognexa.co.za/): Immersive, scroll-driven 3D websites designed, built and tuned for performance.
 
 ## Insights
 
-- [AI Receptionist Cost in South Africa (2026 Guide)](https://cognexa.co.za/ai-receptionist-cost-south-africa.html): What an AI receptionist costs in South Africa: real vendor pricing in Rand, compared against local receptionist salaries.
+- [What Decides the Cost of an AI Receptionist in South Africa](https://cognexa.co.za/ai-receptionist-cost-south-africa.html): What decides the cost of an AI receptionist in South Africa: calls, integrations, languages and hours covered, how vendors bill, and the salary comparison.
 - [AI Receptionist vs Human Receptionist vs Answering Service](https://cognexa.co.za/ai-receptionist-vs-human-receptionist.html): Capability, caller experience and cost compared, plus when a call should be handed to a person.
 - [AI Workflow Automation for Small Business: 12 Wins](https://cognexa.co.za/small-business-ai-workflow-automation-examples.html): Twelve concrete workflows small businesses can automate first (lead handling, admin, follow-up, reporting) and what to leave to people.
 - [Is a WhatsApp AI Chatbot POPIA Compliant?](https://cognexa.co.za/whatsapp-ai-chatbot-popia-compliance.html): Consent rules, WhatsApp's opt-in policy and a practical compliance checklist for South African businesses.
@@ -43,4 +43,4 @@ Cognexa is based in Centurion, Gauteng, and replies to every enquiry within one 
 - Email: hello@cognexa.co.za
 - Phone / WhatsApp: +27 66 241 2155
 - [Privacy policy](https://cognexa.co.za/privacy-policy.html): How Cognexa handles personal information under POPIA.
-- [Start a project](https://cognexa.co.za/#contact): Free scoping and a fixed quote, with a reply within one business day.
+- [Start a project](https://cognexa.co.za/#contact): Book a free discovery meeting; every project is priced after it.
