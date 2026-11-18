@@ -37,6 +37,7 @@ Cognexa is based in Centurion, Gauteng. Core offerings include AI receptionists,
 - [AI Receptionist for Plumbers and Electricians](https://cognexa.co.za/ai-receptionist-for-trades.html): Missing calls on site? What an AI receptionist for a plumber or electrician in South Africa should ask, which calls ring you and how jobs reach the diary.
 - [How to Follow Up on a Quote Without Chasing It](https://cognexa.co.za/follow-up-on-a-quote.html): How to follow up on a quote that's gone quiet: what to ask, which channel to use, the WhatsApp and POPIA rules, when to stop, and how to automate it.
 - [What Should an AI Agent Do Without Human Approval?](https://cognexa.co.za/ai-agent-human-approval.html): Where to draw the line for an AI agent: what it can do alone, what it should draft for a person to approve, and what it hands straight to your team.
+- [Business Phone Over the December Shutdown](https://cognexa.co.za/business-calls-december-shutdown.html): Closing for December? Decide what callers hear, which calls reach someone on leave and where the rest go, then set your Google hours and test the forward.
 
 ## Contact
 
